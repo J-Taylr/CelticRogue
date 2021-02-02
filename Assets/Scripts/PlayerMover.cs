@@ -5,20 +5,23 @@ using UnityEngine;
 public class PlayerMover : MonoBehaviour
 {
     public CharacterController2D controller;
+    public Rigidbody2D rb;
+
+    [SerializeField] private float jumpForce = 400f; // Amount of force added when the player jumps.
+    [SerializeField] private float doubleJumpForce = 400f; // Amount of force added when the player jumps.
 
     float horizontalMove = 0f;
-    public bool jump = false;
-    bool isGrounded = false;
-    bool crouch = false;
-
-
     public float moveSpeed = 40;
+    bool canDoubleJump = false;
 
     private void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         controller = GetComponent<CharacterController2D>();
     }
 
+
+   
 
     void Update()
     {
@@ -27,8 +30,7 @@ public class PlayerMover : MonoBehaviour
 
     private void FixedUpdate()
     {
-        controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
-               
+        controller.Move(horizontalMove * Time.fixedDeltaTime);        
     }
 
 
@@ -36,31 +38,26 @@ public class PlayerMover : MonoBehaviour
 
     public void PlayerMovement()
     {
+
         horizontalMove = Input.GetAxisRaw("Horizontal") * moveSpeed;
 
-        
-
-        if (Input.GetButtonDown("Jump"))
+        if (!controller.isGrounded && canDoubleJump == true && Input.GetButtonDown("Jump")) // double jump 
         {
-            jump = true;
-
-            if (!controller.m_Grounded && !jump)
-            {
-                jump = true;
-            }
-
+            print("double");
+            rb.AddForce(new Vector2(0f, jumpForce));
+            canDoubleJump = false;
         }
 
-        
-        if (Input.GetButtonDown("Crouch"))
-        {
-            crouch = true;
 
-        }
-        else if (Input.GetButtonUp("Crouch"))
+        if (controller.isGrounded && Input.GetButtonDown("Jump")) //single jump
         {
-            crouch = false;
+            // Add a vertical force to the player.
+            controller.isGrounded = false;
+            canDoubleJump = true;
+
+            rb.AddForce(new Vector2(0f, jumpForce));//here for 
         }
+
 
 
     }
