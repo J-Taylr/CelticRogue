@@ -154,7 +154,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc8adb03a3aaba043aa206415a1a6dfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Controller: {fileID: 0}
+  controller: {fileID: 0}
+  rb: {fileID: 0}
+  jumpForce: 400
+  doubleJumpForce: 400
+  moveSpeed: 40
+--- !u!1 &4069858953766354327
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1110181049400350021}
+  m_Layer: 0
+  m_Name: StrikePointDown
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1110181049400350021
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4069858953766354327}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.000000059604645, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5199990085081996631}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6987421072757631175
 GameObject:
   m_ObjectHideFlags: 0
@@ -168,6 +202,7 @@ GameObject:
   - component: {fileID: 5967369291328425172}
   - component: {fileID: 5565167472930732417}
   - component: {fileID: 1950619213}
+  - component: {fileID: 6995198015827212321}
   - component: {fileID: 1950619212}
   m_Layer: 8
   m_Name: Player
@@ -190,6 +225,9 @@ Transform:
   - {fileID: 175533904339705112}
   - {fileID: 1384061967}
   - {fileID: 303256700}
+  - {fileID: 9031956571349341355}
+  - {fileID: 6633279272576282153}
+  - {fileID: 1110181049400350021}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -268,22 +306,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b73f17063cd628546989f44dcc0306e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_JumpForce: 400
-  m_CrouchSpeed: 0.36
-  m_MovementSmoothing: 0.05
-  m_AirControl: 1
-  m_WhatIsGround:
+  movementSmoothing: 0.05
+  airControl: 0
+  whatIsGround:
     serializedVersion: 2
-    m_Bits: 55
-  m_GroundCheck: {fileID: 1384061967}
-  m_CeilingCheck: {fileID: 303256700}
-  m_CrouchDisableCollider: {fileID: 0}
+    m_Bits: 0
+  groundCheck: {fileID: 0}
+  isGrounded: 0
   OnLandEvent:
     m_PersistentCalls:
       m_Calls: []
   OnCrouchEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6995198015827212321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6987421072757631175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04c98463f92ff7d429390b27b8a4fb0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackPointR: {fileID: 0}
+  attackPointUp: {fileID: 0}
+  attackPointDown: {fileID: 0}
+  attackRange: 0.5
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &1950619212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,4 +350,68 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc8adb03a3aaba043aa206415a1a6dfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Controller: {fileID: 1950619213}
+  controller: {fileID: 0}
+  rb: {fileID: 0}
+  jumpForce: 400
+  doubleJumpForce: 400
+  moveSpeed: 40
+--- !u!1 &7535639988435796682
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6633279272576282153}
+  m_Layer: 0
+  m_Name: StrikePointUp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6633279272576282153
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7535639988435796682}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.000000059604645, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5199990085081996631}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8434756070710285987
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9031956571349341355}
+  m_Layer: 0
+  m_Name: StrikePointR
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9031956571349341355
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8434756070710285987}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.000000059604645, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5199990085081996631}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
