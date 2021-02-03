@@ -6,6 +6,7 @@ TagManager:
   tags:
   - GroundCheck
   - Ceilingcheck
+  - Camera
   layers:
   - Default
   - TransparentFX

@@ -93,7 +93,7 @@ public class PlayerMover : MonoBehaviour
 
 
                 coyoteJump = false;
-                canDoubleJump = false;
+                canDoubleJump = true;
             }
 
         }
@@ -110,7 +110,6 @@ public class PlayerMover : MonoBehaviour
 
         if (controller.isOnWall)
         {
-
 
             wallHoldTimer -= Time.fixedDeltaTime;
             rb.velocity = new Vector2(0, -rb.velocity.y);

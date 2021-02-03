@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 303256700}
   m_Layer: 8
   m_Name: Ceilingcheck
-  m_TagString: Untagged
+  m_TagString: Ceilingcheck
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,7 +28,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2252886213784820388}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1384061966
 GameObject:
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 1384061967}
   m_Layer: 8
   m_Name: GroundCheck
-  m_TagString: Untagged
+  m_TagString: GroundCheck
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -54,11 +54,41 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1384061966}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5239999, z: 0}
+  m_LocalPosition: {x: 0, y: -1.02, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2252886213784820388}
-  m_RootOrder: 0
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &251241592274489259
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2723969344780276859}
+  m_Layer: 8
+  m_Name: Cam transform
+  m_TagString: Camera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2723969344780276859
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 251241592274489259}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.697, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5199990085081996631}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2518850278472965746
 GameObject:
@@ -159,8 +189,10 @@ MonoBehaviour:
   jumpForce: 400
   doubleJumpForce: 400
   moveSpeed: 40
+  grindSpeedMax: 20
   coyoteJump: 1
   coyoteTimer: 0.1
+  wallHoldTimer: 0.5
 --- !u!1 &2545423756639599710
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,8 +220,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1384061967}
   - {fileID: 303256700}
+  - {fileID: 1384061967}
   - {fileID: 6421525124007724643}
   m_Father: {fileID: 5199990085081996631}
   m_RootOrder: 1
@@ -248,7 +280,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4285936656976156693}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.487, y: 0, z: 0}
+  m_LocalPosition: {x: 0.499, y: -0.201, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2252886213784820388}
@@ -323,6 +355,7 @@ Transform:
   - {fileID: 175533904339705112}
   - {fileID: 2252886213784820388}
   - {fileID: 2862064335203649785}
+  - {fileID: 2723969344780276859}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -345,7 +378,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &5967369291328425172
 BoxCollider2D:
@@ -356,7 +389,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 6987421072757631175}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 3360c8d7e7c5ef642a1a5abe99f4a55d, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -423,12 +456,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSmoothing: 0.05
-  airControl: 0
+  airControl: 1
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 0
-  groundCheck: {fileID: 0}
-  isGrounded: 0
+    m_Bits: 1079
+  groundCheck: {fileID: 1384061967}
+  wallCheck: {fileID: 6421525124007724643}
+  isGrounded: 1
+  isOnWall: 0
   OnLandEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -447,13 +482,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc8adb03a3aaba043aa206415a1a6dfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 0}
+  controller: {fileID: 1950619213}
   rb: {fileID: 0}
-  jumpForce: 400
-  doubleJumpForce: 400
+  jumpForce: 15
+  doubleJumpForce: 13
   moveSpeed: 40
+  grindSpeedMax: 12
   coyoteJump: 1
   coyoteTimer: 0.1
+  wallHoldTimer: 1
 --- !u!1 &7535639988435796682
 GameObject:
   m_ObjectHideFlags: 0
