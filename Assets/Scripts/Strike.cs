@@ -58,7 +58,11 @@ public class Strike : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            Player.AddForce(-transform.up * Recoil, ForceMode2D.Impulse);
+            Vector2 yVelocity = new Vector2(0, 0);
+
+            Player.velocity = new Vector2(Player.velocity.x, yVelocity.y);
+
+            Player.AddForce(new Vector2(0f, Recoil), ForceMode2D.Impulse);
             Debug.Log("We hit Down " + enemy.name);
         }
     }
