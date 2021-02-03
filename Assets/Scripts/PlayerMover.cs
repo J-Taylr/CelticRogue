@@ -12,10 +12,11 @@ public class PlayerMover : MonoBehaviour
 
     private float horizontalInput;      //Input amount via player
     public float moveSpeed = 40;        //character speed
+    public float dashPower = 40;        //speed the character dashes at 
     public float grindSpeedMax = 20;    // max speed character slides down walls
 
     bool canDoubleJump = false;         //if player can double jump set to true
-    
+
     public bool coyoteJump = true;      // for when player walks off ledges, gives time to still jump 
     public float coyoteTimer = 0.1f;    // how long players have to jump after falling off ledge
     public float wallHoldTimer = 0.5f;  // how long the player grabs the wall before sliding down
@@ -30,7 +31,7 @@ public class PlayerMover : MonoBehaviour
 
     void Update()
     {
-        PlayerDirection(); //takes in player input and passes into fixed update
+        PlayerMovement(); //takes in player input and passes into fixed update
         CoyoteCheck(); // timer for coyote time
     }
 
@@ -42,10 +43,15 @@ public class PlayerMover : MonoBehaviour
 
     }
 
-    public void PlayerDirection()
+    public void PlayerMovement()
     {
         horizontalInput = Input.GetAxisRaw("Horizontal") * moveSpeed;
         PlayerJump();
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            StartCoroutine(PlayerDash());
+        }
+        
     }
 
     public void PlayerJump()
@@ -104,6 +110,19 @@ public class PlayerMover : MonoBehaviour
 
 
     } // all inputs for the players; Jump, Double Jump, Coyote Jump, WallJump
+
+
+    IEnumerator PlayerDash()
+    {
+
+        rb.AddForce(new Vector2((horizontalInput * dashPower), 0));
+        moveSpeed += 20;
+        yield return new WaitForSeconds(0.5f);
+        moveSpeed = 40;
+    }
+
+
+
 
     public void WallSlide()
     {
