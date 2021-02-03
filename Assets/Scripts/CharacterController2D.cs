@@ -37,8 +37,12 @@ public class CharacterController2D : MonoBehaviour
 			OnCrouchEvent = new BoolEvent();
 
 	}
+    private void OnDrawGizmosSelected()
+    {
+        
+    }
 
-	private void FixedUpdate()
+    private void FixedUpdate()
 	{
 		bool wasGrounded = isGrounded;
 		isGrounded = false;

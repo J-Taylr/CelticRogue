@@ -12,7 +12,10 @@ public class PlayerMover : MonoBehaviour
 
     float horizontalMove = 0f;
     public float moveSpeed = 40;
+
     bool canDoubleJump = false;
+   public bool coyoteJump = true; // specifically for coyote time jumps not for regular
+   public  float coyoteTimer = 0.5f;
 
     private void Start()
     {
@@ -21,11 +24,10 @@ public class PlayerMover : MonoBehaviour
     }
 
 
-   
-
     void Update()
     {
-        PlayerMovement();
+        PlayerMovement(); //takes in player input and passes into fixed update
+        CoyoteCheck(); // timer for coyote time
     }
 
     private void FixedUpdate()
@@ -33,32 +35,69 @@ public class PlayerMover : MonoBehaviour
         controller.Move(horizontalMove * Time.fixedDeltaTime);        
     }
 
-
-
-
     public void PlayerMovement()
-    {
-
+    {        
         horizontalMove = Input.GetAxisRaw("Horizontal") * moveSpeed;
+        PlayerJump();
+    }
 
+    public void PlayerJump()
+    {
         if (!controller.isGrounded && canDoubleJump == true && Input.GetButtonDown("Jump")) // double jump 
         {
-            print("double");
-            rb.AddForce(new Vector2(0f, jumpForce));
+            Vector2 yVelocity = new Vector2(0, 0);
+            rb.velocity = new Vector2(rb.velocity.x, yVelocity.y); //set current Y velocity to 0
+           
+            rb.AddForce(new Vector2(0f, doubleJumpForce), ForceMode2D.Impulse);
+
             canDoubleJump = false;
         }
 
-
         if (controller.isGrounded && Input.GetButtonDown("Jump")) //single jump
         {
-            // Add a vertical force to the player.
-            controller.isGrounded = false;
-            canDoubleJump = true;
+            Vector2 yVelocity = new Vector2(0, 0);
+            rb.velocity = new Vector2(rb.velocity.x, yVelocity.y);
 
-            rb.AddForce(new Vector2(0f, jumpForce));//here for 
+            rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+
+            coyoteJump = false;
+            canDoubleJump = true;
+        }
+
+        if (coyoteJump && !controller.isGrounded && Input.GetButtonDown("Jump")) //coyote jump 
+        {
+
+            Vector2 yVelocity = new Vector2(0, 0);
+            rb.velocity = new Vector2(rb.velocity.x, yVelocity.y);
+            rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+
+            coyoteJump = false;
+            canDoubleJump = true;
         }
 
 
-
     }
+
+    public void CoyoteCheck()
+    {
+        if (!controller.isGrounded)
+        {
+            
+            coyoteTimer -= Time.deltaTime;
+
+            if (coyoteTimer <= 0)
+            {
+                coyoteTimer = 0;
+                
+                coyoteJump = false;
+            }
+
+        }
+        else if (controller.isGrounded)
+        {
+            coyoteJump = true;
+            coyoteTimer = 0.2f;
+        }
+    }
+
 }

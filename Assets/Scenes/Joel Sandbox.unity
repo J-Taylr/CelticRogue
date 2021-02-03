@@ -547,7 +547,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1384061967, guid: 4141e1b660336de469d0c90e2bfafc07, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.791
+      value: -1.02
       objectReference: {fileID: 0}
     - target: {fileID: 1950619211, guid: 4141e1b660336de469d0c90e2bfafc07, type: 3}
       propertyPath: m_CollisionDetection
@@ -559,11 +559,15 @@ PrefabInstance:
       objectReference: {fileID: 1950619213}
     - target: {fileID: 1950619212, guid: 4141e1b660336de469d0c90e2bfafc07, type: 3}
       propertyPath: jumpForce
-      value: 600
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1950619212, guid: 4141e1b660336de469d0c90e2bfafc07, type: 3}
       propertyPath: doubleJumpForce
-      value: 600
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1950619212, guid: 4141e1b660336de469d0c90e2bfafc07, type: 3}
+      propertyPath: coyoteTimer
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 1950619213, guid: 4141e1b660336de469d0c90e2bfafc07, type: 3}
       propertyPath: m_JumpForce
@@ -589,7 +593,7 @@ PrefabInstance:
     - target: {fileID: 5199990085081996631, guid: 4141e1b660336de469d0c90e2bfafc07,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.86
+      value: 2.86
       objectReference: {fileID: 0}
     - target: {fileID: 5199990085081996631, guid: 4141e1b660336de469d0c90e2bfafc07,
         type: 3}
@@ -646,5 +650,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 6995198015827212321, guid: 4141e1b660336de469d0c90e2bfafc07,
+        type: 3}
+      propertyPath: attackRange
+      value: 1.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 6995198015827212321, guid: 4141e1b660336de469d0c90e2bfafc07,
+        type: 3}
+      propertyPath: enemyLayer.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6995198015827212321, guid: 4141e1b660336de469d0c90e2bfafc07, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4141e1b660336de469d0c90e2bfafc07, type: 3}
