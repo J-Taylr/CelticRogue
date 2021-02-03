@@ -15,7 +15,8 @@ public class PlayerMover : MonoBehaviour
 
     bool canDoubleJump = false;
    public bool coyoteJump = true; // specifically for coyote time jumps not for regular
-   public  float coyoteTimer = 0.5f;
+   public  float coyoteTimer = 0.1f;
+   
 
     private void Start()
     {
@@ -96,7 +97,7 @@ public class PlayerMover : MonoBehaviour
         else if (controller.isGrounded)
         {
             coyoteJump = true;
-            coyoteTimer = 0.2f;
+            coyoteTimer = 0.1f;
         }
     }
 
