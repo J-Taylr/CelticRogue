@@ -11,6 +11,7 @@ public class Strike : MonoBehaviour
     public float attackRange = 0.5f;
     public LayerMask enemyLayer;
     public Rigidbody2D Player;
+    public Transform T;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,7 +40,20 @@ public class Strike : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            Player.AddForce(-transform.right * Recoil, ForceMode2D.Impulse);
+            
+            Vector2 yVelocity = new Vector2(0, 0);
+            Player.velocity = new Vector2(Player.velocity.x, yVelocity.y);
+            print(transform.localPosition);
+            if (transform.localPosition.x < 3)
+            {
+                print(transform.localPosition);
+                Player.AddForce(new Vector2(-Recoil, 0f), ForceMode2D.Impulse);
+            }
+            if (transform.localPosition.x > 3)
+            {
+                print(transform.localPosition);
+                Player.AddForce(new Vector2(Recoil, 0f), ForceMode2D.Impulse);
+            }
             Debug.Log("We hit Right " + enemy.name);
         }
     }
@@ -59,9 +73,7 @@ public class Strike : MonoBehaviour
         foreach (Collider2D enemy in hitEnemies)
         {
             Vector2 yVelocity = new Vector2(0, 0);
-
             Player.velocity = new Vector2(Player.velocity.x, yVelocity.y);
-
             Player.AddForce(new Vector2(0f, Recoil), ForceMode2D.Impulse);
             Debug.Log("We hit Down " + enemy.name);
         }
