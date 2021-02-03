@@ -4,13 +4,15 @@ using UnityEngine.Events;
 public class CharacterController2D : MonoBehaviour
 {
 
-	[Range(0, .3f)] [SerializeField] private float movementSmoothing = .05f;	// How much to smooth out the movement
-	[SerializeField] private bool airControl = false;							// Whether or not a player can steer while jumping;
-	[SerializeField] private LayerMask whatIsGround;							// A mask determining what is ground to the character
-	[SerializeField] private Transform groundCheck;							// A position marking where to check if the player is grounded.
+	[Range(0, .3f)] [SerializeField] private float movementSmoothing = .05f;    // How much to smooth out the movement
+	[SerializeField] private bool airControl = false;                           // Whether or not a player can steer while jumping;
+	[SerializeField] private LayerMask whatIsGround;                            // A mask determining what is ground to the character
+	[SerializeField] private Transform groundCheck;                         // A position marking where to check if the player is grounded.
+	[SerializeField] private Transform wallCheck;							//A position marking where to check if the player is on a wall
 
 	const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
 	public bool isGrounded;            // Whether or not the player is grounded.
+	public bool isOnWall;			  // Whether or not the player is on a wall
 	private Rigidbody2D m_Rigidbody2D;
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private Vector3 m_Velocity = Vector3.zero;
@@ -24,7 +26,7 @@ public class CharacterController2D : MonoBehaviour
 	public class BoolEvent : UnityEvent<bool> { }
 
 	public BoolEvent OnCrouchEvent;
-	
+
 
 	private void Awake()
 	{
@@ -37,34 +39,21 @@ public class CharacterController2D : MonoBehaviour
 			OnCrouchEvent = new BoolEvent();
 
 	}
-    private void OnDrawGizmosSelected()
-    {
-        
-    }
-
-    private void FixedUpdate()
+	private void OnDrawGizmosSelected()
 	{
-		bool wasGrounded = isGrounded;
-		isGrounded = false;
 
-		// The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
-		// This can be done using layers instead but Sample Assets will not overwrite your project settings.
-		Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, k_GroundedRadius, whatIsGround);
-		for (int i = 0; i < colliders.Length; i++)
-		{
-			if (colliders[i].gameObject != gameObject)
-			{
-				isGrounded = true;
-				if (!wasGrounded)
-					OnLandEvent.Invoke();
-			}
-		}
+	}
+
+	private void FixedUpdate()
+	{
+		CheckGround();
+		CheckWall();
 	}
 
 
 	public void Move(float move)
 	{
-		
+
 		//only control the player if grounded or airControl is turned on
 		if (isGrounded || airControl)
 		{
@@ -87,8 +76,44 @@ public class CharacterController2D : MonoBehaviour
 				Flip();
 			}
 		}
-		
-		
+
+
+	}
+
+
+	public void CheckGround()
+    {
+		bool wasGrounded = isGrounded;
+		isGrounded = false;
+
+		// The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
+		// This can be done using layers instead but Sample Assets will not overwrite your project settings.
+		Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, k_GroundedRadius, whatIsGround);
+		for (int i = 0; i < colliders.Length; i++)
+		{
+			if (colliders[i].gameObject != gameObject)
+			{
+				isGrounded = true;
+				if (!wasGrounded)
+					OnLandEvent.Invoke();
+			}
+		}
+	}
+
+	public void CheckWall()
+    {
+		isOnWall = false;
+
+		Collider2D[] colliders = Physics2D.OverlapCircleAll(wallCheck.position, k_GroundedRadius, whatIsGround);
+		for (int i = 0; i < colliders.Length; i++)
+		{
+			if (colliders[i].gameObject != gameObject)
+			{
+				isOnWall = true;
+				
+			}
+			
+		}
 	}
 
 
