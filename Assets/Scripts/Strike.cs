@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Strike : MonoBehaviour
 {
+    public int Recoil;
     public Transform attackPointR;
     public Transform attackPointUp;
     public Transform attackPointDown;
     public float attackRange = 0.5f;
     public LayerMask enemyLayer;
+    public Rigidbody2D Player;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +39,7 @@ public class Strike : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies)
         {
+            Player.AddForce(-transform.right * Recoil, ForceMode2D.Impulse);
             Debug.Log("We hit Right " + enemy.name);
         }
     }
@@ -55,6 +58,7 @@ public class Strike : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies)
         {
+            Player.AddForce(-transform.up * Recoil, ForceMode2D.Impulse);
             Debug.Log("We hit Down " + enemy.name);
         }
     }
