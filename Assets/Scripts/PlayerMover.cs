@@ -14,13 +14,21 @@ public class PlayerMover : MonoBehaviour
     private float horizontalInput;      //Input amount via player
     public float moveSpeed = 40;        //character speed
     public float dashPower = 40;        //speed the character dashes at 
-    public float grindSpeedMax = 20;    // max speed character slides down walls
 
     bool canDoubleJump = false;         //if player can double jump set to true
 
     public bool coyoteJump = true;      // for when player walks off ledges, gives time to still jump 
     public float coyoteTimer = 0.1f;    // how long players have to jump after falling off ledge
-    public float wallHoldTimer = 0.5f;  // how long the player grabs the wall before sliding down
+
+    [Header("Wall Sliding")]
+    bool wallSliding;
+    public float wallSlidingSpeed = 20;    // max speed character slides down walls
+    [Header("Wall Jumping")]
+    bool wallJumping;
+    public float xJumpForce;
+    public float yJumpForce;
+    public float wallJumpTime;
+      
 
 
     private void Start()
@@ -35,13 +43,13 @@ public class PlayerMover : MonoBehaviour
     {
         PlayerMovement(); //takes in player input and passes into fixed update
         CoyoteCheck(); // timer for coyote time
+        SlideCheck() ;
     }
 
     private void FixedUpdate()
     {
         controller.Move(horizontalInput * Time.fixedDeltaTime);
         WallSlide();
-
 
     }
 
@@ -136,39 +144,27 @@ public class PlayerMover : MonoBehaviour
 
 
 
-    public void WallSlide()
+    public void SlideCheck()
     {
-
-        if (controller.isOnWall)
+        if (controller.isOnWall && !controller.isGrounded && horizontalInput != 0)
         {
-
-            wallHoldTimer -= Time.fixedDeltaTime;
-            rb.velocity = new Vector2(0, -rb.velocity.y);
-
-
-            if (wallHoldTimer <= 0)
-            {
-                wallHoldTimer = 0;
-
-                var mag = rb.velocity.magnitude;
-                if (mag > grindSpeedMax)
-                {
-
-
-                    var velComp = mag - grindSpeedMax;
-                    rb.velocity = new Vector2(0, velComp);
-                    
-                }
-            }
-
-            if (!controller.isOnWall)
-            {
-                wallHoldTimer = 1f;
-            }
-
+            wallSliding = true;
         }
+        else
+        {
+            wallSliding = false;
+        }
+
+        
     }
 
+    public void WallSlide()
+    {
+        if (wallSliding)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
+        }
+    }
 
     public void CoyoteCheck()
     {
