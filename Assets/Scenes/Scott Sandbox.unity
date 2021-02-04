@@ -405,34 +405,31 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 948949284}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1.5, z: 1}
+  m_LocalPosition: {x: -0.11, y: -0.77, z: 0}
+  m_LocalScale: {x: 1.576234, y: 1.8740467, z: 1}
   m_Children: []
   m_Father: {fileID: 1069053577}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &948949286
-MonoBehaviour:
+--- !u!95 &948949286
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 948949284}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc8adb03a3aaba043aa206415a1a6dfe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 0}
-  rb: {fileID: 0}
-  jumpForce: 400
-  doubleJumpForce: 400
-  moveSpeed: 40
-  dashPower: 40
-  grindSpeedMax: 20
-  coyoteJump: 1
-  coyoteTimer: 0.5
-  wallHoldTimer: 0.5
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0fc18731244d1304ab197ec57c046cd5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!212 &948949287
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -472,9 +469,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 48f2b53149a14ec4aa7b70dc822bccc8, type: 3}
-  m_Color: {r: 0.45007566, g: 0.7735849, b: 0.40503737, a: 1}
-  m_FlipX: 0
+  m_Sprite: {fileID: 21300000, guid: f2ed27d6c1c3ccc48959bcca269d88f0, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -560,7 +557,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.43, y: 2.32, z: -10}
+  m_LocalPosition: {x: 0.61, y: 2.35, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -602,14 +599,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 1069053573}
   rb: {fileID: 1069053576}
+  topCollider: {fileID: 0}
   jumpForce: 15
   doubleJumpForce: 13
   moveSpeed: 40
   dashPower: 40
-  grindSpeedMax: 20
   coyoteJump: 1
   coyoteTimer: 0.5
-  wallHoldTimer: 0.5
+  wallSlidingSpeed: 20
+  xJumpForce: 0
+  yJumpForce: 0
+  wallJumpTime: 0
+  animator: {fileID: 948949286}
 --- !u!114 &1069053572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -842,12 +843,12 @@ PrefabInstance:
     - target: {fileID: 1659988323153352074, guid: cf5fe5426b2492f4ca176b3085a57880,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.35
+      value: 5.55
       objectReference: {fileID: 0}
     - target: {fileID: 1659988323153352074, guid: cf5fe5426b2492f4ca176b3085a57880,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.11
+      value: 1.05
       objectReference: {fileID: 0}
     - target: {fileID: 1659988323153352074, guid: cf5fe5426b2492f4ca176b3085a57880,
         type: 3}
@@ -898,6 +899,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: enemie
+      objectReference: {fileID: 0}
+    - target: {fileID: 1659988323153352085, guid: cf5fe5426b2492f4ca176b3085a57880,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf5fe5426b2492f4ca176b3085a57880, type: 3}

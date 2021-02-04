@@ -28,8 +28,8 @@ public class PlayerMover : MonoBehaviour
     public float xJumpForce;
     public float yJumpForce;
     public float wallJumpTime;
-      
 
+    public Animator animator;
 
     private void Start()
     {
@@ -41,6 +41,8 @@ public class PlayerMover : MonoBehaviour
 
     void Update()
     {
+       
+        animator.SetFloat("Speed", Mathf.Abs(horizontalInput));
         PlayerMovement(); //takes in player input and passes into fixed update
         CoyoteCheck(); // timer for coyote time
         SlideCheck() ;
@@ -56,6 +58,9 @@ public class PlayerMover : MonoBehaviour
     public void PlayerMovement()
     {
         horizontalInput = Input.GetAxisRaw("Horizontal") * moveSpeed;
+
+       
+
         PlayerJump();
         PlayerCrouch();
 
@@ -65,11 +70,11 @@ public class PlayerMover : MonoBehaviour
         }
         
     }
-
     public void PlayerJump() // all inputs for the players; Jump, Double Jump, Coyote Jump, WallJump
     {
         if (Input.GetButtonDown("Jump"))
         {
+            animator.SetBool("Jumping", true);
             if (!controller.isGrounded && canDoubleJump) //double jump
             {
                 Vector2 yVelocity = new Vector2(0, 0);
@@ -84,13 +89,14 @@ public class PlayerMover : MonoBehaviour
             {
                 Vector2 yVelocity = new Vector2(0, 0);
                 rb.velocity = new Vector2(rb.velocity.x, yVelocity.y);
-
                 rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
-
                 coyoteJump = false;
                 canDoubleJump = true;
             }
-
+            if (controller.isGrounded == true)
+            {
+                animator.SetBool("Jumping", false);
+            }
             if (coyoteJump) //coyote jump 
             {
 
