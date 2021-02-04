@@ -6,6 +6,7 @@ public class PlayerMover : MonoBehaviour
 {
     public CharacterController2D controller;
     public Rigidbody2D rb;
+    public BoxCollider2D topCollider;
 
     [SerializeField] private float jumpForce = 400f; // Amount of force added when the player jumps.
     [SerializeField] private float doubleJumpForce = 400f; // Amount of force added when the player jumps.
@@ -26,6 +27,7 @@ public class PlayerMover : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         controller = GetComponent<CharacterController2D>();
+        topCollider = GetComponent<BoxCollider2D>();
     }
 
 
@@ -47,14 +49,16 @@ public class PlayerMover : MonoBehaviour
     {
         horizontalInput = Input.GetAxisRaw("Horizontal") * moveSpeed;
         PlayerJump();
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        PlayerCrouch();
+
+        if (Input.GetKeyDown(KeyCode.LeftShift)) // shift for players dash
         {
             StartCoroutine(PlayerDash());
         }
         
     }
 
-    public void PlayerJump()
+    public void PlayerJump() // all inputs for the players; Jump, Double Jump, Coyote Jump, WallJump
     {
         if (Input.GetButtonDown("Jump"))
         {
@@ -104,12 +108,7 @@ public class PlayerMover : MonoBehaviour
 
         }
 
-
-
-
-
-
-    } // all inputs for the players; Jump, Double Jump, Coyote Jump, WallJump
+    } 
 
 
     IEnumerator PlayerDash()
@@ -121,6 +120,19 @@ public class PlayerMover : MonoBehaviour
         moveSpeed = 40;
     }
 
+
+    public void PlayerCrouch()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            topCollider.enabled = false;
+        }
+        if (Input.GetKeyUp(KeyCode.LeftControl))
+        {
+            topCollider.enabled = true;
+        }
+
+    }
 
 
 
@@ -141,9 +153,11 @@ public class PlayerMover : MonoBehaviour
                 var mag = rb.velocity.magnitude;
                 if (mag > grindSpeedMax)
                 {
-                    var velComp = mag - grindSpeedMax;
 
+
+                    var velComp = mag - grindSpeedMax;
                     rb.velocity = new Vector2(0, velComp);
+                    
                 }
             }
 

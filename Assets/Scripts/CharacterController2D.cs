@@ -104,7 +104,7 @@ public class CharacterController2D : MonoBehaviour
     {
 		isOnWall = false;
 
-		Collider2D[] colliders = Physics2D.OverlapCircleAll(wallCheck.position, k_GroundedRadius, whatIsGround);
+		Collider2D[] colliders = Physics2D.OverlapCircleAll(wallCheck.position, k_GroundedRadius, whatIsGround);///
 		for (int i = 0; i < colliders.Length; i++)
 		{
 			if (colliders[i].gameObject != gameObject)
