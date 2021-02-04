@@ -1,12 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+
 
 public class PlayerMover : MonoBehaviour
 {
     public CharacterController2D controller;
     public Rigidbody2D rb;
+    public InputMaster inputController;
     public BoxCollider2D topCollider;
+
+    
 
     [SerializeField] private float jumpForce = 400f; // Amount of force added when the player jumps.
     [SerializeField] private float doubleJumpForce = 400f; // Amount of force added when the player jumps.
@@ -23,16 +28,25 @@ public class PlayerMover : MonoBehaviour
     [Header("Wall Sliding")]
     bool wallSliding;
     public float wallSlidingSpeed = 20;    // max speed character slides down walls
-    [Header("Wall Jumping")]
-    bool wallJumping;
-    public float xJumpForce;
-    public float yJumpForce;
-    public float wallJumpTime;
+    
 
     public Animator animator;
 
-    private void Start()
+    private void Awake()
     {
+        inputController = new InputMaster();
+
+        inputController.Player.Jump.performed += ctx => PlayerJump();
+    }
+
+    private void OnEnable()
+    {
+        inputController.Enable();
+    }
+
+   /* private void Start()
+    {
+        
         rb = GetComponent<Rigidbody2D>();
         controller = GetComponent<CharacterController2D>();
         topCollider = GetComponent<BoxCollider2D>();
@@ -59,8 +73,6 @@ public class PlayerMover : MonoBehaviour
     {
         horizontalInput = Input.GetAxisRaw("Horizontal") * moveSpeed;
 
-       
-
         PlayerJump();
         PlayerCrouch();
 
@@ -70,10 +82,9 @@ public class PlayerMover : MonoBehaviour
         }
         
     }
-    public void PlayerJump() // all inputs for the players; Jump, Double Jump, Coyote Jump, WallJump
+   */ public void PlayerJump() // all inputs for the players; Jump, Double Jump, Coyote Jump, WallJump
     {
-        if (Input.GetButtonDown("Jump"))
-        {
+       
             animator.SetBool("Jumping", true);
             if (!controller.isGrounded && canDoubleJump) //double jump
             {
@@ -120,11 +131,11 @@ public class PlayerMover : MonoBehaviour
                 canDoubleJump = true;
             }
 
-        }
+        
 
     } 
 
-
+    /*
     IEnumerator PlayerDash()
     {
 
@@ -194,4 +205,6 @@ public class PlayerMover : MonoBehaviour
         }
     }
 
+    */
 }
+
