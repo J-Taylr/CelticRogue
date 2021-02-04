@@ -13,29 +13,8 @@ public class Strike : MonoBehaviour
     public LayerMask enemyLayer;
     public Rigidbody2D Player;
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            AttackR();
-        }
-        if (Input.GetKey(KeyCode.W) & Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            AttackUp();
-        }
-        if (Input.GetKey(KeyCode.S) & Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            AttackDown();
-        }
-    }
-    void AttackR()
+   
+    public void AttackR()
     {
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPointR.position, attackRange, enemyLayer);
 
@@ -55,7 +34,7 @@ public class Strike : MonoBehaviour
             Debug.Log("We hit Right " + enemy.name);
         }
     }
-    void AttackUp()
+   public  void AttackUp()
     {
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPointUp.position, attackRange, enemyLayer);
 
@@ -64,7 +43,7 @@ public class Strike : MonoBehaviour
             Debug.Log("We hit up " + enemy.name);
         }
     }
-    void AttackDown()
+    public void AttackDown()
     {
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPointDown.position, attackRange, enemyLayer);
 
