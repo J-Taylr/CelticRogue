@@ -599,7 +599,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 1069053573}
   rb: {fileID: 1069053576}
-  topCollider: {fileID: 0}
+  strike: {fileID: 0}
   jumpForce: 15
   doubleJumpForce: 13
   moveSpeed: 40
@@ -607,9 +607,6 @@ MonoBehaviour:
   coyoteJump: 1
   coyoteTimer: 0.5
   wallSlidingSpeed: 20
-  xJumpForce: 0
-  yJumpForce: 0
-  wallJumpTime: 0
   animator: {fileID: 948949286}
 --- !u!114 &1069053572
 MonoBehaviour:
@@ -633,6 +630,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   Player: {fileID: 1069053576}
+  animator: {fileID: 948949286}
 --- !u!114 &1069053573
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,14 +12,14 @@ public class Strike : MonoBehaviour
     public float attackRange = 0.5f;
     public LayerMask enemyLayer;
     public Rigidbody2D Player;
-    
-   
+    public Animator animator;
+
     public void AttackR()
     {
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPointR.position, attackRange, enemyLayer);
-
         foreach (Collider2D enemy in hitEnemies)
         {
+            
             Vector2 yVelocity = new Vector2(0, 0);
             Player.velocity = new Vector2(Player.velocity.x, yVelocity.y);
 

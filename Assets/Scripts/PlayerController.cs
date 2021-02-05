@@ -208,6 +208,7 @@ public class PlayerController : MonoBehaviour
 
     public void sideAttack()
     {
+        StartCoroutine("AttackAni");
         print("strike");
         strike.AttackR();
     }
@@ -223,7 +224,13 @@ public class PlayerController : MonoBehaviour
         print("down strike");
         strike.AttackDown();
     }
-
+    IEnumerator AttackAni()
+    {
+        Debug.Log("hit");
+        animator.SetBool("Attack", true);
+        yield return new WaitForSeconds(1);
+        animator.SetBool("Attack", false);
+    }
 
 }
 
