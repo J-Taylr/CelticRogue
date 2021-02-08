@@ -14,7 +14,7 @@ public class Strike : MonoBehaviour
     public Rigidbody2D Player;
     public Animator animator;
 
-    public void AttackR()
+    public void AttackR(int damage)
     {
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPointR.position, attackRange, enemyLayer);
         foreach (Collider2D enemy in hitEnemies)
@@ -31,19 +31,22 @@ public class Strike : MonoBehaviour
             {
                 Player.AddForce(new Vector2(Recoil, 0f), ForceMode2D.Impulse);
             }
-            Debug.Log("We hit Right " + enemy.name);
+
+            enemy.GetComponent<EnemyManager>().TakeDamage(damage);
         }
     }
-   public  void AttackUp()
+   public  void AttackUp(int damage)
     {
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPointUp.position, attackRange, enemyLayer);
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            Debug.Log("We hit up " + enemy.name);
+            
+            enemy.GetComponent<EnemyManager>().TakeDamage(damage);
         }
+
     }
-    public void AttackDown()
+    public void AttackDown(int damage)
     {
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPointDown.position, attackRange, enemyLayer);
 
@@ -52,7 +55,8 @@ public class Strike : MonoBehaviour
             Vector2 yVelocity = new Vector2(0, 0);
             Player.velocity = new Vector2(Player.velocity.x, yVelocity.y);
             Player.AddForce(new Vector2(0f, RecoilD), ForceMode2D.Impulse);
-            Debug.Log("We hit Down " + enemy.name);
+            
+            enemy.GetComponent<EnemyManager>().TakeDamage(damage);
         }
     }
     private void OnDrawGizmosSelected()

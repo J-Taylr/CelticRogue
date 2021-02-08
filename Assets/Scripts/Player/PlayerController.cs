@@ -6,32 +6,36 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Components")]
     public CharacterController2D controller;
     public Rigidbody2D rb;
     public InputMaster inputController;
     public Strike strike;
-   
+    public Animator animator;
 
+    [Header("Basics")]
+    public int maxHealth = 10;
+    public int currentHealth;
 
+    [Header("Combat")]
+    public int standardAttackDamage = 5;
 
-    [SerializeField] private float jumpForce = 400f; // Amount of force added when the player jumps.
-    [SerializeField] private float doubleJumpForce = 400f; // Amount of force added when the player jumps.
+    [Header("Movement")]
+    private float horizontalInput;      
+    public float moveSpeed = 40;        
+    public float dashPower = 40;        
+    public float jumpForce = 400f; 
+    public float doubleJumpForce = 400f; 
 
-    private float horizontalInput;      //Input amount via player
-    public float moveSpeed = 40;        //character speed
-    public float dashPower = 40;        //speed the character dashes at 
-
-    bool canDoubleJump = false;         //if player can double jump set to true
-
-    public bool coyoteJump = true;      // for when player walks off ledges, gives time to still jump 
-    public float coyoteTimer = 0.1f;    // how long players have to jump after falling off ledge
+    bool canDoubleJump = false;        
+    bool coyoteJump = true;      
+    float coyoteTimer = 0.1f;    
   
     [Header("Wall Sliding")]
     bool wallSliding;
     public float wallSlidingSpeed = 20;    // max speed character slides down walls
 
 
-    public Animator animator;
 
     private void Awake()
     {
@@ -210,19 +214,19 @@ public class PlayerController : MonoBehaviour
     {
         StartCoroutine("AttackAni");
         print("strike");
-        strike.AttackR();
+        strike.AttackR(standardAttackDamage);
     }
 
     public void UpAttack()
     {
         print("up strike");
-        strike.AttackUp();
+        strike.AttackUp(standardAttackDamage);
     }
 
     public void DownAttack()
     {
         print("down strike");
-        strike.AttackDown();
+        strike.AttackDown(standardAttackDamage);
     }
     IEnumerator AttackAni()
     {
