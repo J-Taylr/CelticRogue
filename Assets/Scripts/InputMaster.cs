@@ -352,6 +352,33 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""Test"",
+            ""id"": ""8028048c-7af2-4159-94e5-9d554ac9c2c5"",
+            ""actions"": [
+                {
+                    ""name"": ""New action"",
+                    ""type"": ""Button"",
+                    ""id"": ""b6ccab82-ee3e-4111-a691-afa95a8d66b1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""da9b63bf-5ae5-4757-aae1-416e32a5befb"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""New action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -393,6 +420,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
         m_Player_AttackDown = m_Player.FindAction("AttackDown", throwIfNotFound: true);
         m_Player_AttackUp = m_Player.FindAction("AttackUp", throwIfNotFound: true);
+        // Test
+        m_Test = asset.FindActionMap("Test", throwIfNotFound: true);
+        m_Test_Newaction = m_Test.FindAction("New action", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -519,6 +549,39 @@ public class @InputMaster : IInputActionCollection, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // Test
+    private readonly InputActionMap m_Test;
+    private ITestActions m_TestActionsCallbackInterface;
+    private readonly InputAction m_Test_Newaction;
+    public struct TestActions
+    {
+        private @InputMaster m_Wrapper;
+        public TestActions(@InputMaster wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Newaction => m_Wrapper.m_Test_Newaction;
+        public InputActionMap Get() { return m_Wrapper.m_Test; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(TestActions set) { return set.Get(); }
+        public void SetCallbacks(ITestActions instance)
+        {
+            if (m_Wrapper.m_TestActionsCallbackInterface != null)
+            {
+                @Newaction.started -= m_Wrapper.m_TestActionsCallbackInterface.OnNewaction;
+                @Newaction.performed -= m_Wrapper.m_TestActionsCallbackInterface.OnNewaction;
+                @Newaction.canceled -= m_Wrapper.m_TestActionsCallbackInterface.OnNewaction;
+            }
+            m_Wrapper.m_TestActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Newaction.started += instance.OnNewaction;
+                @Newaction.performed += instance.OnNewaction;
+                @Newaction.canceled += instance.OnNewaction;
+            }
+        }
+    }
+    public TestActions @Test => new TestActions(this);
     private int m_KeyboardSchemeIndex = -1;
     public InputControlScheme KeyboardScheme
     {
@@ -546,5 +609,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
         void OnAttack(InputAction.CallbackContext context);
         void OnAttackDown(InputAction.CallbackContext context);
         void OnAttackUp(InputAction.CallbackContext context);
+    }
+    public interface ITestActions
+    {
+        void OnNewaction(InputAction.CallbackContext context);
     }
 }

@@ -442,6 +442,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   Player: {fileID: 1950619211}
+  animator: {fileID: 0}
 --- !u!114 &1950619213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -483,18 +484,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 1950619213}
   rb: {fileID: 0}
-  topCollider: {fileID: 0}
-  jumpForce: 15
-  doubleJumpForce: 13
+  strike: {fileID: 0}
+  animator: {fileID: 8096058985617015183}
+  maxHealth: 10
+  currentHealth: 0
+  standardAttackDamage: 5
   moveSpeed: 40
   dashPower: 40
-  coyoteJump: 1
-  coyoteTimer: 0.1
+  jumpForce: 15
+  doubleJumpForce: 13
   wallSlidingSpeed: 2
-  xJumpForce: 0
-  yJumpForce: 0
-  wallJumpTime: 0
-  animator: {fileID: 0}
 --- !u!1 &7535639988435796682
 GameObject:
   m_ObjectHideFlags: 0
