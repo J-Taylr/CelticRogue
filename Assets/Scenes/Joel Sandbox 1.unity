@@ -1328,8 +1328,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camPos: {fileID: 0}
-  camSpeed: 15
-  zOffset: -14
+  camSpeed: 10
+  zOffset: -10
 --- !u!1 &1000885016
 GameObject:
   m_ObjectHideFlags: 0
