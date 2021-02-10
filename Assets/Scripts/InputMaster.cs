@@ -73,6 +73,14 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""69c48c21-fcd7-40df-8d5b-599192ea0d2d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -350,6 +358,28 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""action"": ""AttackUp"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9b3f07f9-1ffd-4ee9-9339-f0bfcf71768e"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1c9e30c0-7a08-4efb-a5d1-53f64728f17e"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -420,6 +450,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
         m_Player_AttackDown = m_Player.FindAction("AttackDown", throwIfNotFound: true);
         m_Player_AttackUp = m_Player.FindAction("AttackUp", throwIfNotFound: true);
+        m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         // Test
         m_Test = asset.FindActionMap("Test", throwIfNotFound: true);
         m_Test_Newaction = m_Test.FindAction("New action", throwIfNotFound: true);
@@ -479,6 +510,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Attack;
     private readonly InputAction m_Player_AttackDown;
     private readonly InputAction m_Player_AttackUp;
+    private readonly InputAction m_Player_Interact;
     public struct PlayerActions
     {
         private @InputMaster m_Wrapper;
@@ -490,6 +522,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         public InputAction @Attack => m_Wrapper.m_Player_Attack;
         public InputAction @AttackDown => m_Wrapper.m_Player_AttackDown;
         public InputAction @AttackUp => m_Wrapper.m_Player_AttackUp;
+        public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -520,6 +553,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @AttackUp.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttackUp;
                 @AttackUp.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttackUp;
                 @AttackUp.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttackUp;
+                @Interact.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -545,6 +581,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @AttackUp.started += instance.OnAttackUp;
                 @AttackUp.performed += instance.OnAttackUp;
                 @AttackUp.canceled += instance.OnAttackUp;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
             }
         }
     }
@@ -609,6 +648,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         void OnAttack(InputAction.CallbackContext context);
         void OnAttackDown(InputAction.CallbackContext context);
         void OnAttackUp(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
     public interface ITestActions
     {

@@ -13,9 +13,10 @@ public class PlayerController : MonoBehaviour
     public Strike strike;
     public Animator animator;
 
-    [Header("Basics")]
+    [Header("Core")]
     public int maxHealth = 10;
     public int currentHealth;
+    public bool isInteracting = false;
 
     [Header("Combat")]
     public int standardAttackDamage = 5;
@@ -34,6 +35,11 @@ public class PlayerController : MonoBehaviour
     [Header("Wall Sliding")]
     bool wallSliding;
     public float wallSlidingSpeed = 20;    // max speed character slides down walls
+
+    [Header("Progression")]
+    public bool doubleUnlock;
+    public bool wallJumpUnlock;
+    public bool dashUnlock;
 
 
 
@@ -58,6 +64,9 @@ public class PlayerController : MonoBehaviour
         inputController.Player.Attack.performed += ctx => sideAttack();
         inputController.Player.AttackDown.performed += ctx => DownAttack();
         inputController.Player.AttackUp.performed += ctx => UpAttack();
+
+        //other
+        inputController.Player.Interact.performed += ctx => StartCoroutine(Interact());
     }
 
     private void OnEnable()
@@ -101,7 +110,7 @@ public class PlayerController : MonoBehaviour
     {
         print("jump");
         animator.SetBool("Jumping", true);
-        if (!controller.isGrounded && canDoubleJump) //double jump
+        if (!controller.isGrounded && canDoubleJump && doubleUnlock) //double jump
         {
             Vector2 yVelocity = new Vector2(0, 0);
             rb.velocity = new Vector2(rb.velocity.x, yVelocity.y); //set current Y velocity to 0
@@ -131,7 +140,7 @@ public class PlayerController : MonoBehaviour
             canDoubleJump = true;
         }
 
-        if (controller.isOnWall) //wall jumps
+        if (controller.isOnWall && wallJumpUnlock) //wall jumps
         {
             controller.isOnWall = false;
             Vector2 yVelocity = new Vector2(0, 0);
@@ -149,7 +158,17 @@ public class PlayerController : MonoBehaviour
 
     public void StartDash()
     {
-        StartCoroutine(PlayerDash());
+        if (dashUnlock)
+        {
+            StartCoroutine(PlayerDash());
+        }
+    }
+
+    IEnumerator Interact()
+    {
+        isInteracting = true;
+        yield return new WaitForSeconds(1);
+        isInteracting = false;
     }
 
     IEnumerator PlayerDash()
