@@ -16,14 +16,14 @@ public class JanusStone : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-           PlayerController player = collision.GetComponent<PlayerController>();
+           PlayerManager player = collision.GetComponent<PlayerManager>();
 
 
             UpgradePlayer(player);
         }
     }
 
-    public void UpgradePlayer(PlayerController player)
+    public void UpgradePlayer(PlayerManager player)
     {
         if (player.isInteracting)
         {

@@ -7,16 +7,14 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [Header("Components")]
+    public PlayerManager playerManager;
     public CharacterController2D controller;
     public Rigidbody2D rb;
     public InputMaster inputController;
     public Strike strike;
     public Animator animator;
 
-    [Header("Core")]
-    public int maxHealth = 10;
-    public int currentHealth;
-    public bool isInteracting = false;
+    
 
     [Header("Combat")]
     public int standardAttackDamage = 5;
@@ -36,23 +34,15 @@ public class PlayerController : MonoBehaviour
     bool wallSliding;
     public float wallSlidingSpeed = 20;    // max speed character slides down walls
 
-    [Header("Progression")]
-    public bool doubleUnlock;
-    public bool wallJumpUnlock;
-    public bool dashUnlock;
-
-
-
     private void Awake()
     {
-        inputController = new InputMaster();
-
         SetupControls();
-
     }
 
     public void SetupControls()
     {
+        inputController = new InputMaster();
+
         //movement
         inputController.Player.Movement.performed += ctx => PlayerMovement(ctx.ReadValue<float>());
         inputController.Player.Movement.canceled += ctx => PlayerMovement(0);
@@ -76,20 +66,21 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-
+        playerManager = GetComponent<PlayerManager>();
         rb = GetComponent<Rigidbody2D>();
         controller = GetComponent<CharacterController2D>();
+        animator = GetComponentInChildren<Animator>();
         strike = GetComponent<Strike>();
     }
 
 
     void Update()
     {
-        animator.SetFloat("Speed", Mathf.Abs(horizontalInput));
-        print("maths" + Mathf.Abs(horizontalInput));
         CoyoteCheck(); // timer for coyote time
-        SlideCheck();
+        SlideCheck(); // checks if player is sliding on a wall
+        
 
+        animator.SetFloat("Speed", Mathf.Abs(horizontalInput));
         if (controller.isGrounded == true)
         {
             animator.SetBool("Jumping", false);
@@ -103,6 +94,8 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    
+
     public void PlayerMovement(float direction)
     {
         horizontalInput =  direction * moveSpeed;
@@ -111,7 +104,8 @@ public class PlayerController : MonoBehaviour
     {
         print("jump");
         animator.SetBool("Jumping", true);
-        if (!controller.isGrounded && canDoubleJump && doubleUnlock) //double jump
+
+        if (!controller.isGrounded && canDoubleJump && playerManager.doubleUnlock) //double jump
         {
             Vector2 yVelocity = new Vector2(0, 0);
             rb.velocity = new Vector2(rb.velocity.x, yVelocity.y); //set current Y velocity to 0
@@ -141,7 +135,7 @@ public class PlayerController : MonoBehaviour
             canDoubleJump = true;
         }
 
-        if (controller.isOnWall && wallJumpUnlock) //wall jumps
+        if (controller.isOnWall && playerManager.wallJumpUnlock) //wall jumps
         {
             controller.isOnWall = false;
             Vector2 yVelocity = new Vector2(0, 0);
@@ -157,20 +151,21 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    IEnumerator Interact()
+    {
+        playerManager.isInteracting = true;
+        yield return new WaitForSeconds(1);
+        playerManager.isInteracting = false;
+    }
     public void StartDash()
     {
-        if (dashUnlock)
+        if (playerManager.dashUnlock)
         {
             StartCoroutine(PlayerDash());
         }
     }
 
-    IEnumerator Interact()
-    {
-        isInteracting = true;
-        yield return new WaitForSeconds(1);
-        isInteracting = false;
-    }
+    
 
     IEnumerator PlayerDash()
     {
@@ -181,19 +176,7 @@ public class PlayerController : MonoBehaviour
         moveSpeed = 40;
     }
 
-    public void SlideCheck()
-    {
-        if (controller.isOnWall && !controller.isGrounded && horizontalInput != 0)
-        {
-            wallSliding = true;
-        }
-        else
-        {
-            wallSliding = false;
-        }
-
-
-    }
+  
 
     public void WallSlide()
     {
@@ -225,8 +208,19 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    
+    public void SlideCheck()
+    {
+        if (controller.isOnWall && !controller.isGrounded && horizontalInput != 0)
+        {
+            wallSliding = true;
+        }
+        else
+        {
+            wallSliding = false;
+        }
 
+
+    }
 
     //PLAYER ATTACKS
 

@@ -7,6 +7,7 @@ TagManager:
   - GroundCheck
   - Ceilingcheck
   - Camera
+  - Spawn
   layers:
   - Default
   - TransparentFX

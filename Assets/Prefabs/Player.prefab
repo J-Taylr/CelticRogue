@@ -360,9 +360,10 @@ GameObject:
   - component: {fileID: 1950619211}
   - component: {fileID: 5967369291328425172}
   - component: {fileID: 5565167472930732417}
-  - component: {fileID: 9198682013305695576}
   - component: {fileID: 1950619213}
-  - component: {fileID: 1950619212}
+  - component: {fileID: 8318350178895994125}
+  - component: {fileID: 3145982855521772255}
+  - component: {fileID: 9198682013305695576}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -452,29 +453,6 @@ CircleCollider2D:
   m_Offset: {x: -0.0053282976, y: -0.29143918}
   serializedVersion: 2
   m_Radius: 0.46336472
---- !u!114 &9198682013305695576
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6987421072757631175}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64bdc737a70c3494b87f8cf366d0f524, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Recoil: 100
-  RecoilD: 20
-  attackPointR: {fileID: 9031956571349341355}
-  attackPointUp: {fileID: 6633279272576282153}
-  attackPointDown: {fileID: 1110181049400350021}
-  attackRange: 0.75
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 512
-  Player: {fileID: 1950619211}
-  animator: {fileID: 0}
 --- !u!114 &1950619213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -502,7 +480,25 @@ MonoBehaviour:
   OnCrouchEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1950619212
+--- !u!114 &8318350178895994125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6987421072757631175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eaa29665d987734a96283837e6484cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  currentHealth: 0
+  isInteracting: 0
+  doubleUnlock: 0
+  wallJumpUnlock: 0
+  dashUnlock: 0
+--- !u!114 &3145982855521772255
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -514,22 +510,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc8adb03a3aaba043aa206415a1a6dfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 1950619213}
+  playerManager: {fileID: 0}
+  controller: {fileID: 0}
   rb: {fileID: 0}
   strike: {fileID: 0}
   animator: {fileID: 0}
-  maxHealth: 10
-  currentHealth: 0
-  isInteracting: 0
   standardAttackDamage: 5
   moveSpeed: 40
   dashPower: 40
-  jumpForce: 15
-  doubleJumpForce: 13
-  wallSlidingSpeed: 2
-  doubleUnlock: 0
-  wallJumpUnlock: 0
-  dashUnlock: 0
+  jumpForce: 400
+  doubleJumpForce: 400
+  wallSlidingSpeed: 20
+--- !u!114 &9198682013305695576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6987421072757631175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64bdc737a70c3494b87f8cf366d0f524, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Recoil: 100
+  RecoilD: 20
+  attackPointR: {fileID: 9031956571349341355}
+  attackPointUp: {fileID: 6633279272576282153}
+  attackPointDown: {fileID: 1110181049400350021}
+  attackRange: 0.75
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  Player: {fileID: 1950619211}
+  animator: {fileID: 0}
 --- !u!1 &7535639988435796682
 GameObject:
   m_ObjectHideFlags: 0
