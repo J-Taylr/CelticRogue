@@ -12,6 +12,12 @@ public class EnemyManager : MonoBehaviour
     [Header("Components")]
     public Slider healthSlider;
 
+    private void Awake()
+    {
+        healthSlider = gameObject.GetComponentInChildren<Slider>();
+    }
+
+
     void Start()
     {
         healthSlider.maxValue = maxHealth;

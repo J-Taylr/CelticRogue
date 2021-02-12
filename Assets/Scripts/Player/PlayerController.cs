@@ -86,6 +86,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         animator.SetFloat("Speed", Mathf.Abs(horizontalInput));
+        print("maths" + Mathf.Abs(horizontalInput));
         CoyoteCheck(); // timer for coyote time
         SlideCheck();
 

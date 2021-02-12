@@ -7,6 +7,11 @@ public class JanusStone : MonoBehaviour
     public enum Upgradable {DOUBLE,WALL,DASH}
     public Upgradable upgrade;
 
+    
+
+
+
+    
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -27,6 +32,7 @@ public class JanusStone : MonoBehaviour
             {
                 case Upgradable.DOUBLE:
                     player.doubleUnlock = true;
+                    
                     break;
 
                 case Upgradable.WALL:
