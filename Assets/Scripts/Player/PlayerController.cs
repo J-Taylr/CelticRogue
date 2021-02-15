@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour
     public void PlayerJump() // all inputs for the players; Jump, Double Jump, Coyote Jump, WallJump
     {
         print("jump");
-        animator.SetBool("Jumping", true);
+        //animator.SetBool("Jumping", true);
 
         if (!controller.isGrounded && canDoubleJump && playerManager.doubleUnlock) //double jump
         {

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-
     [Header("Core")]
     public int maxHealth = 10;
     public int currentHealth;
@@ -15,7 +14,10 @@ public class PlayerManager : MonoBehaviour
     public bool wallJumpUnlock;
     public bool dashUnlock;
 
-   
+    private void Start()
+    {
+        currentHealth = maxHealth;
+    }
 
     public void CheckHealth()
     {
@@ -24,4 +26,5 @@ public class PlayerManager : MonoBehaviour
             GameManager.Instance.RespawnPlayer();
         }
     }
+
 }

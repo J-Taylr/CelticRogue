@@ -366,7 +366,7 @@ GameObject:
   - component: {fileID: 9198682013305695576}
   m_Layer: 8
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -495,9 +495,9 @@ MonoBehaviour:
   maxHealth: 10
   currentHealth: 0
   isInteracting: 0
-  doubleUnlock: 0
-  wallJumpUnlock: 0
-  dashUnlock: 0
+  doubleUnlock: 1
+  wallJumpUnlock: 1
+  dashUnlock: 1
 --- !u!114 &3145982855521772255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -518,9 +518,9 @@ MonoBehaviour:
   standardAttackDamage: 5
   moveSpeed: 40
   dashPower: 40
-  jumpForce: 400
-  doubleJumpForce: 400
-  wallSlidingSpeed: 20
+  jumpForce: 13
+  doubleJumpForce: 8
+  wallSlidingSpeed: 5
 --- !u!114 &9198682013305695576
 MonoBehaviour:
   m_ObjectHideFlags: 0
