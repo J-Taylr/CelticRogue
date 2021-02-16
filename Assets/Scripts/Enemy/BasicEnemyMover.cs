@@ -25,19 +25,31 @@ public class BasicEnemyMover : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        PlayerCast();
+    }
+
+    public void PlayerCast()
+    {
         if (attacking == false)
         {
             EnemyMove();
         }
-       RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.forward, distance);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.forward, distance);
+        
 
         Debug.DrawRay(transform.position, transform.right, Color.green);
 
-        if ()
+        if (hit.collider != null && hit.collider.CompareTag("Player"))
         {
+            
             StartCoroutine("Attack");
         }
     }
+
+
+
+
+
 
     public void EnemyMove()
     {
