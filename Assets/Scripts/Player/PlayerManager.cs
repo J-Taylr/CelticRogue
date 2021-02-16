@@ -7,6 +7,11 @@ public class PlayerManager : MonoBehaviour
     [Header("Core")]
     public int maxHealth = 10;
     public int currentHealth;
+    public int moveSpeed = 40;
+    public int strikeDamage = 5;
+    public int critChance = 1;
+
+
     public bool isInteracting = false;
 
     [Header("Progression")]
@@ -27,4 +32,22 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+
+    public bool RollCritical()
+    {
+        int crit = Random.Range(1, 100);
+
+        if (crit <= critChance)
+        {
+            print(crit + "CRITICAL HIT");
+            return true;
+        }
+        else
+        {
+            print(crit + "normal hit");
+            return false;
+        }
+
+
+    }
 }

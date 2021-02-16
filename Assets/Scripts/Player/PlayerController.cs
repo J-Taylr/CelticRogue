@@ -16,12 +16,10 @@ public class PlayerController : MonoBehaviour
 
     
 
-    [Header("Combat")]
-    public int standardAttackDamage = 5;
 
     [Header("Movement")]
     private float horizontalInput;      
-    public float moveSpeed = 40;        
+        
     public float dashPower = 40;        
     public float jumpForce = 400f; 
     public float doubleJumpForce = 400f; 
@@ -98,7 +96,7 @@ public class PlayerController : MonoBehaviour
 
     public void PlayerMovement(float direction)
     {
-        horizontalInput =  direction * moveSpeed;
+        horizontalInput =  direction * playerManager.moveSpeed;
     }
     public void PlayerJump() // all inputs for the players; Jump, Double Jump, Coyote Jump, WallJump
     {
@@ -171,9 +169,9 @@ public class PlayerController : MonoBehaviour
     {
 
         rb.AddForce(new Vector2((horizontalInput * dashPower), 0));
-        moveSpeed += 20;
+        playerManager.moveSpeed += 20;
         yield return new WaitForSeconds(0.5f);
-        moveSpeed = 40;
+        playerManager.moveSpeed = 40;
     }
 
   
@@ -228,27 +226,57 @@ public class PlayerController : MonoBehaviour
     {
         StartCoroutine("AttackAni");
         print("strike");
-        strike.AttackR(standardAttackDamage);
+
+        if (playerManager.RollCritical() == true)
+        {
+            strike.AttackR(playerManager.strikeDamage * 3); //critical mulitplier can be changed
+        }
+        else
+        {
+            strike.AttackR(playerManager.strikeDamage);
+        }
+
+
     }
 
     public void UpAttack()
     {
         print("up strike");
-        strike.AttackUp(standardAttackDamage);
+        if (playerManager.RollCritical() == true)
+        {
+            strike.AttackUp(playerManager.strikeDamage * 3);
+        }
+        else
+        {
+            strike.AttackUp(playerManager.strikeDamage);
+        }
+        
     }
 
     public void DownAttack()
     {
         print("down strike");
-        strike.AttackDown(standardAttackDamage);
+        if (playerManager.RollCritical() == true)
+        {
+            strike.AttackDown(playerManager.strikeDamage * 3);
+        }
+        else
+        {
+            strike.AttackDown(playerManager.strikeDamage);
+        }
+        
     }
+
+
     IEnumerator AttackAni()
     {
         Debug.Log("hit");
         animator.SetBool("Attack", true);
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(.5f);
         animator.SetBool("Attack", false);
     }
+
+    
 
 }
 
