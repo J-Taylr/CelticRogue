@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
         inputController.Player.AttackUp.performed += ctx => UpAttack();
 
         //other
-        inputController.Player.Interact.performed += ctx => StartCoroutine(Interact());
+        inputController.Player.Interact.performed += ctx => Interact();
     }
 
     private void OnEnable()
@@ -149,11 +149,10 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    IEnumerator Interact()
+    public void Interact()
     {
         playerManager.isInteracting = true;
-        yield return new WaitForSeconds(1);
-        playerManager.isInteracting = false;
+        
     }
     public void StartDash()
     {

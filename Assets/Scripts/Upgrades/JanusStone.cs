@@ -32,14 +32,16 @@ public class JanusStone : MonoBehaviour
             {
                 case Upgradable.DOUBLE:
                     player.doubleUnlock = true;
-                    
+                    player.isInteracting = false;
                     break;
 
                 case Upgradable.WALL:
                     player.wallJumpUnlock = true;
+                    player.isInteracting = false;
                     break;
                 case Upgradable.DASH:
                     player.dashUnlock = true;
+                    player.isInteracting = false;
                     break;
             }
         }

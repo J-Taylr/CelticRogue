@@ -27,7 +27,7 @@ public class StatPickup : MonoBehaviour
             switch (upgrade)
             {
                 case upgradeType.HEALTH: //player Health
-
+                    UpgradeHealth(player);
                     break;
                 case upgradeType.DAMAGE: //player Damage
 
@@ -42,5 +42,17 @@ public class StatPickup : MonoBehaviour
         }
     }
 
+
+    public void UpgradeHealth(PlayerManager player)
+    {
+        int healthBuff = Random.Range(1, 5);
+        player.maxHealth += healthBuff;
+        player.currentHealth = player.maxHealth;
+
+        print("Max health up " + healthBuff + "!");
+
+        player.isInteracting = false;
+    }
+   
     
 }

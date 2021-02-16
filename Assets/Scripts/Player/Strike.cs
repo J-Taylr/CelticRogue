@@ -59,6 +59,10 @@ public class Strike : MonoBehaviour
             enemy.GetComponent<EnemyManager>().TakeDamage(damage);
         }
     }
+
+
+   
+
     private void OnDrawGizmosSelected()
     {
        // Gizmos.DrawWireSphere(attackPointR.position, attackRange);
