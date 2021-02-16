@@ -7,32 +7,38 @@ public class StatPickup : MonoBehaviour
     public enum upgradeType {HEALTH,DAMAGE,CRITICAL,SPEED}
     public upgradeType upgrade;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+
+
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
            PlayerManager player = collision.GetComponent<PlayerManager>();
 
-            
+            UpgradePlayer(player);
         }
     }
 
     public void UpgradePlayer(PlayerManager player)
     {
-        switch (upgrade)
+        if (player.isInteracting)
         {
-            case upgradeType.HEALTH: //player Health
-               
-                break;
-            case upgradeType.DAMAGE: //player Damage
 
-                break;        
-            case upgradeType.CRITICAL: //chance to critical
+            switch (upgrade)
+            {
+                case upgradeType.HEALTH: //player Health
 
-                break;
-            case upgradeType.SPEED: //player speed
+                    break;
+                case upgradeType.DAMAGE: //player Damage
 
-                break;
+                    break;
+                case upgradeType.CRITICAL: //chance to critical
+
+                    break;
+                case upgradeType.SPEED: //player speed
+
+                    break;
+            }
         }
     }
 
