@@ -24,6 +24,10 @@ public class PlayerManager : MonoBehaviour
         currentHealth = maxHealth;
     }
 
+    void Update() {
+        print(currentHealth);
+    }
+
     public void CheckHealth()
     {
         if (currentHealth <= 0)
