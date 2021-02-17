@@ -8,6 +8,7 @@ public class BasicEnemyMover : MonoBehaviour
    
     [Header("Movement")]
     public int speed;
+    public int damage;
     public float distance = 5;
     public float Thrust;
     private bool movingRight = true;
@@ -42,7 +43,6 @@ public class BasicEnemyMover : MonoBehaviour
 
         RaycastHit2D hit = Physics2D.Raycast(transform.position + transform.right * bc.size.x, transform.right, distance);
 
-        Debug.Log(hit.collider);
         if (hit.collider != null && hit.collider.tag == "Player" && attacking == false)
         {
             print(hit.collider);
@@ -86,8 +86,16 @@ public class BasicEnemyMover : MonoBehaviour
         State2();
         yield return new WaitForSeconds(1.5f);
         attacking = false;
+    }
+    private void OnCollisionEnter2D(Collision2D other)
+    {
         
-       
+        if (other.gameObject.tag == "Player")
+        {
+            Debug.Log("hit");
+            other.gameObject.GetComponent<PlayerManager>().currentHealth -= damage;
+            other.gameObject.GetComponent<PlayerManager>().CheckHealth();
+        }
     }
 }
 
