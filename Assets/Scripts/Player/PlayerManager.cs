@@ -7,7 +7,7 @@ public class PlayerManager : MonoBehaviour
     [Header("Core")]
     public int maxHealth = 10;
     public int currentHealth;
-    public int moveSpeed = 40;
+    public float moveSpeed = 40;
     public int strikeDamage = 5;
     public int critChance = 1;
 

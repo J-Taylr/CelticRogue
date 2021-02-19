@@ -8,6 +8,7 @@ TagManager:
   - Ceilingcheck
   - Camera
   - Spawn
+  - Statupgrade
   layers:
   - Default
   - TransparentFX

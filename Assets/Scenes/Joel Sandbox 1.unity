@@ -1525,25 +1525,6 @@ Transform:
   m_Father: {fileID: 832897082}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90.00001}
---- !u!1 &1295402757 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8522888314842647884, guid: ea90c6acc31c5034daa4f7ef5bc67d0a,
-    type: 3}
-  m_PrefabInstance: {fileID: 8522888316137261641}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1295402760
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1295402757}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2f96634fdae4f44c95992cbf6b593a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  upgrade: 0
 --- !u!1 &1832709005
 GameObject:
   m_ObjectHideFlags: 0
@@ -2174,7 +2155,7 @@ PrefabInstance:
     - target: {fileID: 8318350178895994125, guid: 4141e1b660336de469d0c90e2bfafc07,
         type: 3}
       propertyPath: critChance
-      value: 50
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8318350178895994125, guid: 4141e1b660336de469d0c90e2bfafc07,
         type: 3}
@@ -2208,7 +2189,7 @@ PrefabInstance:
     - target: {fileID: 8522888314842647886, guid: ea90c6acc31c5034daa4f7ef5bc67d0a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17.65
+      value: 12.62
       objectReference: {fileID: 0}
     - target: {fileID: 8522888314842647886, guid: ea90c6acc31c5034daa4f7ef5bc67d0a,
         type: 3}
