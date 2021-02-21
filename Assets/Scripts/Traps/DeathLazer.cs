@@ -6,7 +6,9 @@ public class DeathLazer : MonoBehaviour
 {
     public int damage;
     public BoxCollider2D col;
+    public SpriteRenderer im;
     public float startDelay, lazerTime, standardDelay;
+    public Color death, safe;
 
     void Start() {
         Invoke("EnableLazer", startDelay); ;
@@ -15,10 +17,12 @@ public class DeathLazer : MonoBehaviour
     void EnableLazer()
     {
         col.enabled = true;
+        im.color = death;
         Invoke("DisableLazer", lazerTime);
     }
     void DisableLazer() {
         col.enabled = false;
+        im.color = safe;
         Invoke("EnableLazer",standardDelay);
     }
 
