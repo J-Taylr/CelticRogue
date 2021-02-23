@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+[RequireComponent(typeof(EnemyManager))]
 
 public class FlyingAI : MonoBehaviour
 {
@@ -19,8 +20,10 @@ public class FlyingAI : MonoBehaviour
     {
         Vector2 direction = gameObject.transform.position - player.transform.position;
 
-        rb.MovePosition((Vector2)transform.position + (direction * speed * Time.deltaTime));
+        rb.MovePosition((Vector2)transform.position - (direction * speed * Time.deltaTime));
 
+        
     }
+   
 
 }

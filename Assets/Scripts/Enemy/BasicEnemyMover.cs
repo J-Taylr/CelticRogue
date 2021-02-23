@@ -92,7 +92,6 @@ public class BasicEnemyMover : MonoBehaviour
         
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("hit");
             other.gameObject.GetComponent<PlayerManager>().currentHealth -= damage;
             other.gameObject.GetComponent<PlayerManager>().CheckHealth();
         }

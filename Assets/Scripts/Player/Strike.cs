@@ -31,7 +31,7 @@ public class Strike : MonoBehaviour
             {
                 Player.AddForce(new Vector2(Recoil, 0f), ForceMode2D.Impulse);
             }
-
+            print(enemy.name);
             enemy.GetComponent<EnemyManager>().TakeDamage(damage);
         }
     }
@@ -65,8 +65,8 @@ public class Strike : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-       // Gizmos.DrawWireSphere(attackPointR.position, attackRange);
-       // Gizmos.DrawWireSphere(attackPointUp.position, attackRange);
+       Gizmos.DrawWireSphere(attackPointR.position, attackRange);
+       Gizmos.DrawWireSphere(attackPointUp.position, attackRange);
        Gizmos.DrawWireSphere(attackPointDown.position, attackRange);
     }
    
