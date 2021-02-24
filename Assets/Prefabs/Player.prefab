@@ -84,7 +84,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 251241592274489259}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.697, y: 0, z: 0}
+  m_LocalPosition: {x: 1.08, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5199990085081996631}
@@ -525,6 +525,10 @@ MonoBehaviour:
   wallBounce: 10
   doubleJumpForce: 10
   wallSlidingSpeed: 5
+  bullet: {fileID: 0}
+  ranged: 0
+  slam: 0
+  slamRadius: 0
 --- !u!114 &9198682013305695576
 MonoBehaviour:
   m_ObjectHideFlags: 0
