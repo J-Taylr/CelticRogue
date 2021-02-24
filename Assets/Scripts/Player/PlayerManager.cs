@@ -25,7 +25,7 @@ public class PlayerManager : MonoBehaviour
     }
 
     void Update() {
-        print(currentHealth);
+        
     }
 
     public void CheckHealth()

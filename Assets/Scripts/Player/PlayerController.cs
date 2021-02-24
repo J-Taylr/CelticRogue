@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     public InputMaster inputController;
     public Strike strike;
     public Animator animator;
-
+    public CamFollow cam;
     
 
 
@@ -21,7 +21,8 @@ public class PlayerController : MonoBehaviour
     private float horizontalInput;      
         
     public float dashPower = 40;        
-    public float jumpForce = 400f; 
+    public float jumpForce = 400f;
+    public float wallBounce = 10;
     public float doubleJumpForce = 400f; 
 
     bool canDoubleJump = false;        
@@ -55,6 +56,12 @@ public class PlayerController : MonoBehaviour
 
         //other
         inputController.Player.Interact.performed += ctx => Interact();
+
+        inputController.Player.Camup.performed += ctx => cam.cameraUp = true;
+        inputController.Player.CamDown.performed += ctx => cam.cameraDown = true;
+
+        inputController.Player.Camup.canceled += ctx => cam.cameraUp = false;
+        inputController.Player.CamDown.canceled += ctx => cam.cameraDown = false;
     }
 
     private void OnEnable()
@@ -69,6 +76,7 @@ public class PlayerController : MonoBehaviour
         controller = GetComponent<CharacterController2D>();
         animator = GetComponentInChildren<Animator>();
         strike = GetComponent<Strike>();
+        cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CamFollow>();
     }
 
 
@@ -79,9 +87,14 @@ public class PlayerController : MonoBehaviour
         
 
         animator.SetFloat("Speed", Mathf.Abs(horizontalInput));
-        if (controller.isGrounded == true)
+       
+        if (controller.isGrounded)
         {
-            animator.SetBool("Jumping", false);
+            animator.SetBool("OnGround", true);
+        }
+        else
+        {
+            animator.SetBool("OnGround", false);
         }
     }
 
@@ -100,8 +113,7 @@ public class PlayerController : MonoBehaviour
     }
     public void PlayerJump() // all inputs for the players; Jump, Double Jump, Coyote Jump, WallJump
     {
-        print("jump");
-        //animator.SetBool("Jumping", true);
+        animator.SetTrigger("Jumping");
 
         if (!controller.isGrounded && canDoubleJump && playerManager.doubleUnlock) //double jump
         {
@@ -115,6 +127,7 @@ public class PlayerController : MonoBehaviour
 
         if (controller.isGrounded) //single jump
         {
+            
             Vector2 yVelocity = new Vector2(0, 0);
             rb.velocity = new Vector2(rb.velocity.x, yVelocity.y);
             rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
@@ -138,11 +151,22 @@ public class PlayerController : MonoBehaviour
             controller.isOnWall = false;
             Vector2 yVelocity = new Vector2(0, 0);
             rb.velocity = new Vector2(rb.velocity.x, yVelocity.y);
-            rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+
+
+
+            if (controller.facingRight)
+            {
+                rb.AddForce(new Vector2(-wallBounce, jumpForce), ForceMode2D.Impulse);
+            }
+            else
+            {
+                rb.AddForce(new Vector2(--wallBounce, jumpForce), ForceMode2D.Impulse);
+
+            }
 
 
             coyoteJump = false;
-            canDoubleJump = true;
+            canDoubleJump = false;
         }
 
 
@@ -210,10 +234,12 @@ public class PlayerController : MonoBehaviour
         if (controller.isOnWall && !controller.isGrounded && horizontalInput != 0)
         {
             wallSliding = true;
+            
         }
         else
         {
-            wallSliding = false;
+            wallSliding = false;            
+
         }
 
 

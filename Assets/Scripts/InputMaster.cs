@@ -81,6 +81,22 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Camup"",
+                    ""type"": ""Button"",
+                    ""id"": ""afb8723e-fc26-4c59-8ffd-7cc0c59a882d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold(duration=0.3)""
+                },
+                {
+                    ""name"": ""CamDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""d4558433-fc76-46bd-aa4f-9df56a9bd9c2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold(duration=0.3)""
                 }
             ],
             ""bindings"": [
@@ -380,6 +396,50 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2f19b82a-cafc-4f7c-8289-1af88713ddb5"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Camup"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cdce6c4e-dd4d-4271-a39a-d3282845e43b"",
+                    ""path"": ""<Gamepad>/rightStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""GamePad"",
+                    ""action"": ""Camup"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""35e089d6-5e6f-43bf-a95a-a9119bb57dc7"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""CamDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bdc6e2cb-6afc-4b35-b173-d9ab326ff341"",
+                    ""path"": ""<Gamepad>/rightStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""GamePad"",
+                    ""action"": ""CamDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -451,6 +511,8 @@ public class @InputMaster : IInputActionCollection, IDisposable
         m_Player_AttackDown = m_Player.FindAction("AttackDown", throwIfNotFound: true);
         m_Player_AttackUp = m_Player.FindAction("AttackUp", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
+        m_Player_Camup = m_Player.FindAction("Camup", throwIfNotFound: true);
+        m_Player_CamDown = m_Player.FindAction("CamDown", throwIfNotFound: true);
         // Test
         m_Test = asset.FindActionMap("Test", throwIfNotFound: true);
         m_Test_Newaction = m_Test.FindAction("New action", throwIfNotFound: true);
@@ -511,6 +573,8 @@ public class @InputMaster : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_AttackDown;
     private readonly InputAction m_Player_AttackUp;
     private readonly InputAction m_Player_Interact;
+    private readonly InputAction m_Player_Camup;
+    private readonly InputAction m_Player_CamDown;
     public struct PlayerActions
     {
         private @InputMaster m_Wrapper;
@@ -523,6 +587,8 @@ public class @InputMaster : IInputActionCollection, IDisposable
         public InputAction @AttackDown => m_Wrapper.m_Player_AttackDown;
         public InputAction @AttackUp => m_Wrapper.m_Player_AttackUp;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
+        public InputAction @Camup => m_Wrapper.m_Player_Camup;
+        public InputAction @CamDown => m_Wrapper.m_Player_CamDown;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -556,6 +622,12 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Interact.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
+                @Camup.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCamup;
+                @Camup.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCamup;
+                @Camup.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCamup;
+                @CamDown.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCamDown;
+                @CamDown.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCamDown;
+                @CamDown.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCamDown;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -584,6 +656,12 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
+                @Camup.started += instance.OnCamup;
+                @Camup.performed += instance.OnCamup;
+                @Camup.canceled += instance.OnCamup;
+                @CamDown.started += instance.OnCamDown;
+                @CamDown.performed += instance.OnCamDown;
+                @CamDown.canceled += instance.OnCamDown;
             }
         }
     }
@@ -649,6 +727,8 @@ public class @InputMaster : IInputActionCollection, IDisposable
         void OnAttackDown(InputAction.CallbackContext context);
         void OnAttackUp(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnCamup(InputAction.CallbackContext context);
+        void OnCamDown(InputAction.CallbackContext context);
     }
     public interface ITestActions
     {

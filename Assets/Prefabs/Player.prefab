@@ -223,7 +223,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5478672073850234853}
   - component: {fileID: 4991545964321580788}
-  - component: {fileID: 4490350853657361263}
   m_Layer: 8
   m_Name: Sprite (2)
   m_TagString: Untagged
@@ -296,25 +295,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &4490350853657361263
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5659667304549616062}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0fc18731244d1304ab197ec57c046cd5, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6687893165757942431
 GameObject:
   m_ObjectHideFlags: 0
@@ -474,6 +454,7 @@ MonoBehaviour:
   wallCheck: {fileID: 6421525124007724643}
   isGrounded: 1
   isOnWall: 0
+  facingRight: 1
   OnLandEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -494,6 +475,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   currentHealth: 0
+  moveSpeed: 40
+  strikeDamage: 5
+  critChance: 1
   isInteracting: 0
   doubleUnlock: 1
   wallJumpUnlock: 1
@@ -515,10 +499,9 @@ MonoBehaviour:
   rb: {fileID: 0}
   strike: {fileID: 0}
   animator: {fileID: 0}
-  standardAttackDamage: 5
-  moveSpeed: 40
   dashPower: 40
   jumpForce: 13
+  wallBounce: 10
   doubleJumpForce: 8
   wallSlidingSpeed: 5
 --- !u!114 &9198682013305695576
