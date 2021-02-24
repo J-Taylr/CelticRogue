@@ -33,6 +33,14 @@ public class PlayerController : MonoBehaviour
     bool wallSliding;
     public float wallSlidingSpeed = 20;    // max speed character slides down walls
 
+    [Header("Combat Upgrades")]
+    public GameObject bullet;
+    private GameObject newBullet;
+    public bool ranged;
+    public bool slam;
+    bool slamming;
+    public float slamRadius;
+
     private void Awake()
     {
         SetupControls();
@@ -95,6 +103,13 @@ public class PlayerController : MonoBehaviour
         else
         {
             animator.SetBool("OnGround", false);
+        }
+
+        if (slamming && controller.isGrounded)
+        {
+            SlamDown();
+            gameObject.GetComponent<Rigidbody2D>().gravityScale /= 5f;
+            slamming = false;
         }
     }
 
@@ -260,7 +275,22 @@ public class PlayerController : MonoBehaviour
         {
             strike.AttackR(playerManager.strikeDamage);
         }
+        if (ranged && gameObject.transform.localScale.x < 0f)
+        {
+            newBullet = Instantiate(bullet, new Vector3(gameObject.transform.position.x - 1f, gameObject.transform.position.y, 0f), Quaternion.identity);
+            newBullet.GetComponent<Bullet>().speed = -500f;
+        }
+        else if (ranged && gameObject.transform.localScale.x > 0)
+        {
+            newBullet = Instantiate(bullet, new Vector3(gameObject.transform.position.x + 1f, gameObject.transform.position.y, 0f), Quaternion.identity);
+            newBullet.GetComponent<Bullet>().speed = 500f;
+        }
 
+        if (!controller.isGrounded)
+        {
+            gameObject.GetComponent<Rigidbody2D>().gravityScale *= 5f;
+            slamming = true;
+        }
 
     }
 
@@ -299,6 +329,10 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("Attack", true);
         yield return new WaitForSeconds(.5f);
         animator.SetBool("Attack", false);
+    }
+
+    void SlamDown() {
+        //Collider2D[] = Physics2D.OverlapCircle(gameobject.transform.position, slamRadius,1<<LayerMask.NameToLayer("Enemy"));
     }
 
     

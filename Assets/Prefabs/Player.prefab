@@ -223,6 +223,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5478672073850234853}
   - component: {fileID: 4991545964321580788}
+  - component: {fileID: 1894940493}
   m_Layer: 8
   m_Name: Sprite (2)
   m_TagString: Untagged
@@ -295,6 +296,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1894940493
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5659667304549616062}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d39f9c022be7a1c4d864bcc536f65748, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6687893165757942431
 GameObject:
   m_ObjectHideFlags: 0
@@ -430,9 +450,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0053282976, y: -0.29143918}
+  m_Offset: {x: -0.0053282976, y: -0.27758265}
   serializedVersion: 2
-  m_Radius: 0.46336472
+  m_Radius: 0.4495082
 --- !u!114 &1950619213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -494,15 +514,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc8adb03a3aaba043aa206415a1a6dfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerManager: {fileID: 0}
-  controller: {fileID: 0}
-  rb: {fileID: 0}
-  strike: {fileID: 0}
+  playerManager: {fileID: 8318350178895994125}
+  controller: {fileID: 1950619213}
+  rb: {fileID: 1950619211}
+  strike: {fileID: 9198682013305695576}
   animator: {fileID: 0}
+  cam: {fileID: 0}
   dashPower: 40
-  jumpForce: 13
+  jumpForce: 15
   wallBounce: 10
-  doubleJumpForce: 8
+  doubleJumpForce: 10
   wallSlidingSpeed: 5
 --- !u!114 &9198682013305695576
 MonoBehaviour:
