@@ -994,7 +994,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1607533332}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.4, y: -0.89, z: 0}
+  m_LocalPosition: {x: 3.48, y: -0.89, z: 0}
   m_LocalScale: {x: 3.2897894, y: 3.2897894, z: 3.2897894}
   m_Children:
   - {fileID: 1191357253}
@@ -1026,7 +1026,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.13, y: 6.29}
+  m_Size: {x: 4.13, y: 1.49}
   m_EdgeRadius: 0
 --- !u!114 &1607533335
 MonoBehaviour:
@@ -1045,6 +1045,7 @@ MonoBehaviour:
   distance: 5
   attacking: 0
   RB: {fileID: 1607533336}
+  stomp: 0
   moving: 1
   A: 0
   trigger: {fileID: 0}
@@ -1074,7 +1075,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &1607533337
 BoxCollider2D:
   m_ObjectHideFlags: 0
