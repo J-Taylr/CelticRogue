@@ -14,21 +14,21 @@ public class PlayerController : MonoBehaviour
     public Strike strike;
     public Animator animator;
     public CamFollow cam;
-    
+
 
 
     [Header("Movement")]
-    private float horizontalInput;      
-        
-    public float dashPower = 40;        
+    private float horizontalInput;
+
+    public float dashPower = 40;
     public float jumpForce = 400f;
     public float wallBounce = 10;
-    public float doubleJumpForce = 400f; 
+    public float doubleJumpForce = 400f;
 
-    bool canDoubleJump = false;        
-    bool coyoteJump = true;      
-    float coyoteTimer = 0.1f;    
-  
+    bool canDoubleJump = false;
+    bool coyoteJump = true;
+    float coyoteTimer = 0.1f;
+
     [Header("Wall Sliding")]
     bool wallSliding;
     public float wallSlidingSpeed = 20;    // max speed character slides down walls
@@ -40,6 +40,10 @@ public class PlayerController : MonoBehaviour
     public bool slam;
     bool slamming;
     public float slamRadius;
+    public int slamDamage;
+    public LayerMask slamMask;
+    public float slamForce;
+    public bool dOTRanged;
 
     private void Awake()
     {
@@ -92,10 +96,10 @@ public class PlayerController : MonoBehaviour
     {
         CoyoteCheck(); // timer for coyote time
         SlideCheck(); // checks if player is sliding on a wall
-        
+
 
         animator.SetFloat("Speed", Mathf.Abs(horizontalInput));
-       
+
         if (controller.isGrounded)
         {
             animator.SetBool("OnGround", true);
@@ -107,7 +111,7 @@ public class PlayerController : MonoBehaviour
 
         if (slamming && controller.isGrounded)
         {
-            SlamDown();
+            SlamAttack();
             gameObject.GetComponent<Rigidbody2D>().gravityScale /= 5f;
             slamming = false;
         }
@@ -120,11 +124,11 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    
+
 
     public void PlayerMovement(float direction)
     {
-        horizontalInput =  direction * playerManager.moveSpeed;
+        horizontalInput = direction * playerManager.moveSpeed;
     }
     public void PlayerJump() // all inputs for the players; Jump, Double Jump, Coyote Jump, WallJump
     {
@@ -142,14 +146,14 @@ public class PlayerController : MonoBehaviour
 
         if (controller.isGrounded) //single jump
         {
-            
+
             Vector2 yVelocity = new Vector2(0, 0);
             rb.velocity = new Vector2(rb.velocity.x, yVelocity.y);
             rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
             coyoteJump = false;
             canDoubleJump = true;
         }
-        
+
         if (coyoteJump) //coyote jump 
         {
 
@@ -191,7 +195,7 @@ public class PlayerController : MonoBehaviour
     public void Interact()
     {
         playerManager.isInteracting = true;
-        
+
     }
     public void StartDash()
     {
@@ -201,7 +205,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    
+
 
     IEnumerator PlayerDash()
     {
@@ -212,7 +216,7 @@ public class PlayerController : MonoBehaviour
         playerManager.moveSpeed = 40;
     }
 
-  
+
 
     public void WallSlide()
     {
@@ -249,11 +253,11 @@ public class PlayerController : MonoBehaviour
         if (controller.isOnWall && !controller.isGrounded && horizontalInput != 0)
         {
             wallSliding = true;
-            
+
         }
         else
         {
-            wallSliding = false;            
+            wallSliding = false;
 
         }
 
@@ -279,14 +283,22 @@ public class PlayerController : MonoBehaviour
         {
             newBullet = Instantiate(bullet, new Vector3(gameObject.transform.position.x - 1f, gameObject.transform.position.y, 0f), Quaternion.identity);
             newBullet.GetComponent<Bullet>().speed = -500f;
+            if (dOTRanged)
+            {
+                newBullet.GetComponent<Bullet>().dot = true;
+            }
         }
         else if (ranged && gameObject.transform.localScale.x > 0)
         {
             newBullet = Instantiate(bullet, new Vector3(gameObject.transform.position.x + 1f, gameObject.transform.position.y, 0f), Quaternion.identity);
             newBullet.GetComponent<Bullet>().speed = 500f;
+            if (dOTRanged)
+            {
+                newBullet.GetComponent<Bullet>().dot = true;
+            }
         }
 
-        if (!controller.isGrounded)
+        if (!controller.isGrounded && slam)
         {
             gameObject.GetComponent<Rigidbody2D>().gravityScale *= 5f;
             slamming = true;
@@ -305,7 +317,7 @@ public class PlayerController : MonoBehaviour
         {
             strike.AttackUp(playerManager.strikeDamage);
         }
-        
+
     }
 
     public void DownAttack()
@@ -319,7 +331,7 @@ public class PlayerController : MonoBehaviour
         {
             strike.AttackDown(playerManager.strikeDamage);
         }
-        
+
     }
 
 
@@ -331,10 +343,17 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("Attack", false);
     }
 
-    void SlamDown() {
-        //Collider2D[] = Physics2D.OverlapCircle(gameobject.transform.position, slamRadius,1<<LayerMask.NameToLayer("Enemy"));
-    }
 
+    void SlamAttack() {
+        Collider2D[] objects = Physics2D.OverlapCircleAll(transform.position, slamRadius, slamMask);
+        foreach (Collider2D obj in objects )
+        {
+            obj.GetComponent<EnemyManager>().TakeDamage(slamDamage);
+
+            Vector2 direction = obj.transform.position -transform.position;
+            obj.GetComponent<Rigidbody2D>().AddForce(direction * slamForce);
+        }
+    }
     
 
 }

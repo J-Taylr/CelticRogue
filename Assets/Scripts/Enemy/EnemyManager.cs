@@ -12,6 +12,12 @@ public class EnemyManager : MonoBehaviour
     [Header("Components")]
     public Slider healthSlider;
 
+
+    private int poiDam;
+    int dothit;
+    float dotDelay;
+
+
     private void Awake()
     {
         healthSlider = gameObject.GetComponentInChildren<Slider>();
@@ -21,10 +27,26 @@ public class EnemyManager : MonoBehaviour
     void Start()
     {
         healthSlider.maxValue = maxHealth;
-        
+
         currentHealth = maxHealth;
     }
 
+    public void DOT(int ticks,int dotDamage ,float tickDelay) {
+        poiDam = dotDamage;
+        dothit = ticks;
+        dotDelay = tickDelay;
+        TickDamage();
+ 
+    }
+    void TickDamage() {
+        print("Hit");
+        TakeDamage(poiDam);
+        dothit--;
+        if (dothit > 0)
+        {
+            Invoke("TickDamage", dotDelay);
+        }
+    }
     
     public void TakeDamage(int damage)
     {

@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour
     public Rigidbody2D body;
     public float speed;
     public int damage;
+    public bool dot;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,10 @@ public class Bullet : MonoBehaviour
         {
             hit.gameObject.GetComponent<EnemyManager>().TakeDamage(damage);
             Destroy(gameObject);
+            if (dot)
+            {
+                hit.gameObject.GetComponent<EnemyManager>().DOT(3, 1, 1f);
+            }
         }
         else if (hit.gameObject.tag =="Player")
         {

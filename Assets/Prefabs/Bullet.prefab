@@ -136,3 +136,4 @@ MonoBehaviour:
   body: {fileID: 6042985196195199927}
   speed: 500
   damage: 5
+  dot: 0
