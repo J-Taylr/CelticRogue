@@ -28,7 +28,6 @@ public class BigEnemyScript : MonoBehaviour
         RB = GetComponent<Rigidbody2D>();
         bc = GetComponent<BoxCollider2D>();
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -64,41 +63,39 @@ public class BigEnemyScript : MonoBehaviour
             }
         }
     }
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == ("Player") && (stomp == false))
+        {
+            moving = false;
+            A = true;
+            stomp = true;
+        }
+    }
     public void Hover()
     {
         transform.position = new Vector2(player.transform.position.x , offsetY);
         StartCoroutine("Stomp");
         StartCoroutine("Cooldown");
-
-    }
-    public void Crash()
-    {
-        RB.AddForce(new Vector2(0, -0.5f), ForceMode2D.Impulse);
-    }
-
-    public void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.tag == ("Player") && (stomp == false))
-        {
-            Debug.Log("trigger");
-            moving = false;
-            A = true;
-            stomp = true;
-        }
     }
     IEnumerator Stomp()
     {
         yield return new WaitForSeconds(1f);
         Crash();
         yield return new WaitForSeconds(2f);
-
-        
+    }
+    public void Crash()
+    {
+        RB.AddForce(new Vector2(0, -0.5f), ForceMode2D.Impulse);
     }
     IEnumerator Cooldown()
     {
-       
-        yield return new WaitForSeconds(5f);
-        stomp = true;
+        yield return new WaitForSeconds(3f);
         A = false;
+        moving = true;
+        yield return new WaitForSeconds(3f);
+        stomp = false;
+
+
     }
 }
