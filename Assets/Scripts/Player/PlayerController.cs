@@ -29,21 +29,35 @@ public class PlayerController : MonoBehaviour
     bool coyoteJump = true;
     float coyoteTimer = 0.1f;
 
+    bool dashing;
+
     [Header("Wall Sliding")]
     bool wallSliding;
     public float wallSlidingSpeed = 20;    // max speed character slides down walls
 
     [Header("Combat Upgrades")]
+    [Header("Ranged Attack")]
     public GameObject bullet;
     private GameObject newBullet;
     public bool ranged;
+    public bool dOTRanged;
+    [Header("Slam Attack")]
     public bool slam;
     bool slamming;
     public float slamRadius;
     public int slamDamage;
     public LayerMask slamMask;
     public float slamForce;
-    public bool dOTRanged;
+    [Header("Dash Attacks")]
+    public bool dashEndExplosion;
+    public bool dashAttack;
+    public int dashDamage;
+    [Header("Wall Jump Buffs")]
+    public float wallJumpBuffDuration;
+    bool wallJumped;
+    public int wallJumpBuff;
+    public bool wallJumpExplosion;
+    public bool walljumpDamageBoost;
 
     private void Awake()
     {
@@ -89,6 +103,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         strike = GetComponent<Strike>();
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CamFollow>();
+        dashing = false;
     }
 
 
@@ -114,6 +129,11 @@ public class PlayerController : MonoBehaviour
             SlamAttack();
             gameObject.GetComponent<Rigidbody2D>().gravityScale /= 5f;
             slamming = false;
+        }
+        if (wallJumped&&controller.isGrounded&&wallJumpExplosion)
+        {
+            SlamAttack();
+            wallJumped = false;
         }
     }
 
@@ -183,13 +203,27 @@ public class PlayerController : MonoBehaviour
 
             }
 
-
+            StartCoroutine(WallJumpBuffs());
             coyoteJump = false;
             canDoubleJump = false;
         }
 
 
 
+    }
+    IEnumerator WallJumpBuffs()
+    {
+        wallJumped = true;
+        if (walljumpDamageBoost)
+        {
+            playerManager.strikeDamage *= wallJumpBuff;
+        }
+        yield return new WaitForSeconds(wallJumpBuffDuration);
+        wallJumped = false;
+        if (walljumpDamageBoost)
+        {
+            playerManager.strikeDamage /= wallJumpBuff;
+        }
     }
 
     public void Interact()
@@ -202,6 +236,8 @@ public class PlayerController : MonoBehaviour
         if (playerManager.dashUnlock)
         {
             StartCoroutine(PlayerDash());
+            dashing = true;
+            print("dashStart");;
         }
     }
 
@@ -214,6 +250,12 @@ public class PlayerController : MonoBehaviour
         playerManager.moveSpeed += 20;
         yield return new WaitForSeconds(0.5f);
         playerManager.moveSpeed = 40;
+        dashing = false;
+        print("dashend");
+        if (dashEndExplosion)
+        {
+            SlamAttack();
+        }
     }
 
 
@@ -346,12 +388,20 @@ public class PlayerController : MonoBehaviour
 
     void SlamAttack() {
         Collider2D[] objects = Physics2D.OverlapCircleAll(transform.position, slamRadius, slamMask);
-        foreach (Collider2D obj in objects )
+        foreach (Collider2D obj in objects)
         {
             obj.GetComponent<EnemyManager>().TakeDamage(slamDamage);
 
-            Vector2 direction = obj.transform.position -transform.position;
+            Vector2 direction = obj.transform.position - transform.position;
             obj.GetComponent<Rigidbody2D>().AddForce(direction * slamForce);
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D hitCheck) {
+        if (hitCheck.gameObject.tag == "Enemy"&& dashAttack && dashing)
+        {
+            hitCheck.gameObject.GetComponent<EnemyManager>().TakeDamage(dashDamage);
+            print("GetSmacked");
         }
     }
     
