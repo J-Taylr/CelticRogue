@@ -43,12 +43,12 @@ public class PlayerManager : MonoBehaviour
 
         if (crit <= critChance)
         {
-            print(crit + "CRITICAL HIT");
+            //print(crit + "CRITICAL HIT");
             return true;
         }
         else
         {
-            print(crit + "normal hit");
+            //print(crit + "normal hit");
             return false;
         }
 

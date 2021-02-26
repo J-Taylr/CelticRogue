@@ -74,7 +74,7 @@ public class BigEnemyScript : MonoBehaviour
     }
     public void Hover()
     {
-        transform.position = new Vector2(player.transform.position.x , offsetY);
+        transform.position = new Vector2(player.transform.position.x, offsetY);
         StartCoroutine("Stomp");
         StartCoroutine("Cooldown");
     }
@@ -95,7 +95,13 @@ public class BigEnemyScript : MonoBehaviour
         moving = true;
         yield return new WaitForSeconds(3f);
         stomp = false;
-
-
+    }
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            player.GetComponent<PlayerManager>().currentHealth -= damage;
+            player.GetComponent<PlayerManager>().CheckHealth();
+        }
     }
 }
