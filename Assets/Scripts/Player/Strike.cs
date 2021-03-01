@@ -4,22 +4,59 @@ using UnityEngine;
 
 public class Strike : MonoBehaviour
 {
-    public int Recoil;
-    public int RecoilD;
+    [Header("Components")]
+    public Rigidbody2D Player;
+    public Animator animator;
     public Transform attackPointR;
     public Transform attackPointUp;
     public Transform attackPointDown;
+
+    [Header("Variables")]
+    public int Recoil;
+    public int RecoilD;
     public float attackRange = 0.5f;
     public LayerMask enemyLayer;
-    public Rigidbody2D Player;
-    public Animator animator;
+
     public bool coolDown = false;
+
+
+    public void AttackUp(int damage)
+    {
+        if (coolDown == false)
+        {
+
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPointUp.position, attackRange, enemyLayer);
+            foreach (Collider2D enemy in hitEnemies)
+            {
+                print(enemy.name);
+                enemy.GetComponent<EnemyManager>().TakeDamage(damage);
+            }
+            StartCoroutine("CoolDown");
+
+        }
+    }
+    public void AttackDown(int damage)
+    {
+        if (coolDown == false)
+        {
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPointDown.position, attackRange, enemyLayer);
+            foreach (Collider2D enemy in hitEnemies)
+            {
+                Vector2 yVelocity = new Vector2(0, 0);
+                Player.velocity = new Vector2(Player.velocity.x, yVelocity.y);
+                Player.AddForce(new Vector2(0f, RecoilD), ForceMode2D.Impulse);
+
+                enemy.GetComponent<EnemyManager>().TakeDamage(damage);
+            }
+            StartCoroutine("CoolDown");
+        }
+    }
 
     public void AttackR(int damage)
     {
         if (coolDown == false)
         {
-           
+
             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPointR.position, attackRange, enemyLayer);
             foreach (Collider2D enemy in hitEnemies)
             {
@@ -41,44 +78,15 @@ public class Strike : MonoBehaviour
             StartCoroutine("CoolDown");
         }
     }
-    public void AttackUp(int damage)
-    {
-        print("upattack");
-        if (coolDown == false)
-        {
-            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPointUp.position, attackRange, enemyLayer);
-            foreach (Collider2D enemy in hitEnemies)
-            {
-                print(enemy.name);
-                enemy.GetComponent<EnemyManager>().TakeDamage(damage);
-            }
-            StartCoroutine("CoolDown");
-        }
-    }
-    public void AttackDown(int damage)
-    {
-        if (coolDown == false)
-        {
-            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPointDown.position, attackRange, enemyLayer);
-            foreach (Collider2D enemy in hitEnemies)
-            {
-                Vector2 yVelocity = new Vector2(0, 0);
-                Player.velocity = new Vector2(Player.velocity.x, yVelocity.y);
-                Player.AddForce(new Vector2(0f, RecoilD), ForceMode2D.Impulse);
 
-                enemy.GetComponent<EnemyManager>().TakeDamage(damage);
-            }
-            StartCoroutine("CoolDown");
-        }
-    }
-    
+
     private void OnDrawGizmosSelected()
     {
-       Gizmos.DrawWireSphere(attackPointR.position, attackRange);
-       Gizmos.DrawWireSphere(attackPointUp.position, attackRange);
-       Gizmos.DrawWireSphere(attackPointDown.position, attackRange);
+        Gizmos.DrawWireSphere(attackPointR.position, attackRange);
+        Gizmos.DrawWireSphere(attackPointUp.position, attackRange);
+        Gizmos.DrawWireSphere(attackPointDown.position, attackRange);
     }
-   IEnumerator CoolDown()
+    IEnumerator CoolDown()
     {
         coolDown = true;
         yield return new WaitForSeconds(1.5f);

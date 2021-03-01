@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FallingPlatform : MonoBehaviour
 {
+    
     public BoxCollider2D plat;
     public SpriteRenderer sprite;
     public Color nActive;

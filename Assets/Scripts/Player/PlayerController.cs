@@ -59,6 +59,8 @@ public class PlayerController : MonoBehaviour
     public bool wallJumpExplosion;
     public bool walljumpDamageBoost;
 
+
+
     private void Awake()
     {
         SetupControls();
@@ -76,9 +78,9 @@ public class PlayerController : MonoBehaviour
         inputController.Player.Dash.performed += ctx => StartDash();
 
         //attacks
-        inputController.Player.Attack.performed += ctx => sideAttack();
         inputController.Player.AttackDown.performed += ctx => DownAttack();
         inputController.Player.AttackUp.performed += ctx => UpAttack();
+        inputController.Player.Attack.performed += ctx => sideAttack();
 
         //other
         inputController.Player.Interact.performed += ctx => Interact();
@@ -130,7 +132,7 @@ public class PlayerController : MonoBehaviour
             gameObject.GetComponent<Rigidbody2D>().gravityScale /= 5f;
             slamming = false;
         }
-        if (wallJumped&&controller.isGrounded&&wallJumpExplosion)
+        if (wallJumped && controller.isGrounded && wallJumpExplosion)
         {
             SlamAttack();
             wallJumped = false;
@@ -237,7 +239,7 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(PlayerDash());
             dashing = true;
-            print("dashStart");;
+            print("dashStart"); ;
         }
     }
 
@@ -308,10 +310,44 @@ public class PlayerController : MonoBehaviour
 
     //PLAYER ATTACKS
 
+
+
+    public void UpAttack()
+    {
+        print("up attack");
+
+        if (playerManager.RollCritical() == true)
+        {
+            strike.AttackUp(playerManager.strikeDamage * 3);
+        }
+        else
+        {
+            strike.AttackUp(playerManager.strikeDamage);
+        }
+
+    }
+
+    public void DownAttack()
+    {
+        print("down attack");
+
+        if (playerManager.RollCritical() == true)
+        {
+            strike.AttackDown(playerManager.strikeDamage * 3);
+        }
+        else
+        {
+            strike.AttackDown(playerManager.strikeDamage);
+        }
+
+    }
+
+
     public void sideAttack()
     {
+        print("side attack");
         StartCoroutine("AttackAni");
-        print("strike");
+
 
         if (playerManager.RollCritical() == true)
         {
@@ -348,45 +384,17 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    public void UpAttack()
-    {
-        print("up strike");
-        if (playerManager.RollCritical() == true)
-        {
-            strike.AttackUp(playerManager.strikeDamage * 3);
-        }
-        else
-        {
-            strike.AttackUp(playerManager.strikeDamage);
-        }
-
-    }
-
-    public void DownAttack()
-    {
-        print("down strike");
-        if (playerManager.RollCritical() == true)
-        {
-            strike.AttackDown(playerManager.strikeDamage * 3);
-        }
-        else
-        {
-            strike.AttackDown(playerManager.strikeDamage);
-        }
-
-    }
-
-
     IEnumerator AttackAni()
     {
-        Debug.Log("hit");
+
         animator.SetBool("Attack", true);
         yield return new WaitForSeconds(.5f);
         animator.SetBool("Attack", false);
     }
 
 
-    void SlamAttack() {
+    void SlamAttack()
+    {
         Collider2D[] objects = Physics2D.OverlapCircleAll(transform.position, slamRadius, slamMask);
         foreach (Collider2D obj in objects)
         {
@@ -397,14 +405,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D hitCheck) {
-        if (hitCheck.gameObject.tag == "Enemy"&& dashAttack && dashing)
+    void OnCollisionEnter2D(Collision2D hitCheck)
+    {
+        if (hitCheck.gameObject.tag == "Enemy" && dashAttack && dashing)
         {
             hitCheck.gameObject.GetComponent<EnemyManager>().TakeDamage(dashDamage);
             print("GetSmacked");
         }
     }
-    
+
 
 }
 

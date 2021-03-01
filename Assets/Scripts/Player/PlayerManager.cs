@@ -24,10 +24,6 @@ public class PlayerManager : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    void Update() {
-        
-    }
-
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
