@@ -28,13 +28,20 @@ public class PlayerManager : MonoBehaviour
         
     }
 
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+    }
+
     public void CheckHealth()
     {
         if (currentHealth <= 0)
         {
+            currentHealth = maxHealth;
             GameManager.Instance.RespawnPlayer();
         }
     }
+
 
 
     public bool RollCritical()
