@@ -10,6 +10,7 @@ TagManager:
   - Spawn
   - Statupgrade
   - Enemy
+  - Wall
   layers:
   - Default
   - TransparentFX

@@ -17,6 +17,9 @@ public class BasicEnemyMover : MonoBehaviour
 
     private BoxCollider2D bc;
     public Transform groundDetection;
+    public Transform wallDetection;
+    public Vector3 r;
+    [SerializeField] private LayerMask lm;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +40,7 @@ public class BasicEnemyMover : MonoBehaviour
     {
         if (attacking == false)
         {
+            wallCheck();
             EnemyMove();
         }
         Debug.DrawLine(transform.position + transform.right * bc.size.x, transform.position + transform.right * distance, Color.green);
@@ -53,7 +57,6 @@ public class BasicEnemyMover : MonoBehaviour
     public void EnemyMove()
     {
         transform.Translate(Vector2.right * speed * Time.deltaTime);
-
         RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, distance);
         if (groundInfo.collider == false)
         {
@@ -64,6 +67,25 @@ public class BasicEnemyMover : MonoBehaviour
             }
             else
             {
+                transform.eulerAngles = new Vector3(0, 0, 0);
+                movingRight = true;
+            }
+        }
+       
+    }
+    public void wallCheck()
+    {
+        RaycastHit2D wallInfo = Physics2D.Raycast(wallDetection.position, transform.right, distance, lm);
+        if (wallInfo.collider == true)
+        {
+            if (movingRight == true)
+            {
+                transform.eulerAngles = new Vector3(0, -180, 0);
+                movingRight = false;
+            }
+            else
+            {
+                Debug.Log("test");
                 transform.eulerAngles = new Vector3(0, 0, 0);
                 movingRight = true;
             }
