@@ -27,6 +27,6 @@ public class Spawner : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = new Color(1, 0, 0, 0.5f);
-        Gizmos.DrawCube(transform.position, );
+        //Gizmos.DrawCube(transform.position, );
     }
 }
