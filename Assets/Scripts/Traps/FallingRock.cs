@@ -15,8 +15,7 @@ public class FallingRock : MonoBehaviour
         }
         if (check.gameObject.tag =="Player")
         {
-            check.gameObject.GetComponent<PlayerManager>().currentHealth -= damage;
-            check.gameObject.GetComponent<PlayerManager>().CheckHealth();
+            check.gameObject.GetComponent<PlayerManager>().TakeDamage(damage,gameObject);
 
         }
         boulHealth--;

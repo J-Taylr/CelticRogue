@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     public Strike strike;
     public Animator animator;
     public CamFollow cam;
-
+    public Upgardes upgrades;
 
 
     [Header("Movement")]
@@ -29,37 +29,11 @@ public class PlayerController : MonoBehaviour
     bool coyoteJump = true;
     float coyoteTimer = 0.1f;
 
-    bool dashing;
+    public bool dashing;
 
     [Header("Wall Sliding")]
     bool wallSliding;
     public float wallSlidingSpeed = 20;    // max speed character slides down walls
-
-    [Header("Combat Upgrades")]
-    [Header("Ranged Attack")]
-    public GameObject bullet;
-    private GameObject newBullet;
-    public bool ranged;
-    public bool dOTRanged;
-    [Header("Slam Attack")]
-    public bool slam;
-    bool slamming;
-    public float slamRadius;
-    public int slamDamage;
-    public LayerMask slamMask;
-    public float slamForce;
-    [Header("Dash Attacks")]
-    public bool dashEndExplosion;
-    public bool dashAttack;
-    public int dashDamage;
-    [Header("Wall Jump Buffs")]
-    public float wallJumpBuffDuration;
-    bool wallJumped;
-    public int wallJumpBuff;
-    public bool wallJumpExplosion;
-    public bool walljumpDamageBoost;
-
-
 
     private void Awake()
     {
@@ -124,18 +98,6 @@ public class PlayerController : MonoBehaviour
         else
         {
             animator.SetBool("OnGround", false);
-        }
-
-        if (slamming && controller.isGrounded)
-        {
-            SlamAttack();
-            gameObject.GetComponent<Rigidbody2D>().gravityScale /= 5f;
-            slamming = false;
-        }
-        if (wallJumped && controller.isGrounded && wallJumpExplosion)
-        {
-            SlamAttack();
-            wallJumped = false;
         }
     }
 
@@ -205,27 +167,13 @@ public class PlayerController : MonoBehaviour
 
             }
 
-            StartCoroutine(WallJumpBuffs());
+            StartCoroutine(upgrades.WallJumpBuffs());
             coyoteJump = false;
             canDoubleJump = false;
         }
 
 
 
-    }
-    IEnumerator WallJumpBuffs()
-    {
-        wallJumped = true;
-        if (walljumpDamageBoost)
-        {
-            playerManager.strikeDamage *= wallJumpBuff;
-        }
-        yield return new WaitForSeconds(wallJumpBuffDuration);
-        wallJumped = false;
-        if (walljumpDamageBoost)
-        {
-            playerManager.strikeDamage /= wallJumpBuff;
-        }
     }
 
     public void Interact()
@@ -254,13 +202,11 @@ public class PlayerController : MonoBehaviour
         playerManager.moveSpeed = 40;
         dashing = false;
         print("dashend");
-        if (dashEndExplosion)
+        if (upgrades.dashEndExplosion)
         {
-            SlamAttack();
+            upgrades.SlamAttack();
         }
     }
-
-
 
     public void WallSlide()
     {
@@ -305,13 +251,8 @@ public class PlayerController : MonoBehaviour
 
         }
 
-
     }
-
     //PLAYER ATTACKS
-
-
-
     public void UpAttack()
     {
         print("up attack");
@@ -324,7 +265,7 @@ public class PlayerController : MonoBehaviour
         {
             strike.AttackUp(playerManager.strikeDamage);
         }
-
+        upgrades.Ranged();
     }
 
     public void DownAttack()
@@ -339,7 +280,7 @@ public class PlayerController : MonoBehaviour
         {
             strike.AttackDown(playerManager.strikeDamage);
         }
-
+        upgrades.Ranged();
     }
 
 
@@ -357,31 +298,7 @@ public class PlayerController : MonoBehaviour
         {
             strike.AttackR(playerManager.strikeDamage);
         }
-        if (ranged && gameObject.transform.localScale.x < 0f)
-        {
-            newBullet = Instantiate(bullet, new Vector3(gameObject.transform.position.x - 1f, gameObject.transform.position.y, 0f), Quaternion.identity);
-            newBullet.GetComponent<Bullet>().speed = -500f;
-            if (dOTRanged)
-            {
-                newBullet.GetComponent<Bullet>().dot = true;
-            }
-        }
-        else if (ranged && gameObject.transform.localScale.x > 0)
-        {
-            newBullet = Instantiate(bullet, new Vector3(gameObject.transform.position.x + 1f, gameObject.transform.position.y, 0f), Quaternion.identity);
-            newBullet.GetComponent<Bullet>().speed = 500f;
-            if (dOTRanged)
-            {
-                newBullet.GetComponent<Bullet>().dot = true;
-            }
-        }
-
-        if (!controller.isGrounded && slam)
-        {
-            gameObject.GetComponent<Rigidbody2D>().gravityScale *= 5f;
-            slamming = true;
-        }
-
+        upgrades.Ranged();
     }
 
     IEnumerator AttackAni()
@@ -391,29 +308,5 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(.5f);
         animator.SetBool("Attack", false);
     }
-
-
-    void SlamAttack()
-    {
-        Collider2D[] objects = Physics2D.OverlapCircleAll(transform.position, slamRadius, slamMask);
-        foreach (Collider2D obj in objects)
-        {
-            obj.GetComponent<EnemyManager>().TakeDamage(slamDamage);
-
-            Vector2 direction = obj.transform.position - transform.position;
-            obj.GetComponent<Rigidbody2D>().AddForce(direction * slamForce);
-        }
-    }
-
-    void OnCollisionEnter2D(Collision2D hitCheck)
-    {
-        if (hitCheck.gameObject.tag == "Enemy" && dashAttack && dashing)
-        {
-            hitCheck.gameObject.GetComponent<EnemyManager>().TakeDamage(dashDamage);
-            print("GetSmacked");
-        }
-    }
-
-
 }
 

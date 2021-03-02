@@ -10,8 +10,7 @@ public class Spikes : MonoBehaviour
     void OnTriggerEnter2D(Collider2D player) {
         if (player.tag == "Player")
         {
-            player.GetComponent<PlayerManager>().currentHealth -= damage;
-            player.GetComponent<PlayerManager>().CheckHealth();
+            player.GetComponent<PlayerManager>().TakeDamage(damage,gameObject);
             player.GetComponent<PlayerController>().PlayerJump();
         }
     }

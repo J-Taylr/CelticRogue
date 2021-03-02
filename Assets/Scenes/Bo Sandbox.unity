@@ -4152,6 +4152,56 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7639579747775674175, guid: 4141e1b660336de469d0c90e2bfafc07,
+        type: 3}
+      propertyPath: ranged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7639579747775674175, guid: 4141e1b660336de469d0c90e2bfafc07,
+        type: 3}
+      propertyPath: slamForce
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7639579747775674175, guid: 4141e1b660336de469d0c90e2bfafc07,
+        type: 3}
+      propertyPath: slamDamage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7639579747775674175, guid: 4141e1b660336de469d0c90e2bfafc07,
+        type: 3}
+      propertyPath: slamRadius
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7639579747775674175, guid: 4141e1b660336de469d0c90e2bfafc07,
+        type: 3}
+      propertyPath: slam
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7639579747775674175, guid: 4141e1b660336de469d0c90e2bfafc07,
+        type: 3}
+      propertyPath: dashDamage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7639579747775674175, guid: 4141e1b660336de469d0c90e2bfafc07,
+        type: 3}
+      propertyPath: dashEndExplosion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7639579747775674175, guid: 4141e1b660336de469d0c90e2bfafc07,
+        type: 3}
+      propertyPath: wallJumpBuffDuration
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7639579747775674175, guid: 4141e1b660336de469d0c90e2bfafc07,
+        type: 3}
+      propertyPath: wallJumpBuff
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7639579747775674175, guid: 4141e1b660336de469d0c90e2bfafc07,
+        type: 3}
+      propertyPath: walljumpDamageBoost
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4141e1b660336de469d0c90e2bfafc07, type: 3}
 --- !u!1 &1702878281

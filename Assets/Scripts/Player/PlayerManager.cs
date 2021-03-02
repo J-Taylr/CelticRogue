@@ -10,23 +10,38 @@ public class PlayerManager : MonoBehaviour
     public float moveSpeed = 40;
     public int strikeDamage = 5;
     public int critChance = 1;
+    public int damageResist = 0;
 
 
     public bool isInteracting = false;
+
+    public Upgardes upgrades;
 
     [Header("Progression")]
     public bool doubleUnlock;
     public bool wallJumpUnlock;
     public bool dashUnlock;
 
+    public bool invincible;
+
     private void Start()
     {
         currentHealth = maxHealth;
+        invincible = false;
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage,GameObject attacker)
     {
-        currentHealth -= damage;
+        if (invincible)
+        {
+            print("invicible");
+        }
+        else
+        {
+            currentHealth -= damage- damageResist;
+            CheckHealth();
+        }
+        upgrades.DamageResponse(attacker);
     }
 
     public void CheckHealth()
