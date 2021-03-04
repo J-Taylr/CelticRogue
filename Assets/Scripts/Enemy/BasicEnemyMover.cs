@@ -11,6 +11,9 @@ public class BasicEnemyMover : MonoBehaviour
     public int damage;
     public float distance = 5;
     public float Thrust;
+    public float KnockBackx;
+    public float KnockBackY;
+
     private bool movingRight = true;
     public bool attacking = false;
     public Rigidbody2D RB;
@@ -94,7 +97,7 @@ public class BasicEnemyMover : MonoBehaviour
 
     public void State1()
     {
-        RB.AddForce(new Vector2(0f, 10f), ForceMode2D.Impulse);
+        RB.AddForce(new Vector2(0f, 15f), ForceMode2D.Impulse);
     }
     public void State2()
     {
@@ -111,11 +114,23 @@ public class BasicEnemyMover : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
-        
         if (other.gameObject.tag == "Player")
         {
+            Debug.Log("playerhit");
+            
             other.gameObject.GetComponent<PlayerManager>().currentHealth -= damage;
             other.gameObject.GetComponent<PlayerManager>().CheckHealth();
+            Rigidbody2D PRB = other.gameObject.GetComponent<Rigidbody2D>();
+            float pPos = transform.position.x;
+            Vector2 KB = new Vector2(pPos, KnockBackY);
+            if (transform.position.x < other.transform.position.x)
+            {
+             PRB.AddForce(new Vector2(KnockBackx, KnockBackY), ForceMode2D.Impulse);
+            }
+            if (transform.position.x > other.transform.position.x)
+            {
+                PRB.AddForce(new Vector2(-KnockBackx, KnockBackY), ForceMode2D.Impulse);
+            }
         }
     }
 }

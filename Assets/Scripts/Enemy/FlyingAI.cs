@@ -30,6 +30,7 @@ public class FlyingAI : MonoBehaviour
         {
             player.GetComponent<PlayerManager>().currentHealth -= damage;
             player.GetComponent<PlayerManager>().CheckHealth();
+
         }
     }
 }

@@ -89,7 +89,7 @@ public class Strike : MonoBehaviour
     IEnumerator CoolDown()
     {
         coolDown = true;
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.5f);
         coolDown = false;
     }
 }
