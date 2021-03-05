@@ -597,9 +597,16 @@ MonoBehaviour:
   damage: 0
   distance: 5
   Thrust: 75
+  KnockBackx: 0
+  KnockBackY: 0
   attacking: 0
   RB: {fileID: 328981643541837802}
   groundDetection: {fileID: 1412355234490637335}
+  wallDetection: {fileID: 1412355234490637335}
+  r: {x: 0, y: 0, z: 0}
+  lm:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!114 &328981643087557172
 MonoBehaviour:
   m_ObjectHideFlags: 0
