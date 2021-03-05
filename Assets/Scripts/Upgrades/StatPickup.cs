@@ -9,7 +9,7 @@ public class StatPickup : MonoBehaviour
 
     private void Awake()
     {
-        int Randm = Random.Range(0, 4);
+        int Randm = Random.Range(0, 3);
 
         this.upgrade = (upgradeType)Randm;
         ChooseColour(Randm);

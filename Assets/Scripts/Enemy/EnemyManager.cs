@@ -11,7 +11,7 @@ public class EnemyManager : MonoBehaviour
 
     [Header("Components")]
     public Slider healthSlider;
-
+    public GameObject statDrop;
 
     private int poiDam;
     int dothit;
@@ -29,6 +29,12 @@ public class EnemyManager : MonoBehaviour
         healthSlider.maxValue = maxHealth;
 
         currentHealth = maxHealth;
+    }
+
+
+    private void Update()
+    {
+        CheckLife();
     }
 
     public void DOT(int ticks,int dotDamage ,float tickDelay) {
@@ -53,11 +59,25 @@ public class EnemyManager : MonoBehaviour
         currentHealth -= damage;
         healthSlider.value = currentHealth;
 
+     
+
+    }
+
+    public void CheckLife()
+    {
         if (currentHealth <= 0)
         {
-            print(gameObject.name + " is dead");
-            gameObject.SetActive(false);
+            Die();
         }
 
     }
+
+
+    public void Die()
+    {
+        Instantiate(statDrop, transform.position, Quaternion.identity);
+        gameObject.SetActive(false);
+    }
+
+
 }
