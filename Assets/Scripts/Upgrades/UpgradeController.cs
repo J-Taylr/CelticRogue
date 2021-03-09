@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Upgardes : MonoBehaviour
+public class UpgradeController : MonoBehaviour
 {
     public CharacterController2D controller;
     public PlayerManager playerManager;
@@ -49,7 +49,7 @@ public class Upgardes : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -89,7 +89,8 @@ public class Upgardes : MonoBehaviour
         }
     }
 
-    public void Ranged() {
+    public void Ranged()
+    {
         if (ranged && gameObject.transform.localScale.x < 0f)
         {
             newBullet = Instantiate(bullet, new Vector3(gameObject.transform.position.x - 1f, gameObject.transform.position.y, 0f), Quaternion.identity);
@@ -136,8 +137,9 @@ public class Upgardes : MonoBehaviour
         }
     }
 
-    public void DamageResponse(GameObject hit) {
-        if (rage&&hit.tag == "Enemy")
+    public void DamageResponse(GameObject hit)
+    {
+        if (rage && hit.tag == "Enemy")
         {
             StartCoroutine(RageAct());
         }
@@ -145,13 +147,14 @@ public class Upgardes : MonoBehaviour
         {
             StartCoroutine(DamageInvincibilty());
         }
-        if (hit.tag =="Enemy"&& dOTAttacker)
+        if (hit.tag == "Enemy" && dOTAttacker)
         {
-            hit.GetComponent<EnemyManager>().DOT(dOTTicks,dOTDamage,dOTSplit);
+            hit.GetComponent<EnemyManager>().DOT(dOTTicks, dOTDamage, dOTSplit);
         }
     }
 
-    public IEnumerator RageAct() {
+    public IEnumerator RageAct()
+    {
         playerManager.damageResist += damageResist;
         playerManager.strikeDamage *= damageMultiplier;
         yield return new WaitForSeconds(rageDuration);
@@ -159,7 +162,8 @@ public class Upgardes : MonoBehaviour
         playerManager.strikeDamage /= damageMultiplier;
     }
 
-    public IEnumerator DamageInvincibilty() {
+    public IEnumerator DamageInvincibilty()
+    {
         playerManager.invincible = true;
         yield return new WaitForSeconds(invincDuration);
         playerManager.invincible = false;

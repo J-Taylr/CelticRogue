@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     public Strike strike;
     public Animator animator;
     public CamFollow cam;
-    public Upgardes upgrades;
+    public UpgradeController upgrades;
 
 
     [Header("Movement")]

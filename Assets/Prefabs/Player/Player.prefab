@@ -540,13 +540,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 6987421072757631175}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e925928c217c0b4aa929a82cb94d9e7, type: 3}
+  m_Script: {fileID: 11500000, guid: 49978f7092b6b3a499fa0eee1937dbab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 1950619213}
-  playerManager: {fileID: 8318350178895994125}
-  playerController: {fileID: 3145982855521772255}
-  bullet: {fileID: 6042985196195199926, guid: 859d3fb2be368ef41ab719f5df4d7dc8, type: 3}
+  controller: {fileID: 0}
+  playerManager: {fileID: 0}
+  playerController: {fileID: 0}
+  bullet: {fileID: 0}
   ranged: 0
   dOTRanged: 0
   slam: 0
@@ -554,7 +554,7 @@ MonoBehaviour:
   slamDamage: 0
   slamMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 0
   slamForce: 0
   dashEndExplosion: 0
   dashAttack: 0
@@ -564,6 +564,16 @@ MonoBehaviour:
   wallJumpExplosion: 0
   walljumpDamageBoost: 0
   wallJumpInvincibility: 0
+  rage: 0
+  damageResist: 0
+  damageMultiplier: 0
+  rageDuration: 0
+  dOTAttacker: 0
+  dOTTicks: 0
+  dOTDamage: 0
+  dOTSplit: 0
+  tempInvincibility: 0
+  invincDuration: 0
 --- !u!114 &9198682013305695576
 MonoBehaviour:
   m_ObjectHideFlags: 0

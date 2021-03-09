@@ -12,6 +12,7 @@ TagManager:
   - Enemy
   - Wall
   - MajorUpgrade
+  - UpgradeSpawn
   layers:
   - Default
   - TransparentFX

@@ -15,7 +15,7 @@ public class PlayerManager : MonoBehaviour
 
     public bool isInteracting = false;
 
-    public Upgardes upgrades;
+    public UpgradeController upgrades;
 
     [Header("Progression")]
     public bool doubleUnlock;
