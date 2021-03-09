@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spawner : MonoBehaviour
+public class SkullSpawner : MonoBehaviour
 {
     public GameObject prefab;
     public List<GameObject> Skulls;

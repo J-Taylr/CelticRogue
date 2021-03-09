@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shake : MonoBehaviour
+public class BigEnemyShaker : MonoBehaviour
 {
     [Header("Info")]
     private Vector3 _startPos;

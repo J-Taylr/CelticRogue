@@ -10,6 +10,8 @@ public class CombatUpgradespawner : MonoBehaviour
     [Tooltip("Fill this with every Major upgrade")]
     public List<GameObject> upgradeSelection = new List<GameObject>();
 
+
+    [Tooltip("This will auto fill on runtime")]
     public List<int> usedNumbers = new List<int>();
 
     void Start()
