@@ -12,40 +12,19 @@ public class StatPickup : MonoBehaviour
         int Randm = Random.Range(0, 3);
 
         this.upgrade = (upgradeType)Randm;
-        ChooseColour(Randm);
-    }
-
-    public void ChooseColour(int type)
-    {
-        SpriteRenderer sprite = GetComponentInChildren<SpriteRenderer>();
-
-        switch (type)
-        {
-           case 0: //health
-                sprite.color = Color.green;
-            break;
-            case 1: //damage
-                sprite.color = Color.red;
-                break;
-            case 2: //crit
-                sprite.color = Color.blue;
-                break;
-            case 3://speed
-                sprite.color = Color.yellow;
-                break;
-
         
-
-        }
     }
+
+    
+    
 
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            PlayerManager player = collision.GetComponent<PlayerManager>();
 
+            PlayerManager player = collision.GetComponent<PlayerManager>();
             UpgradePlayer(player);
         }
     }
@@ -59,21 +38,23 @@ public class StatPickup : MonoBehaviour
             {
                 case upgradeType.HEALTH: //player Health
                     UpgradeHealth(player);
-                    ChooseColour(0);
+                    
                     break;
                 case upgradeType.DAMAGE: //player Damage
                     UpgradeDamage(player);
-                    ChooseColour(1);
+                    
                     break;
                 case upgradeType.CRITICAL: //chance to critical
                     UpgradeCritical(player);
-                    ChooseColour(2);
+                    
                     break;
                 case upgradeType.SPEED: //player speed
                     UpgradeSpeed(player);
-                    ChooseColour(3);
+                  
                     break;
             }
+
+            Destroy(gameObject);
         }
     }
 
