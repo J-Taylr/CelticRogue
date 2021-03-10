@@ -586,6 +586,7 @@ MonoBehaviour:
   maxHealth: 10
   currentHealth: 5
   healthSlider: {fileID: 9013122322092436931}
+  statDrop: {fileID: 0}
 --- !u!114 &9013122323483346499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -598,8 +599,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1750404e6f45e84e8b297ae7aa7a8cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
+  damage: 1
   speed: 1
-  Range: 5
+  Range: 11
   player: {fileID: 0}
   rb: {fileID: 9013122323483346501}
