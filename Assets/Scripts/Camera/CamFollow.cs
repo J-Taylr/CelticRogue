@@ -39,6 +39,16 @@ public class CamFollow : MonoBehaviour
 
     }
 
+    public void CamReturnUp()
+    {
+        cameraUp = false;
+        print("return up");
+    }
 
-   
+    public void CamReturnDown()
+    {
+        cameraDown = false;
+        print("return down");
+    }
+
 }

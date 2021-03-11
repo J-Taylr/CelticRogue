@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     public float wallBounce = 10;
     public float doubleJumpForce = 400f;
 
+   public bool stickIsVertical = false;
     bool canDoubleJump = false;
     bool coyoteJump = true;
     float coyoteTimer = 0.1f;
@@ -45,8 +46,12 @@ public class PlayerController : MonoBehaviour
         inputController = new InputMaster();
 
         //movement
-        inputController.Player.Movement.performed += ctx => PlayerMovement(ctx.ReadValue<float>());
-        inputController.Player.Movement.canceled += ctx => PlayerMovement(0);
+        inputController.Player.HorizontalMovement.performed += ctx => PlayerMovement(ctx.ReadValue<float>());
+        inputController.Player.HorizontalMovement.canceled += ctx => PlayerMovement(0);
+
+        inputController.Player.VerticalMovement.performed += ctx => stickIsVertical = true;
+        inputController.Player.VerticalMovement.canceled += ctx => stickIsVertical = false;
+
 
         inputController.Player.Jump.performed += ctx => PlayerJump();
         inputController.Player.Dash.performed += ctx => StartDash();
@@ -62,8 +67,8 @@ public class PlayerController : MonoBehaviour
         inputController.Player.Camup.performed += ctx => cam.cameraUp = true;
         inputController.Player.CamDown.performed += ctx => cam.cameraDown = true;
 
-        inputController.Player.Camup.canceled += ctx => cam.cameraUp = false;
-        inputController.Player.CamDown.canceled += ctx => cam.cameraDown = false;
+        inputController.Player.Camup.canceled += ctx => cam.CamReturnUp();
+        inputController.Player.CamDown.canceled += ctx => cam.CamReturnDown();
     }
 
     private void OnEnable()
@@ -286,19 +291,23 @@ public class PlayerController : MonoBehaviour
 
     public void sideAttack()
     {
-        print("side attack");
-        StartCoroutine("AttackAni");
+
+        if (!stickIsVertical)
+        {
+            print("side attack");
+            StartCoroutine("AttackAni");
 
 
-        if (playerManager.RollCritical() == true)
-        {
-            strike.AttackR(playerManager.strikeDamage * 3); //critical mulitplier can be changed
+            if (playerManager.RollCritical() == true)
+            {
+                strike.AttackR(playerManager.strikeDamage * 3); //critical mulitplier can be changed
+            }
+            else
+            {
+                strike.AttackR(playerManager.strikeDamage);
+            }
+            upgrades.Ranged();
         }
-        else
-        {
-            strike.AttackR(playerManager.strikeDamage);
-        }
-        upgrades.Ranged();
     }
 
     IEnumerator AttackAni()
