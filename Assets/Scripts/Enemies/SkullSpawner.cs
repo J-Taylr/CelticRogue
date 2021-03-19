@@ -18,7 +18,7 @@ public class SkullSpawner : MonoBehaviour
     void Update()
     {
         center = gameObject.transform.localPosition;
-        if (Skulls.Count <= 5)
+        if (Skulls.Count <= 3)
         {
             Spawn();
         }

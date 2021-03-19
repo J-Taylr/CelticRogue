@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 64339644961703729}
   - component: {fileID: 64339644961703728}
-  - component: {fileID: 64339644961703734}
+  - component: {fileID: 5002402847007742887}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &64339644961703734
+--- !u!114 &5002402847007742887
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -91,10 +91,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 64339644961703731}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e769d53cfe6166246b9aeb158c226c70, type: 3}
+  m_Script: {fileID: 11500000, guid: 2bc7c7c3e49222e47becff0a673388f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 9013122323483346497, guid: 80073de0898d6dd4fa2f240bda885c6c, type: 3}
   Skulls: []
-  size: {x: 5, y: 5, z: 0}
+  size: {x: 2, y: 2, z: 0}
   center: {x: 0, y: 0, z: 0}
