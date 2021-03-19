@@ -1138,25 +1138,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6769667760516087305, guid: ea90c6acc31c5034daa4f7ef5bc67d0a,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 10
+    - target: {fileID: 1452360940, guid: ea90c6acc31c5034daa4f7ef5bc67d0a, type: 3}
+      propertyPath: VelocityModule.orbitalY.scalar
+      value: 1.2
       objectReference: {fileID: 0}
-    - target: {fileID: 8121701709288082061, guid: ea90c6acc31c5034daa4f7ef5bc67d0a,
-        type: 3}
-      propertyPath: TrailModule.enabled
+    - target: {fileID: 1452360940, guid: ea90c6acc31c5034daa4f7ef5bc67d0a, type: 3}
+      propertyPath: ExternalForcesModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1452360940, guid: ea90c6acc31c5034daa4f7ef5bc67d0a, type: 3}
+      propertyPath: ExternalForcesModule.multiplierCurve.scalar
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8522888314842647884, guid: ea90c6acc31c5034daa4f7ef5bc67d0a,
         type: 3}
       propertyPath: m_Name
       value: StatUpgrade
-      objectReference: {fileID: 0}
-    - target: {fileID: 8522888314842647884, guid: ea90c6acc31c5034daa4f7ef5bc67d0a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8522888314842647886, guid: ea90c6acc31c5034daa4f7ef5bc67d0a,
         type: 3}
@@ -5137,15 +5134,35 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1794753908, guid: 4141e1b660336de469d0c90e2bfafc07, type: 3}
       propertyPath: m_Parameters.m_DirectionCurveY.minScalar
-      value: -10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1794753908, guid: 4141e1b660336de469d0c90e2bfafc07, type: 3}
       propertyPath: m_Parameters.m_DirectionCurveY.scalar
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1794753908, guid: 4141e1b660336de469d0c90e2bfafc07, type: 3}
       propertyPath: m_Parameters.m_Shape
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1794753908, guid: 4141e1b660336de469d0c90e2bfafc07, type: 3}
+      propertyPath: m_Parameters.m_GravityCurve.scalar
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1794753908, guid: 4141e1b660336de469d0c90e2bfafc07, type: 3}
+      propertyPath: m_Parameters.m_DirectionCurveX.minScalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1794753908, guid: 4141e1b660336de469d0c90e2bfafc07, type: 3}
+      propertyPath: m_Parameters.m_DirectionCurveX.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1794753908, guid: 4141e1b660336de469d0c90e2bfafc07, type: 3}
+      propertyPath: m_Parameters.m_EndRange
+      value: 4.599551
+      objectReference: {fileID: 0}
+    - target: {fileID: 1794753908, guid: 4141e1b660336de469d0c90e2bfafc07, type: 3}
+      propertyPath: m_Parameters.m_StartRange
+      value: 0.26
       objectReference: {fileID: 0}
     - target: {fileID: 5199990085081996631, guid: 4141e1b660336de469d0c90e2bfafc07,
         type: 3}

@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class StatPickup : MonoBehaviour
 {
+    public PickupParticleController particleController;
+    public GameObject pickupText;
     public enum upgradeType { HEALTH, DAMAGE, CRITICAL, SPEED }
     public upgradeType upgrade;
 
+    public bool activated = false;
+
     private void Awake()
     {
+        particleController = GetComponent<PickupParticleController>();
+
         int Randm = Random.Range(0, 3);
 
         this.upgrade = (upgradeType)Randm;
@@ -31,31 +37,33 @@ public class StatPickup : MonoBehaviour
 
     public void UpgradePlayer(PlayerManager player)
     {
-        if (player.isInteracting)
+        if (!activated)
         {
 
             switch (upgrade)
             {
                 case upgradeType.HEALTH: //player Health
                     UpgradeHealth(player);
-                    
+
                     break;
                 case upgradeType.DAMAGE: //player Damage
                     UpgradeDamage(player);
-                    
+
                     break;
                 case upgradeType.CRITICAL: //chance to critical
                     UpgradeCritical(player);
-                    
+
                     break;
                 case upgradeType.SPEED: //player speed
                     UpgradeSpeed(player);
-                  
+
                     break;
             }
 
-            Destroy(gameObject);
+            activated = true;
+            particleController.StopParticle();
         }
+                
     }
 
 
@@ -67,7 +75,9 @@ public class StatPickup : MonoBehaviour
 
         print("Max health up " + healthBuff + "!");
 
-        player.isInteracting = false;
+
+        GameObject go = Instantiate(pickupText, player.transform.position, Quaternion.identity);
+        go.GetComponent<UpgradeText>().ChangeText("Health", healthBuff);
     }
 
     public void UpgradeDamage(PlayerManager player)
@@ -77,7 +87,9 @@ public class StatPickup : MonoBehaviour
 
         print("Damage up" + damageBuff + "!");
 
-        player.isInteracting = false;
+        GameObject go = Instantiate(pickupText, player.transform.position, Quaternion.identity);
+        go.GetComponent<UpgradeText>().ChangeText("Damage", damageBuff);
+
     }
 
 
@@ -88,14 +100,15 @@ public class StatPickup : MonoBehaviour
         if (critBuff < 50)
         {
             player.critChance += critBuff;
-            print("crit chance up " + critBuff + "!");
-            player.isInteracting = false;
+            
 
+            GameObject go = Instantiate(pickupText, player.transform.position, Quaternion.identity);
+            go.GetComponent<UpgradeText>().ChangeText("Crit Chance", critBuff);
         }
         else
         {
             print("crit maxxed out!");
-            player.isInteracting = false;
+            
 
         }
 
@@ -110,10 +123,11 @@ public class StatPickup : MonoBehaviour
         player.moveSpeed += speedBuff;
 
 
-        player.isInteracting = false;
+
+        GameObject go = Instantiate(pickupText, player.transform.position, Quaternion.identity);
+        go.GetComponent<UpgradeText>().ChangeText("speed", speedBuff);
 
 
-    
     }
 
 }
