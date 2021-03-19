@@ -622,6 +622,8 @@ MonoBehaviour:
   maxHealth: 10
   currentHealth: 0
   healthSlider: {fileID: 328981643979411882}
+  statDrop: {fileID: 8522888314842647884, guid: ea90c6acc31c5034daa4f7ef5bc67d0a,
+    type: 3}
 --- !u!50 &328981643541837802
 Rigidbody2D:
   serializedVersion: 4
