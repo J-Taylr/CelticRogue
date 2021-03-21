@@ -1,9 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
 {
+    [Header("Components")]
+    public Slider healthslider;
+
     [Header("Core")]
     public int maxHealth = 10;
     public int currentHealth;
@@ -26,8 +30,15 @@ public class PlayerManager : MonoBehaviour
 
     private void Start()
     {
+        healthslider.maxValue = maxHealth;
+        healthslider.value = currentHealth;
         currentHealth = maxHealth;
         invincible = false;
+    }
+
+    private void Update()
+    {
+        healthslider.value = currentHealth;
     }
 
     public void TakeDamage(int damage,GameObject attacker)
