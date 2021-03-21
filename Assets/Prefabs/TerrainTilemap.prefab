@@ -284,6 +284,24 @@ Tilemap:
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
       m_AllTileFlags: 1073741825
+  - first: {x: -1, y: 1, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 3
+      m_TileSpriteIndex: 3
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      m_AllTileFlags: 1073741825
+  - first: {x: 0, y: 1, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      m_AllTileFlags: 1073741825
   - first: {x: 1, y: 1, z: 0}
     second:
       serializedVersion: 2
@@ -304,21 +322,25 @@ Tilemap:
       m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: 568e574b4fb5bf744a2c4a39d916b38d, type: 2}
   - m_RefCount: 6
     m_Data: {fileID: 11400000, guid: ea27de2fb6cfaff40852031b5723f5e3, type: 2}
   - m_RefCount: 9
     m_Data: {fileID: 11400000, guid: ed1c4507bd31dac4093d239c649d371c, type: 2}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: c6c7b4ff0918325408cda630caca882d, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: e41204206568792458d335735890d18b, type: 3}
   - m_RefCount: 6
     m_Data: {fileID: 21300000, guid: 5ff56ff8c83d903418bd00a761da45c2, type: 3}
   - m_RefCount: 9
     m_Data: {fileID: 21300000, guid: 11897e0b9853bdc44b881dbdda357916, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: e6d1a691ff3523742a88d667745f006b, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 15
+  - m_RefCount: 17
     m_Data:
       e00: 1
       e01: 0
@@ -337,7 +359,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 15
+  - m_RefCount: 17
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
