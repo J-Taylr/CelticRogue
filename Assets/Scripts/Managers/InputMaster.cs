@@ -105,6 +105,14 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""35dc8b1c-a4f9-4778-8415-23965784bd41"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -514,6 +522,28 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""action"": ""VerticalMovement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""30559a3c-70ac-4525-b412-055b9f28ed11"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""64286add-2210-4286-92ef-3e6887302a7a"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""GamePad"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -588,6 +618,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_Camup = m_Player.FindAction("Camup", throwIfNotFound: true);
         m_Player_CamDown = m_Player.FindAction("CamDown", throwIfNotFound: true);
+        m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         // Test
         m_Test = asset.FindActionMap("Test", throwIfNotFound: true);
         m_Test_Newaction = m_Test.FindAction("New action", throwIfNotFound: true);
@@ -651,6 +682,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_Camup;
     private readonly InputAction m_Player_CamDown;
+    private readonly InputAction m_Player_Pause;
     public struct PlayerActions
     {
         private @InputMaster m_Wrapper;
@@ -666,6 +698,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @Camup => m_Wrapper.m_Player_Camup;
         public InputAction @CamDown => m_Wrapper.m_Player_CamDown;
+        public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -708,6 +741,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @CamDown.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCamDown;
                 @CamDown.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCamDown;
                 @CamDown.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCamDown;
+                @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -745,6 +781,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @CamDown.started += instance.OnCamDown;
                 @CamDown.performed += instance.OnCamDown;
                 @CamDown.canceled += instance.OnCamDown;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -813,6 +852,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnCamup(InputAction.CallbackContext context);
         void OnCamDown(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
     public interface ITestActions
     {

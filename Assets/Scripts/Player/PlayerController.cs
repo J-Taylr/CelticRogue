@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 
 public class PlayerController : MonoBehaviour
@@ -69,6 +70,9 @@ public class PlayerController : MonoBehaviour
 
         inputController.Player.Camup.canceled += ctx => cam.CamReturnUp();
         inputController.Player.CamDown.canceled += ctx => cam.CamReturnDown();
+
+        inputController.Player.Pause.canceled += ctx => ReturnToMenu();
+
     }
 
     private void OnEnable()
@@ -113,7 +117,10 @@ public class PlayerController : MonoBehaviour
 
     }
 
-
+    public void ReturnToMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
 
     public void PlayerMovement(float direction)
     {
