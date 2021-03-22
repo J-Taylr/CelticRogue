@@ -586,7 +586,8 @@ MonoBehaviour:
   maxHealth: 10
   currentHealth: 5
   healthSlider: {fileID: 9013122322092436931}
-  statDrop: {fileID: 0}
+  statDrop: {fileID: 8522888314842647884, guid: ea90c6acc31c5034daa4f7ef5bc67d0a,
+    type: 3}
 --- !u!114 &9013122323483346499
 MonoBehaviour:
   m_ObjectHideFlags: 0
