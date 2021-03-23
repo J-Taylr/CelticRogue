@@ -11,7 +11,7 @@ public class Spikes : MonoBehaviour
         if (player.tag == "Player")
         {
             player.GetComponent<PlayerManager>().TakeDamage(damage,gameObject);
-            player.GetComponent<PlayerActions>().PlayerJump();
+            player.GetComponent<PlayerMovement>().PlayerJump();
         }
     }
 

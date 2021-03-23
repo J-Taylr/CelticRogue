@@ -6,41 +6,48 @@ public class InputManager : MonoBehaviour
 {
     [Header("Components")]
     public InputMaster inputController;
-    public PlayerActions playerActions;
+    public PlayerMovement playerMovement;
+    public Strike strike;
     public CamFollow cam;
 
 
+    public bool TestIsJumping;
     private void Awake()
     {
         SetupControls();
-        playerActions = GetComponent<PlayerActions>();
+        playerMovement = GetComponent<PlayerMovement>();
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CamFollow>();
-
+        strike = GetComponent<Strike>();
 
     }
 
     public void SetupControls()
     {
         inputController = new InputMaster();
-
+        inputController.Enable();
         //movement
-        inputController.Player.HorizontalMovement.performed += ctx => playerActions.PlayerMovement(ctx.ReadValue<float>());
-        inputController.Player.HorizontalMovement.canceled += ctx => playerActions.PlayerMovement(0);
+        inputController.Player.HorizontalMovement.performed += ctx => playerMovement.MovePlayer(ctx.ReadValue<float>());
+        inputController.Player.HorizontalMovement.canceled += ctx => playerMovement.MovePlayer(0);
 
-        inputController.Player.VerticalMovement.performed += ctx => playerActions.stickIsVertical = true;
-        inputController.Player.VerticalMovement.canceled += ctx => playerActions.stickIsVertical = false;
+        inputController.Player.VerticalMovement.performed += ctx => playerMovement.stickIsVertical = true;
+        inputController.Player.VerticalMovement.canceled += ctx => playerMovement.stickIsVertical = false;
 
 
-        inputController.Player.Jump.performed += ctx => playerActions.PlayerJump();
-        inputController.Player.Dash.performed += ctx => playerActions.StartDash();
+        inputController.Player.Jump.performed += ctx => playerMovement.PlayerJump();
+        inputController.Player.Jump.performed += ctx => playerMovement.isHoldingJump = true;
+        inputController.Player.Jump.canceled += ctx => playerMovement.isHoldingJump = false;
+
+
+
+        inputController.Player.Dash.performed += ctx => playerMovement.StartDash();
 
         //attacks
-        inputController.Player.AttackDown.performed += ctx => playerActions.DownAttack();
-        inputController.Player.AttackUp.performed += ctx => playerActions.UpAttack();
-        inputController.Player.Attack.performed += ctx => playerActions.sideAttack();
+        inputController.Player.AttackDown.performed += ctx => strike.AttackDown();
+        inputController.Player.AttackUp.performed += ctx => strike.AttackUp();
+        inputController.Player.Attack.performed += ctx => strike.AttackSide();
 
         //other
-        inputController.Player.Interact.performed += ctx => playerActions.Interact();
+        inputController.Player.Interact.performed += ctx => playerMovement.Interact();
 
         inputController.Player.Camup.performed += ctx => cam.cameraUp = true;
         inputController.Player.CamDown.performed += ctx => cam.cameraDown = true;
@@ -48,7 +55,10 @@ public class InputManager : MonoBehaviour
         inputController.Player.Camup.canceled += ctx => cam.CamReturnUp();
         inputController.Player.CamDown.canceled += ctx => cam.CamReturnDown();
 
-        inputController.Player.Pause.canceled += ctx => playerActions.ReturnToMenu();
+        inputController.Player.Pause.canceled += ctx => playerMovement.ReturnToMenu();
 
     }
+
+
+    
 }

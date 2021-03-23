@@ -9,8 +9,8 @@ public class InvertWalk : MonoBehaviour
         {
             check.gameObject.transform.rotation = Quaternion.Euler(0f,180f,180f);
             check.gameObject.GetComponent<Rigidbody2D>().gravityScale = -4f;
-            check.gameObject.GetComponent<PlayerActions>().jumpForce = -16f;
-            check.gameObject.GetComponent<PlayerActions>().doubleJumpForce = -12f;
+            check.gameObject.GetComponent<PlayerMovement>().jumpForce = -16f;
+            check.gameObject.GetComponent<PlayerMovement>().doubleJumpForce = -12f;
         }
     }
 
@@ -19,8 +19,8 @@ public class InvertWalk : MonoBehaviour
         {
             leaf.gameObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
             leaf.gameObject.GetComponent<Rigidbody2D>().gravityScale = 4f;
-            leaf.gameObject.GetComponent<PlayerActions>().jumpForce = 16f;
-            leaf.gameObject.GetComponent<PlayerActions>().doubleJumpForce = 12f;
+            leaf.gameObject.GetComponent<PlayerMovement>().jumpForce = 16f;
+            leaf.gameObject.GetComponent<PlayerMovement>().doubleJumpForce = 12f;
         }
     }
 }

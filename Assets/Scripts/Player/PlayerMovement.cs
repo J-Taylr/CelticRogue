@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 
-public class PlayerActions : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     [Header("Components")]
     public PlayerManager playerManager;
@@ -18,29 +18,30 @@ public class PlayerActions : MonoBehaviour
 
     [Header("Movement")]
     private float horizontalInput;
-
     public float dashPower = 40;
+
     public float jumpForce = 400f;
     public float wallBounce = 10;
     public float doubleJumpForce = 400f;
 
     public bool stickIsVertical = false;
+    public bool isHoldingJump = false;
+
     bool canDoubleJump = false;
     bool coyoteJump = true;
     float coyoteTimer = 0.1f;
 
     public bool dashing;
 
-
     [Header("Wall Sliding")]
     bool wallSliding;
     public float wallSlidingSpeed = 20;    // max speed character slides down walls
 
-   
+    [Header("Gravity")]
+    public float fallMultiplier = 2.5f;
+    public float lowJumpMultiplier = 2.0f;
 
-   
-
-    private void Start()
+    private void Awake()
     {
         playerManager = GetComponent<PlayerManager>();
         rb = GetComponent<Rigidbody2D>();
@@ -51,12 +52,11 @@ public class PlayerActions : MonoBehaviour
         dashing = false;
     }
 
-
     void Update()
     {
         CoyoteCheck(); // timer for coyote time
         SlideCheck(); // checks if player is sliding on a wall
-
+       
 
         animator.SetFloat("Speed", Mathf.Abs(horizontalInput));
 
@@ -74,7 +74,6 @@ public class PlayerActions : MonoBehaviour
     {
         controller.Move(horizontalInput * Time.fixedDeltaTime);
         WallSlide();
-
     }
 
     public void ReturnToMenu()
@@ -82,8 +81,11 @@ public class PlayerActions : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    public void PlayerMovement(float direction)
+   
+
+    public void MovePlayer(float direction)
     {
+        
         horizontalInput = direction * playerManager.moveSpeed;
     }
     public void PlayerJump() // all inputs for the players; Jump, Double Jump, Coyote Jump, WallJump
@@ -143,15 +145,11 @@ public class PlayerActions : MonoBehaviour
             coyoteJump = false;
             canDoubleJump = false;
         }
-
-
-
     }
 
     public void Interact()
     {
         playerManager.isInteracting = true;
-
     }
     public void StartDash()
     {
@@ -167,7 +165,6 @@ public class PlayerActions : MonoBehaviour
 
     IEnumerator PlayerDash()
     {
-
         rb.AddForce(new Vector2((horizontalInput * dashPower), 0));
         playerManager.moveSpeed += 20;
         yield return new WaitForSeconds(0.5f);
@@ -192,7 +189,6 @@ public class PlayerActions : MonoBehaviour
     {
         if (!controller.isGrounded)
         {
-
             coyoteTimer -= Time.deltaTime;
 
             if (coyoteTimer <= 0)
@@ -201,7 +197,6 @@ public class PlayerActions : MonoBehaviour
 
                 coyoteJump = false;
             }
-
         }
         else if (controller.isGrounded)
         {
@@ -215,71 +210,16 @@ public class PlayerActions : MonoBehaviour
         if (controller.isOnWall && !controller.isGrounded && horizontalInput != 0)
         {
             wallSliding = true;
-
         }
         else
         {
             wallSliding = false;
-
-        }
-
-    }
-    //PLAYER ATTACKS
-    public void UpAttack()
-    {
-        print("up attack");
-
-        if (playerManager.RollCritical() == true)
-        {
-            strike.AttackUp(playerManager.strikeDamage * 3);
-        }
-        else
-        {
-            strike.AttackUp(playerManager.strikeDamage);
-        }
-        upgrades.Ranged();
-    }
-
-    public void DownAttack()
-    {
-        print("down attack");
-
-        if (playerManager.RollCritical() == true)
-        {
-            strike.AttackDown(playerManager.strikeDamage * 3);
-        }
-        else
-        {
-            strike.AttackDown(playerManager.strikeDamage);
-        }
-        upgrades.Ranged();
-    }
-
-
-    public void sideAttack()
-    {
-
-        if (!stickIsVertical)
-        {
-            print("side attack");
-            StartCoroutine("AttackAni");
-
-
-            if (playerManager.RollCritical() == true)
-            {
-                strike.AttackR(playerManager.strikeDamage * 3); //critical mulitplier can be changed
-            }
-            else
-            {
-                strike.AttackR(playerManager.strikeDamage);
-            }
-            upgrades.Ranged();
         }
     }
+   
 
     IEnumerator AttackAni()
-    {
-
+    { 
         animator.SetBool("Attack", true);
         yield return new WaitForSeconds(.5f);
         animator.SetBool("Attack", false);

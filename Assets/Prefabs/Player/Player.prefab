@@ -591,16 +591,16 @@ ParticleSystemForceField:
   m_Enabled: 1
   m_Parameters:
     m_Shape: 0
-    m_StartRange: 0.81
-    m_EndRange: 5.880419
+    m_StartRange: 0.26
+    m_EndRange: 4.599551
     m_Length: 1
     m_GravityFocus: 0
     m_RotationRandomness: {x: 0, y: 0}
     m_DirectionCurveX:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 1
-      minScalar: -1
+      scalar: 0
+      minScalar: 0
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -652,8 +652,8 @@ ParticleSystemForceField:
     m_DirectionCurveY:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 10
-      minScalar: -10
+      scalar: 0
+      minScalar: 0
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -758,7 +758,7 @@ ParticleSystemForceField:
     m_GravityCurve:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.2
+      scalar: 0.25
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -1193,7 +1193,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4069858953766354327}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.77, z: 0}
+  m_LocalPosition: {x: 0, y: -1.17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2862064335203649785}
@@ -1377,6 +1377,7 @@ GameObject:
   - component: {fileID: 5967369291328425172}
   - component: {fileID: 5565167472930732417}
   - component: {fileID: 1950619213}
+  - component: {fileID: 5777925629283904357}
   - component: {fileID: 8318350178895994125}
   - component: {fileID: 3145982855521772255}
   - component: {fileID: 9198682013305695576}
@@ -1500,6 +1501,22 @@ MonoBehaviour:
   OnCrouchEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5777925629283904357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6987421072757631175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07805a29f16adcd459762b91eb5997ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMovement: {fileID: 0}
+  strike: {fileID: 0}
+  cam: {fileID: 0}
+  TestIsJumping: 0
 --- !u!114 &8318350178895994125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1534,23 +1551,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 6987421072757631175}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc8adb03a3aaba043aa206415a1a6dfe, type: 3}
+  m_Script: {fileID: 11500000, guid: f85002a82af4b0941961d1449b130ecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerManager: {fileID: 8318350178895994125}
-  controller: {fileID: 1950619213}
-  rb: {fileID: 1950619211}
-  strike: {fileID: 9198682013305695576}
+  playerManager: {fileID: 0}
+  controller: {fileID: 0}
+  rb: {fileID: 0}
+  strike: {fileID: 0}
   animator: {fileID: 0}
-  cam: {fileID: 0}
   upgrades: {fileID: 0}
-  dashPower: 120
+  dashPower: 40
   jumpForce: 16
   wallBounce: 10
-  doubleJumpForce: 12
+  doubleJumpForce: 400
   stickIsVertical: 0
+  isHoldingJump: 0
   dashing: 0
-  wallSlidingSpeed: 5
+  wallSlidingSpeed: 20
+  fallMultiplier: 2.5
+  lowJumpMultiplier: 2
 --- !u!114 &9198682013305695576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1563,6 +1582,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64bdc737a70c3494b87f8cf366d0f524, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerManager: {fileID: 0}
   Player: {fileID: 1950619211}
   animator: {fileID: 0}
   attackPointR: {fileID: 9031956571349341355}
@@ -1570,7 +1590,8 @@ MonoBehaviour:
   attackPointDown: {fileID: 1110181049400350021}
   Recoil: 100
   RecoilD: 20
-  attackRange: 1
+  attackRange: 0.75
+  critIncrease: 3
   enemyLayer:
     serializedVersion: 2
     m_Bits: 512
@@ -1599,7 +1620,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7535639988435796682}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.72, z: 0}
+  m_LocalPosition: {x: 0, y: 0.98, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2862064335203649785}
@@ -1629,7 +1650,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8434756070710285987}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.34, y: 0, z: 0}
+  m_LocalPosition: {x: 0.78, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2862064335203649785}
