@@ -4,15 +4,27 @@ using UnityEngine;
 
 public class RockSpawner : MonoBehaviour
 {
-    public float time;
+    public float spawndelay;
     public GameObject rock;
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("SpawnRock", time,time);
+        StartCoroutine(SpawnRock());
     }
 
-    void SpawnRock() {
-        Instantiate(rock, gameObject.transform.position, Quaternion.identity);
+   
+
+
+    IEnumerator SpawnRock()
+    {
+        while (true)
+        {
+
+
+            GameObject go = Instantiate(rock, gameObject.transform.position, Quaternion.identity);
+            go.transform.SetParent(gameObject.transform);
+
+            yield return new WaitForSeconds(spawndelay);
+        }
     }
 }

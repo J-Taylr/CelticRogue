@@ -16,6 +16,8 @@ public class MenuManager : MonoBehaviour
 
     public void StartGame()
     {
+        Cursor.visible = true;
+
         startGame.Play();
         menuMusic.Stop();
         Invoke("LoadScene", 1);

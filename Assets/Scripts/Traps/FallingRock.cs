@@ -5,11 +5,13 @@ using UnityEngine;
 public class FallingRock : MonoBehaviour
 {
     public int damage;
-    public int boulHealth;
+    public int rockHealth;
+
+    public int destroyTimer;
 
     void OnCollisionEnter2D(Collision2D check) {
 
-        if (boulHealth<0)
+        if (rockHealth < 0)
         {
             Destroy(gameObject);
         }
@@ -18,6 +20,12 @@ public class FallingRock : MonoBehaviour
             check.gameObject.GetComponent<PlayerManager>().TakeDamage(damage,gameObject);
 
         }
-        boulHealth--;
+        rockHealth--;
     }
+
+
+
+
+
+
 }

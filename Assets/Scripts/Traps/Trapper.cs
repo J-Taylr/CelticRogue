@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Traper : MonoBehaviour
+public class Trapper : MonoBehaviour
 {
     public GameObject door;
 

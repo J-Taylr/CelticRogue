@@ -27,15 +27,13 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        Cursor.visible = false;
+
         player = GameObject.FindGameObjectWithTag("Player");
         spawn = GameObject.FindGameObjectWithTag("Spawn").transform;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   
 
 
     public void RespawnPlayer()
