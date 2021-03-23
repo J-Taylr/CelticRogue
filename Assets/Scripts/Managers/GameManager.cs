@@ -27,15 +27,14 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        // Cursor.visible = false;
+        print("remember to disable cursor in THIS script");
+
         player = GameObject.FindGameObjectWithTag("Player");
         spawn = GameObject.FindGameObjectWithTag("Spawn").transform;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   
 
 
     public void RespawnPlayer()

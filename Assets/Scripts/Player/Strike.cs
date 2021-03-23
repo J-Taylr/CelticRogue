@@ -5,6 +5,7 @@ using UnityEngine;
 public class Strike : MonoBehaviour
 {
     [Header("Components")]
+    public PlayerManager playerManager;
     public Rigidbody2D Player;
     public Animator animator;
     public Transform attackPointR;
@@ -15,27 +16,41 @@ public class Strike : MonoBehaviour
     public int Recoil;
     public int RecoilD;
     public float attackRange = 0.5f;
+    public int critIncrease = 3;
     public LayerMask enemyLayer;
 
     public bool coolDown = false;
 
+    private void Awake()
+    {
+        playerManager = GetComponent<PlayerManager>();
+    }
 
-    public void AttackUp(int damage)
+
+    public void AttackUp()
     {
         if (coolDown == false)
         {
-
+    
             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPointUp.position, attackRange, enemyLayer);
             foreach (Collider2D enemy in hitEnemies)
             {
-                print(enemy.name);
-                enemy.GetComponent<EnemyManager>().TakeDamage(damage);
+                if (RollCritical() == true)
+                {
+                    enemy.GetComponent<EnemyManager>().TakeDamage(playerManager.strikeDamage * critIncrease);
+                }
+                else
+                {
+                   
+                    enemy.GetComponent<EnemyManager>().TakeDamage(playerManager.strikeDamage);
+                }
+
             }
             StartCoroutine("CoolDown");
 
         }
     }
-    public void AttackDown(int damage)
+    public void AttackDown()
     {
         if (coolDown == false)
         {
@@ -46,13 +61,21 @@ public class Strike : MonoBehaviour
                 Player.velocity = new Vector2(Player.velocity.x, yVelocity.y);
                 Player.AddForce(new Vector2(0f, RecoilD), ForceMode2D.Impulse);
 
-                enemy.GetComponent<EnemyManager>().TakeDamage(damage);
+                if (RollCritical() == true)
+                {
+                    enemy.GetComponent<EnemyManager>().TakeDamage(playerManager.strikeDamage * critIncrease);
+                }
+                else
+                {
+
+                    enemy.GetComponent<EnemyManager>().TakeDamage(playerManager.strikeDamage);
+                }
             }
             StartCoroutine("CoolDown");
         }
     }
 
-    public void AttackR(int damage)
+    public void AttackSide()
     {
         if (coolDown == false)
         {
@@ -73,7 +96,18 @@ public class Strike : MonoBehaviour
                     Player.AddForce(new Vector2(Recoil, 0f), ForceMode2D.Impulse);
                 }
                 print(enemy.name);
-                enemy.GetComponent<EnemyManager>().TakeDamage(damage);
+
+
+                if (RollCritical() == true)
+                {
+                    enemy.GetComponent<EnemyManager>().TakeDamage(playerManager.strikeDamage * critIncrease);
+                }
+                else
+                {
+
+                    enemy.GetComponent<EnemyManager>().TakeDamage(playerManager.strikeDamage);
+                }
+                
             }
             StartCoroutine("CoolDown");
         }
@@ -92,4 +126,24 @@ public class Strike : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         coolDown = false;
     }
+
+
+    public bool RollCritical()
+    {
+        int crit = Random.Range(1, 100);
+
+        if (crit <= playerManager.critChance)
+        {
+            //print(crit + "CRITICAL HIT");
+            return true;
+        }
+        else
+        {
+            //print(crit + "normal hit");
+            return false;
+        }
+
+
+    }
+
 }

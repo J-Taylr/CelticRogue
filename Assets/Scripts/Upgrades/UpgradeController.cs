@@ -6,7 +6,7 @@ public class UpgradeController : MonoBehaviour
 {
     public CharacterController2D controller;
     public PlayerManager playerManager;
-    public PlayerController playerController;
+    public PlayerMovement playerController;
 
     [Header("Ranged Attack")]
     public GameObject bullet;

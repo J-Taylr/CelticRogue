@@ -88,7 +88,7 @@ public class BasicEnemyMover : MonoBehaviour
             }
             else
             {
-                Debug.Log("test");
+                //Debug.Log("test");
                 transform.eulerAngles = new Vector3(0, 0, 0);
                 movingRight = true;
             }
