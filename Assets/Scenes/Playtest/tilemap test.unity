@@ -5089,8 +5089,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  rockHealth: 0
-  destroyTimer: 0
+  destroyTime: 3
 --- !u!50 &132836862
 Rigidbody2D:
   serializedVersion: 4
@@ -17710,8 +17709,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  rockHealth: 0
-  destroyTimer: 0
+  destroyTime: 3
 --- !u!50 &550038694
 Rigidbody2D:
   serializedVersion: 4
@@ -20628,8 +20626,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  rockHealth: 0
-  destroyTimer: 0
+  destroyTime: 3
 --- !u!50 &628966039
 Rigidbody2D:
   serializedVersion: 4
@@ -31158,7 +31155,6 @@ GameObject:
   m_Component:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
-  - component: {fileID: 963194226}
   - component: {fileID: 963194229}
   - component: {fileID: 963194230}
   m_Layer: 0
@@ -31168,14 +31164,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &963194226
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
 --- !u!20 &963194227
 Camera:
   m_ObjectHideFlags: 0
@@ -36511,8 +36499,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  rockHealth: 0
-  destroyTimer: 0
+  destroyTime: 3
 --- !u!50 &1123067162
 Rigidbody2D:
   serializedVersion: 4
@@ -50790,7 +50777,7 @@ PrefabInstance:
     - target: {fileID: 64339644961703729, guid: 85dbcba95afa93b48b1616ea5adeba80,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -39.80548
+      value: -37.9
       objectReference: {fileID: 0}
     - target: {fileID: 64339644961703729, guid: 85dbcba95afa93b48b1616ea5adeba80,
         type: 3}
@@ -58268,7 +58255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0c94e06f45259c40bef09c1d0d25f1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawndelay: 0
+  spawndelay: 3
   rock: {fileID: 6905280249525704753, guid: 593ca99db40d0d14d8fc53ef7b7975fc, type: 3}
 --- !u!4 &1769097507
 Transform:
@@ -63343,8 +63330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  rockHealth: 0
-  destroyTimer: 0
+  destroyTime: 3
 --- !u!50 &1935761024
 Rigidbody2D:
   serializedVersion: 4

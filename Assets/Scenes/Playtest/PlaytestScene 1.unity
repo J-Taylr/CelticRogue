@@ -2353,7 +2353,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  boulHealth: 5
+  rockHealth: 0
+  destroyTimer: 0
 --- !u!50 &132836862
 Rigidbody2D:
   serializedVersion: 4
@@ -8534,7 +8535,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  boulHealth: 5
+  rockHealth: 0
+  destroyTimer: 0
 --- !u!50 &550038694
 Rigidbody2D:
   serializedVersion: 4
@@ -9419,6 +9421,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1040283310, guid: 4141e1b660336de469d0c90e2bfafc07, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1040283310, guid: 4141e1b660336de469d0c90e2bfafc07, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1950619211, guid: 4141e1b660336de469d0c90e2bfafc07, type: 3}
       propertyPath: m_GravityScale
       value: 4
@@ -10324,7 +10334,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  boulHealth: 5
+  rockHealth: 0
+  destroyTimer: 0
 --- !u!50 &628966039
 Rigidbody2D:
   serializedVersion: 4
@@ -17905,7 +17916,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  boulHealth: 5
+  rockHealth: 0
+  destroyTimer: 0
 --- !u!50 &1123067162
 Rigidbody2D:
   serializedVersion: 4
@@ -23305,7 +23317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0c94e06f45259c40bef09c1d0d25f1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 2
+  spawndelay: 0
   rock: {fileID: 6905280249525704753, guid: 593ca99db40d0d14d8fc53ef7b7975fc, type: 3}
 --- !u!4 &1390644719
 Transform:
@@ -30420,7 +30432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0c94e06f45259c40bef09c1d0d25f1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 2
+  spawndelay: 0
   rock: {fileID: 6905280249525704753, guid: 593ca99db40d0d14d8fc53ef7b7975fc, type: 3}
 --- !u!4 &1769097507
 Transform:
@@ -33311,7 +33323,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  boulHealth: 5
+  rockHealth: 0
+  destroyTimer: 0
 --- !u!50 &1935761024
 Rigidbody2D:
   serializedVersion: 4
