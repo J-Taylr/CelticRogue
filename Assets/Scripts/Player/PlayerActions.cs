@@ -5,16 +5,14 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 
-public class PlayerController : MonoBehaviour
+public class PlayerActions : MonoBehaviour
 {
     [Header("Components")]
     public PlayerManager playerManager;
     public CharacterController2D controller;
     public Rigidbody2D rb;
-    public InputMaster inputController;
     public Strike strike;
     public Animator animator;
-    public CamFollow cam;
     public UpgradeController upgrades;
 
 
@@ -26,59 +24,21 @@ public class PlayerController : MonoBehaviour
     public float wallBounce = 10;
     public float doubleJumpForce = 400f;
 
-   public bool stickIsVertical = false;
+    public bool stickIsVertical = false;
     bool canDoubleJump = false;
     bool coyoteJump = true;
     float coyoteTimer = 0.1f;
 
     public bool dashing;
 
+
     [Header("Wall Sliding")]
     bool wallSliding;
     public float wallSlidingSpeed = 20;    // max speed character slides down walls
 
-    private void Awake()
-    {
-        SetupControls();
-    }
+   
 
-    public void SetupControls()
-    {
-        inputController = new InputMaster();
-
-        //movement
-        inputController.Player.HorizontalMovement.performed += ctx => PlayerMovement(ctx.ReadValue<float>());
-        inputController.Player.HorizontalMovement.canceled += ctx => PlayerMovement(0);
-
-        inputController.Player.VerticalMovement.performed += ctx => stickIsVertical = true;
-        inputController.Player.VerticalMovement.canceled += ctx => stickIsVertical = false;
-
-
-        inputController.Player.Jump.performed += ctx => PlayerJump();
-        inputController.Player.Dash.performed += ctx => StartDash();
-
-        //attacks
-        inputController.Player.AttackDown.performed += ctx => DownAttack();
-        inputController.Player.AttackUp.performed += ctx => UpAttack();
-        inputController.Player.Attack.performed += ctx => sideAttack();
-
-        //other
-        inputController.Player.Interact.performed += ctx => Interact();
-
-        inputController.Player.Camup.performed += ctx => cam.cameraUp = true;
-        inputController.Player.CamDown.performed += ctx => cam.cameraDown = true;
-
-        inputController.Player.Camup.canceled += ctx => cam.CamReturnUp();
-        inputController.Player.CamDown.canceled += ctx => cam.CamReturnDown();
-
-        inputController.Player.Pause.canceled += ctx => ReturnToMenu();
-
-    }
-
-    private void OnEnable()
-    {
-        inputController.Enable();
-    }
+   
 
     private void Start()
     {
@@ -87,7 +47,7 @@ public class PlayerController : MonoBehaviour
         controller = GetComponent<CharacterController2D>();
         animator = GetComponentInChildren<Animator>();
         strike = GetComponent<Strike>();
-        cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CamFollow>();
+        
         dashing = false;
     }
 
