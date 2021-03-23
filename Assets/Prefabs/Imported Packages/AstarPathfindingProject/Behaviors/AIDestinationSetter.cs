@@ -30,9 +30,12 @@ namespace Pathfinding {
 		void OnDisable () {
 			if (ai != null) ai.onSearchPath -= Update;
 		}
-
-		/// <summary>Updates the AI's destination every frame</summary>
-		void Update () {
+        void Start()
+        {
+            target = GameObject.Find("Player").transform;   
+        }
+        /// <summary>Updates the AI's destination every frame</summary>
+        void Update () {
 			if (target != null && ai != null) ai.destination = target.position;
 		}
 	}
