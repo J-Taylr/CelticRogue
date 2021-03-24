@@ -169,7 +169,7 @@ public class PlayerMovement : MonoBehaviour
         {
             StartCoroutine(PlayerDash());
             dashing = true;
-            print("dashStart"); ;
+            print("dashStart");
         }
     }
 
