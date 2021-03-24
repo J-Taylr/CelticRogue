@@ -88,7 +88,7 @@ public class Strike : MonoBehaviour
                 Vector2 yVelocity = new Vector2(0, 0);
                 Player.velocity = new Vector2(Player.velocity.x, yVelocity.y);
 
-                if (transform.localPosition.x < 3)
+                /*if (transform.localPosition.x < 3)
                 {
                     Player.AddForce(new Vector2(-Recoil, 0f), ForceMode2D.Impulse);
                 }
@@ -97,7 +97,7 @@ public class Strike : MonoBehaviour
                     Player.AddForce(new Vector2(Recoil, 0f), ForceMode2D.Impulse);
                 }
                 print(enemy.name);
-
+                */
 
                 if (RollCritical() == true)
                 {

@@ -26,6 +26,7 @@ public class EnemyManager : MonoBehaviour
 
     void Start()
     {
+
         healthSlider.maxValue = maxHealth;
 
         currentHealth = maxHealth;
@@ -75,8 +76,11 @@ public class EnemyManager : MonoBehaviour
 
     public void Die()
     {
+       
         Instantiate(statDrop, transform.position, Quaternion.identity);
-        gameObject.SetActive(false);
+        SkullSpawner spawner = transform.parent.GetComponent<SkullSpawner>();
+        spawner.Skulls.Remove(this.gameObject);
+        Destroy(gameObject);
     }
 
 
