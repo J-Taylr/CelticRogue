@@ -19,7 +19,7 @@ public class LockAndKey : MonoBehaviour
     }
 
     void OnTriggerEnter2D (Collider2D player) {
-        print("Yeet");
+        
         if (player.tag == "Player")
         {
             door.SetActive(false);

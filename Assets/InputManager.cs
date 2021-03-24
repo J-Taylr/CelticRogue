@@ -55,7 +55,7 @@ public class InputManager : MonoBehaviour
         inputController.Player.Camup.canceled += ctx => cam.CamReturnUp();
         inputController.Player.CamDown.canceled += ctx => cam.CamReturnDown();
 
-        inputController.Player.Pause.canceled += ctx => playerMovement.ReturnToMenu();
+        
 
     }
 

@@ -1563,7 +1563,7 @@ MonoBehaviour:
   dashPower: 40
   jumpForce: 16
   wallBounce: 10
-  doubleJumpForce: 400
+  doubleJumpForce: 16
   stickIsVertical: 0
   isHoldingJump: 0
   dashing: 0
@@ -1584,7 +1584,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerManager: {fileID: 0}
   Player: {fileID: 1950619211}
-  animator: {fileID: 0}
+  animator: {fileID: 1894940493}
   attackPointR: {fileID: 9031956571349341355}
   attackPointUp: {fileID: 6633279272576282153}
   attackPointDown: {fileID: 1110181049400350021}

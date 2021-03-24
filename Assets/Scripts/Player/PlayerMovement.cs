@@ -54,9 +54,9 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        AdjustGravity();
         CoyoteCheck(); // timer for coyote time
         SlideCheck(); // checks if player is sliding on a wall
-       
 
         animator.SetFloat("Speed", Mathf.Abs(horizontalInput));
 
@@ -76,9 +76,19 @@ public class PlayerMovement : MonoBehaviour
         WallSlide();
     }
 
-    public void ReturnToMenu()
+ 
+    public void AdjustGravity()
     {
-        SceneManager.LoadScene(0);
+        if(rb.velocity.y < 0 && !wallSliding) // if player is falling
+        {
+            
+            rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+        }
+        else if (rb.velocity.y > 0 && !isHoldingJump && !wallSliding)
+        {
+            rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+        }
+
     }
 
    
@@ -218,11 +228,6 @@ public class PlayerMovement : MonoBehaviour
     }
    
 
-    IEnumerator AttackAni()
-    { 
-        animator.SetBool("Attack", true);
-        yield return new WaitForSeconds(.5f);
-        animator.SetBool("Attack", false);
-    }
+   
 }
 

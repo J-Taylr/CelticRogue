@@ -24,6 +24,7 @@ public class Strike : MonoBehaviour
     private void Awake()
     {
         playerManager = GetComponent<PlayerManager>();
+        
     }
 
 
@@ -31,7 +32,7 @@ public class Strike : MonoBehaviour
     {
         if (coolDown == false)
         {
-    
+            
             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPointUp.position, attackRange, enemyLayer);
             foreach (Collider2D enemy in hitEnemies)
             {
@@ -40,8 +41,7 @@ public class Strike : MonoBehaviour
                     enemy.GetComponent<EnemyManager>().TakeDamage(playerManager.strikeDamage * critIncrease);
                 }
                 else
-                {
-                   
+                {                   
                     enemy.GetComponent<EnemyManager>().TakeDamage(playerManager.strikeDamage);
                 }
 
@@ -77,13 +77,14 @@ public class Strike : MonoBehaviour
 
     public void AttackSide()
     {
+        
         if (coolDown == false)
         {
-
+            StartCoroutine(SideAttack());
             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPointR.position, attackRange, enemyLayer);
             foreach (Collider2D enemy in hitEnemies)
             {
-
+               
                 Vector2 yVelocity = new Vector2(0, 0);
                 Player.velocity = new Vector2(Player.velocity.x, yVelocity.y);
 
@@ -101,11 +102,13 @@ public class Strike : MonoBehaviour
                 if (RollCritical() == true)
                 {
                     enemy.GetComponent<EnemyManager>().TakeDamage(playerManager.strikeDamage * critIncrease);
+                    
                 }
                 else
                 {
 
                     enemy.GetComponent<EnemyManager>().TakeDamage(playerManager.strikeDamage);
+                    
                 }
                 
             }
@@ -128,6 +131,7 @@ public class Strike : MonoBehaviour
     }
 
 
+
     public bool RollCritical()
     {
         int crit = Random.Range(1, 100);
@@ -143,7 +147,14 @@ public class Strike : MonoBehaviour
             return false;
         }
 
+    }
 
+    IEnumerator SideAttack()
+    {
+        print("side attack animation");
+        animator.SetBool("Attack", true);
+        yield return new WaitForSeconds(.5f);
+        animator.SetBool("Attack", false);
     }
 
 }

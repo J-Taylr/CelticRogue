@@ -176,7 +176,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""id"": ""a16bca01-99ec-4241-a3ab-360094365fe3"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""AxisDeadzone"",
                     ""groups"": """",
                     ""action"": ""HorizontalMovement"",
                     ""isComposite"": true,
