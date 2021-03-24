@@ -1538,9 +1538,9 @@ MonoBehaviour:
   damageResist: 0
   isInteracting: 0
   upgrades: {fileID: 0}
-  doubleUnlock: 1
-  wallJumpUnlock: 1
-  dashUnlock: 1
+  doubleUnlock: 0
+  wallJumpUnlock: 0
+  dashUnlock: 0
   invincible: 0
 --- !u!114 &3145982855521772255
 MonoBehaviour:
