@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Components")]
     public PlayerManager playerManager;
     public CharacterController2D controller;
+    public PlayerFX playerFX;
     public Rigidbody2D rb;
     public Strike strike;
     public Animator animator;
@@ -44,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         playerManager = GetComponent<PlayerManager>();
+        playerFX = GetComponent<PlayerFX>();
         rb = GetComponent<Rigidbody2D>();
         controller = GetComponent<CharacterController2D>();
         animator = GetComponentInChildren<Animator>();
@@ -176,9 +178,11 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator PlayerDash()
     {
         rb.AddForce(new Vector2((horizontalInput * dashPower), 0));
+        playerFX.PlayDashParticle();
         playerManager.moveSpeed += 20;
         yield return new WaitForSeconds(0.5f);
         playerManager.moveSpeed = 40;
+        
         dashing = false;
         print("dashend");
         if (upgrades.dashEndExplosion)
