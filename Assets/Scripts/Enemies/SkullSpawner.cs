@@ -9,6 +9,7 @@ public class SkullSpawner : MonoBehaviour
     public List<GameObject> Skulls;
     public Vector3 size;
     public Vector3 center;
+
     // Start is called before the first frame update
     void Start()
     {

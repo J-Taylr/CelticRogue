@@ -17,7 +17,6 @@ public class EnemyManager : MonoBehaviour
     int dothit;
     float dotDelay;
 
-
     private void Awake()
     {
         healthSlider = gameObject.GetComponentInChildren<Slider>();
@@ -38,12 +37,12 @@ public class EnemyManager : MonoBehaviour
         CheckLife();
     }
 
-    public void DOT(int ticks,int dotDamage ,float tickDelay) {
+    public void DOT(int ticks, int dotDamage, float tickDelay) {
         poiDam = dotDamage;
         dothit = ticks;
         dotDelay = tickDelay;
         TickDamage();
- 
+
     }
     void TickDamage() {
         print("Hit");
@@ -54,34 +53,25 @@ public class EnemyManager : MonoBehaviour
             Invoke("TickDamage", dotDelay);
         }
     }
-    
+
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
         healthSlider.value = currentHealth;
-
-     
-
     }
 
     public void CheckLife()
     {
         if (currentHealth <= 0)
         {
+           
             Die();
         }
-
     }
-
-
     public void Die()
     {
-       
         Instantiate(statDrop, transform.position, Quaternion.identity);
-        SkullSpawner spawner = transform.parent.GetComponent<SkullSpawner>();
-        spawner.Skulls.Remove(this.gameObject);
         Destroy(gameObject);
     }
-
-
 }
+
