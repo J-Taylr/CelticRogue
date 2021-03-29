@@ -18,25 +18,28 @@ public class PlayerMovement : MonoBehaviour
 
 
     [Header("Movement")]
-    private float horizontalInput;
-    public float dashPower = 40;
-
-    public float jumpForce = 400f;
-    public float wallBounce = 10;
-    public float doubleJumpForce = 400f;
-
     public bool stickIsVertical = false;
     public bool isHoldingJump = false;
 
-    bool canDoubleJump = false;
-    bool coyoteJump = true;
+    private float horizontalInput;
+    [Header("Jumping")]
+    public float jumpForce = 400f;
+    public float doubleJumpForce = 400f;
     float coyoteTimer = 0.1f;
 
+    bool canDoubleJump = false;
+    bool coyoteJump = true;
+
+    [Header("Dashing")]
+    public float dashDuration = 0.5f;
+    public float dashPower = 40;
+    public bool canDash = true;
     public bool dashing;
 
-    [Header("Wall Sliding")]
+    [Header("Wall Movement")]
     bool wallSliding;
     public float wallSlidingSpeed = 20;    // max speed character slides down walls
+    public float wallBounce = 10;
 
     [Header("Gravity")]
     public float fallMultiplier = 2.5f;
@@ -52,6 +55,7 @@ public class PlayerMovement : MonoBehaviour
         strike = GetComponent<Strike>();
         
         dashing = false;
+        print(rb.gravityScale);
     }
 
     void Update()
@@ -59,12 +63,14 @@ public class PlayerMovement : MonoBehaviour
         AdjustGravity();
         CoyoteCheck(); // timer for coyote time
         SlideCheck(); // checks if player is sliding on a wall
+        DashCheck(); //checks for when player lands on floor to recharge boost
 
         animator.SetFloat("Speed", Mathf.Abs(horizontalInput));
 
         if (controller.isGrounded)
         {
             animator.SetBool("OnGround", true);
+
         }
         else
         {
@@ -81,12 +87,12 @@ public class PlayerMovement : MonoBehaviour
  
     public void AdjustGravity()
     {
-        if(rb.velocity.y < 0 && !wallSliding) // if player is falling
+        if(rb.velocity.y < 0 && !wallSliding && !dashing) // if player is falling
         {
             
             rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
-        else if (rb.velocity.y > 0 && !isHoldingJump && !wallSliding)
+        else if (rb.velocity.y > 0 && !isHoldingJump && !wallSliding && !dashing)
         {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
@@ -145,11 +151,11 @@ public class PlayerMovement : MonoBehaviour
 
             if (controller.facingRight)
             {
-                rb.AddForce(new Vector2(-wallBounce, jumpForce), ForceMode2D.Impulse);
+                rb.AddForce(new Vector2(wallBounce, jumpForce), ForceMode2D.Impulse);
             }
             else
             {
-                rb.AddForce(new Vector2(--wallBounce, jumpForce), ForceMode2D.Impulse);
+                rb.AddForce(new Vector2(-wallBounce, jumpForce), ForceMode2D.Impulse);
 
             }
 
@@ -165,7 +171,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void StartDash()
     {
-        if (playerManager.dashUnlock)
+        if (playerManager.dashUnlock && canDash)
         {
             StartCoroutine(PlayerDash());
             dashing = true;
@@ -177,18 +183,22 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator PlayerDash()
     {
+        canDash = false;
+        rb.velocity = Vector2.zero;
+        rb.gravityScale = 0;
         rb.AddForce(new Vector2((horizontalInput * dashPower), 0));
         playerFX.PlayDashParticle();
-        playerManager.moveSpeed += 20;
-        yield return new WaitForSeconds(0.5f);
+        playerManager.moveSpeed += 40;
+        yield return new WaitForSeconds(dashDuration);
+        rb.gravityScale = 4;
         playerManager.moveSpeed = 40;
         
         dashing = false;
         print("dashend");
-        if (upgrades.dashEndExplosion)
-        {
-            upgrades.SlamAttack();
-        }
+        //if (upgrades.dashEndExplosion)
+        //{
+        //    upgrades.SlamAttack();
+        //}
     }
 
     public void WallSlide()
@@ -231,7 +241,13 @@ public class PlayerMovement : MonoBehaviour
         }
     }
    
-
+    public void DashCheck()
+    {
+        if (controller.isGrounded)
+        {
+            canDash = true;
+        }
+    }
    
 }
 
