@@ -186,8 +186,8 @@ public class PlayerMovement : MonoBehaviour
         canDash = false;
         rb.velocity = Vector2.zero;
         rb.gravityScale = 0;
-        rb.AddForce(new Vector2((horizontalInput * dashPower), 0));
         playerFX.PlayDashParticle();
+        rb.AddForce(new Vector2((horizontalInput * dashPower), 0));
         playerManager.moveSpeed += 40;
         yield return new WaitForSeconds(dashDuration);
         rb.gravityScale = 4;

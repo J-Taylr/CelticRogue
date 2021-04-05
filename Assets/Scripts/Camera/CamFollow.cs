@@ -8,6 +8,7 @@ public class CamFollow : MonoBehaviour
 
     public float camSpeed = 20;
     public float shiftSpeed = 12;
+    
     public float zOffset = 20;
 
     public float playerOffset = 5;
