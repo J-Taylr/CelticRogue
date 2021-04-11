@@ -532,7 +532,7 @@ Transform:
   m_GameObject: {fileID: 9013122323483346497}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.09, y: 6.92, z: 0}
-  m_LocalScale: {x: 0.58165, y: 0.58165, z: 0.58165}
+  m_LocalScale: {x: 0.279192, y: 0.279192, z: 0.279192}
   m_Children:
   - {fileID: 9013122323214082270}
   - {fileID: 9013122322669257339}
@@ -615,7 +615,7 @@ MonoBehaviour:
   target: {fileID: 0}
   enemyGFX: {fileID: 9013122322669257339}
   range: 7
-  speed: 400
+  speed: 800
   nextWaypointDistance: 3
 --- !u!50 &489342357
 Rigidbody2D:
