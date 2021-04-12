@@ -186,6 +186,7 @@ public class PlayerMovement : MonoBehaviour
         canDash = false;
         rb.velocity = Vector2.zero;
         rb.gravityScale = 0;
+        animator.SetTrigger("Dash");
         playerFX.PlayDashParticle();
         rb.AddForce(new Vector2((horizontalInput * dashPower), 0));
         playerManager.moveSpeed += 40;
