@@ -432,6 +432,36 @@ Transform:
   m_Father: {fileID: 2252886213784820388}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1425228000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1425228001}
+  m_Layer: 8
+  m_Name: LedgeCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1425228001
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1425228000}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.3460037, y: 0.784, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2252886213784820388}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1577222326
 GameObject:
   m_ObjectHideFlags: 0
@@ -1053,6 +1083,7 @@ Transform:
   - {fileID: 303256700}
   - {fileID: 1384061967}
   - {fileID: 6421525124007724643}
+  - {fileID: 1425228001}
   m_Father: {fileID: 5199990085081996631}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1110,7 +1141,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4069858953766354327}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.516, z: 0}
+  m_LocalPosition: {x: 0, y: -1.17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2862064335203649785}
@@ -1140,7 +1171,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4285936656976156693}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.557, y: -0.051, z: 0}
+  m_LocalPosition: {x: 0.346, y: -0.051, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2252886213784820388}
@@ -1159,6 +1190,7 @@ GameObject:
   - component: {fileID: 1894940493}
   - component: {fileID: 1111127923}
   - component: {fileID: 1111127924}
+  - component: {fileID: 1085599120}
   m_Layer: 8
   m_Name: Sprite (2)
   m_TagString: Untagged
@@ -6204,6 +6236,19 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &1085599120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5659667304549616062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8cb30a2de3e13c42b55d7394d9f4a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMovement: {fileID: 0}
 --- !u!1 &6687893165757942431
 GameObject:
   m_ObjectHideFlags: 0
@@ -6255,6 +6300,7 @@ GameObject:
   - component: {fileID: 3145982855521772255}
   - component: {fileID: 9198682013305695576}
   - component: {fileID: 109173956}
+  - component: {fileID: 603278158}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -6365,8 +6411,16 @@ MonoBehaviour:
     m_Bits: 1079
   groundCheck: {fileID: 1384061967}
   wallCheck: {fileID: 6421525124007724643}
+  ledgeCheck: {fileID: 1425228001}
+  k_GroundedRadius: 0.3
   isGrounded: 1
   isOnWall: 0
+  isTouchingLedge: 0
+  canClimbLedge: 0
+  ledgeDetected: 0
+  ledgePosBot: {x: 0, y: 0}
+  ledgePosOne: {x: 0, y: 0}
+  ledgePosTwo: {x: 0, y: 0}
   facingRight: 1
   OnLandEvent:
     m_PersistentCalls:
@@ -6410,7 +6464,7 @@ MonoBehaviour:
   critChance: 1
   damageResist: 0
   isInteracting: 0
-  upgrades: {fileID: 0}
+  upgrades: {fileID: 603278158}
   doubleUnlock: 1
   wallJumpUnlock: 1
   dashUnlock: 1
@@ -6434,14 +6488,19 @@ MonoBehaviour:
   strike: {fileID: 0}
   animator: {fileID: 0}
   upgrades: {fileID: 0}
-  stickIsVertical: 0
+  canMove: 1
   isHoldingJump: 0
   jumpForce: 16
-  doubleJumpForce: 16
+  doubleJumpForce: 12
   dashDuration: 0.3
-  dashPower: 125
+  dashPower: 120
   canDash: 1
   dashing: 0
+  ledgeClimbXOffset1: 0.3
+  ledgeClimbYOffset1: 0
+  ledgeClimbXOffset2: 1
+  ledgeClimbYOffset2: 2
+  wallSliding: 0
   wallSlidingSpeed: 20
   wallBounce: 250
   fallMultiplier: 6
@@ -6464,9 +6523,10 @@ MonoBehaviour:
   attackPointR: {fileID: 9031956571349341355}
   attackPointUp: {fileID: 6633279272576282153}
   attackPointDown: {fileID: 1110181049400350021}
+  stickIsVertical: 0
   Recoil: 100
   RecoilD: 20
-  attackRange: 1
+  attackRange: 0.75
   critIncrease: 3
   enemyLayer:
     serializedVersion: 2
@@ -6485,6 +6545,49 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dashParticle: {fileID: 0}
+--- !u!114 &603278158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6987421072757631175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99eeacbe37123dc4bbc86b7ae94cc0ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 1950619213}
+  playerManager: {fileID: 8318350178895994125}
+  playerController: {fileID: 3145982855521772255}
+  bullet: {fileID: 6042985196195199926, guid: 859d3fb2be368ef41ab719f5df4d7dc8, type: 3}
+  ranged: 0
+  dOTRanged: 0
+  slam: 0
+  slamRadius: 10
+  slamDamage: 10
+  slamMask:
+    serializedVersion: 2
+    m_Bits: 0
+  slamForce: 10
+  dashEndExplosion: 0
+  dashAttack: 0
+  dashDamage: 10
+  wallJumpBuffDuration: 2
+  wallJumpBuff: 2
+  wallJumpExplosion: 0
+  walljumpDamageBoost: 0
+  wallJumpInvincibility: 0
+  rage: 0
+  damageResist: 2
+  damageMultiplier: 2
+  rageDuration: 2
+  dOTAttacker: 0
+  dOTTicks: 3
+  dOTDamage: 1
+  dOTSplit: 1
+  tempInvincibility: 0
+  invincDuration: 2
 --- !u!1 &7535639988435796682
 GameObject:
   m_ObjectHideFlags: 0
@@ -6509,7 +6612,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7535639988435796682}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.511, z: 0}
+  m_LocalPosition: {x: 0, y: 0.98, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2862064335203649785}
@@ -6539,7 +6642,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8434756070710285987}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.222, y: 0, z: 0}
+  m_LocalPosition: {x: 0.78, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2862064335203649785}

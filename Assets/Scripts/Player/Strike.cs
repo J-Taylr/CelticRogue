@@ -126,9 +126,9 @@ public class Strike : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.DrawWireSphere(attackPointR.position, attackRange);
-        Gizmos.DrawWireSphere(attackPointUp.position, attackRange);
-        Gizmos.DrawWireSphere(attackPointDown.position, attackRange);
+        //Gizmos.DrawWireSphere(attackPointR.position, attackRange);
+        //Gizmos.DrawWireSphere(attackPointUp.position, attackRange);
+       // Gizmos.DrawWireSphere(attackPointDown.position, attackRange);
     }
     IEnumerator CoolDown()
     {

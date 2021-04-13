@@ -7,6 +7,7 @@ public class PlayerManager : MonoBehaviour
 {
     [Header("Components")]
     public Slider healthslider;
+    public Animator animator;
 
     [Header("Core")]
     public int maxHealth = 10;
@@ -28,6 +29,13 @@ public class PlayerManager : MonoBehaviour
 
     public bool invincible;
 
+
+    private void Awake()
+    {
+        animator = GetComponentInChildren<Animator>();
+    }
+
+
     private void Start()
     {
         healthslider.maxValue = maxHealth;
@@ -41,7 +49,7 @@ public class PlayerManager : MonoBehaviour
         healthslider.value = currentHealth;
     }
 
-    public void TakeDamage(int damage,GameObject attacker)
+    public void TakeDamage(int damage)
     {
         if (invincible)
         {
@@ -49,10 +57,12 @@ public class PlayerManager : MonoBehaviour
         }
         else
         {
-            currentHealth -= damage- damageResist;
+            animator.SetTrigger("TakeDamage");
+            print("damage animation");
+            currentHealth -= damage - damageResist;
             CheckHealth();
         }
-        upgrades.DamageResponse(attacker);
+        
     }
 
     public void CheckHealth()

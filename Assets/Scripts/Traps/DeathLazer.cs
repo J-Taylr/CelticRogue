@@ -29,7 +29,7 @@ public class DeathLazer : MonoBehaviour
     void OnTriggerEnter2D(Collider2D check) {
         if (check.tag == "Player")
         {
-           check.GetComponent<PlayerManager>().TakeDamage(damage,gameObject);
+           check.GetComponent<PlayerManager>().TakeDamage(damage);
         }
     }
 }

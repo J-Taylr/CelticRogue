@@ -267,6 +267,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void FinishLedgeClimb()
     {
+        print("TEST");
         controller.canClimbLedge = false;
         transform.position = controller.ledgePosTwo;
         gameObject.layer = 8;

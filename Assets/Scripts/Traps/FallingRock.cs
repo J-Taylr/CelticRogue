@@ -14,7 +14,7 @@ public class FallingRock : MonoBehaviour
        
         if (check.gameObject.tag =="Player")
         {
-            check.gameObject.GetComponent<PlayerManager>().TakeDamage(damage,gameObject);
+            check.gameObject.GetComponent<PlayerManager>().TakeDamage(damage);
 
         }
         
