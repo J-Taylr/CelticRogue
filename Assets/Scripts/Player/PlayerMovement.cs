@@ -18,7 +18,8 @@ public class PlayerMovement : MonoBehaviour
 
 
     [Header("Movement")]
-    public bool stickIsVertical = false;
+    public bool canMove = true;
+
     public bool isHoldingJump = false;
 
     private float horizontalInput;
@@ -37,9 +38,10 @@ public class PlayerMovement : MonoBehaviour
     public bool dashing;
 
     [Header("Wall Movement")]
-    bool wallSliding;
+    public bool wallSliding;
     public float wallSlidingSpeed = 20;    // max speed character slides down walls
     public float wallBounce = 10;
+
 
     [Header("Gravity")]
     public float fallMultiplier = 2.5f;
@@ -53,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
         controller = GetComponent<CharacterController2D>();
         animator = GetComponentInChildren<Animator>();
         strike = GetComponent<Strike>();
-        
+
         dashing = false;
         print(rb.gravityScale);
     }
@@ -64,6 +66,7 @@ public class PlayerMovement : MonoBehaviour
         CoyoteCheck(); // timer for coyote time
         SlideCheck(); // checks if player is sliding on a wall
         DashCheck(); //checks for when player lands on floor to recharge boost
+
 
         animator.SetFloat("Speed", Mathf.Abs(horizontalInput));
 
@@ -80,16 +83,20 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        controller.Move(horizontalInput * Time.fixedDeltaTime);
-        WallSlide();
+        if (canMove)
+        {
+            controller.Move(horizontalInput * Time.fixedDeltaTime);
+        }
+        CheckWallSlide();
+
     }
 
- 
+
     public void AdjustGravity()
     {
-        if(rb.velocity.y < 0 && !wallSliding && !dashing) // if player is falling
+        if (rb.velocity.y < 0 && !wallSliding && !dashing) // if player is falling
         {
-            
+
             rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
         else if (rb.velocity.y > 0 && !isHoldingJump && !wallSliding && !dashing)
@@ -99,69 +106,72 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-   
+
 
     public void MovePlayer(float direction)
     {
-        
+
         horizontalInput = direction * playerManager.moveSpeed;
     }
     public void PlayerJump() // all inputs for the players; Jump, Double Jump, Coyote Jump, WallJump
     {
-        animator.SetTrigger("Jumping");
-
-        if (!controller.isGrounded && canDoubleJump && playerManager.doubleUnlock) //double jump
+        if (canMove)
         {
-            Vector2 yVelocity = new Vector2(0, 0);
-            rb.velocity = new Vector2(rb.velocity.x, yVelocity.y); //set current Y velocity to 0
+            animator.SetTrigger("Jumping");
 
-            rb.AddForce(new Vector2(0f, doubleJumpForce), ForceMode2D.Impulse);
-
-            canDoubleJump = false;
-        }
-
-        if (controller.isGrounded) //single jump
-        {
-
-            Vector2 yVelocity = new Vector2(0, 0);
-            rb.velocity = new Vector2(rb.velocity.x, yVelocity.y);
-            rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
-            coyoteJump = false;
-            canDoubleJump = true;
-        }
-
-        if (coyoteJump) //coyote jump 
-        {
-
-            Vector2 yVelocity = new Vector2(0, 0);
-            rb.velocity = new Vector2(rb.velocity.x, yVelocity.y);
-            rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
-
-            coyoteJump = false;
-            canDoubleJump = true;
-        }
-
-        if (controller.isOnWall && playerManager.wallJumpUnlock) //wall jumps
-        {
-            controller.isOnWall = false;
-            Vector2 yVelocity = new Vector2(0, 0);
-            rb.velocity = new Vector2(rb.velocity.x, yVelocity.y);
-
-
-
-            if (controller.facingRight)
+            if (!controller.isGrounded && canDoubleJump && playerManager.doubleUnlock) //double jump
             {
-                rb.AddForce(new Vector2(wallBounce, jumpForce), ForceMode2D.Impulse);
-            }
-            else
-            {
-                rb.AddForce(new Vector2(-wallBounce, jumpForce), ForceMode2D.Impulse);
+                Vector2 yVelocity = new Vector2(0, 0);
+                rb.velocity = new Vector2(rb.velocity.x, yVelocity.y); //set current Y velocity to 0
 
+                rb.AddForce(new Vector2(0f, doubleJumpForce), ForceMode2D.Impulse);
+
+                canDoubleJump = false;
             }
 
-            StartCoroutine(upgrades.WallJumpBuffs());
-            coyoteJump = false;
-            canDoubleJump = false;
+            if (controller.isGrounded) //single jump
+            {
+
+                Vector2 yVelocity = new Vector2(0, 0);
+                rb.velocity = new Vector2(rb.velocity.x, yVelocity.y);
+                rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+                coyoteJump = false;
+                canDoubleJump = true;
+            }
+
+            if (coyoteJump) //coyote jump 
+            {
+
+                Vector2 yVelocity = new Vector2(0, 0);
+                rb.velocity = new Vector2(rb.velocity.x, yVelocity.y);
+                rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+
+                coyoteJump = false;
+                canDoubleJump = true;
+            }
+
+            if (controller.isOnWall && playerManager.wallJumpUnlock) //wall jumps
+            {
+                controller.isOnWall = false;
+                Vector2 yVelocity = new Vector2(0, 0);
+                rb.velocity = new Vector2(rb.velocity.x, yVelocity.y);
+
+
+
+                if (controller.facingRight)
+                {
+                    rb.AddForce(new Vector2(wallBounce, jumpForce), ForceMode2D.Impulse);
+                }
+                else
+                {
+                    rb.AddForce(new Vector2(-wallBounce, jumpForce), ForceMode2D.Impulse);
+
+                }
+
+                //StartCoroutine(upgrades.WallJumpBuffs());
+                coyoteJump = false;
+                canDoubleJump = false;
+            }
         }
     }
 
@@ -171,7 +181,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void StartDash()
     {
-        if (playerManager.dashUnlock && canDash)
+        if (playerManager.dashUnlock && canDash && canMove && horizontalInput !=0)
         {
             StartCoroutine(PlayerDash());
             dashing = true;
@@ -183,6 +193,7 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator PlayerDash()
     {
+        gameObject.layer = 11; // player does not collide with enemies
         canDash = false;
         rb.velocity = Vector2.zero;
         rb.gravityScale = 0;
@@ -193,7 +204,7 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(dashDuration);
         rb.gravityScale = 4;
         playerManager.moveSpeed = 40;
-        
+        gameObject.layer = 8; // player collides normally again
         dashing = false;
         print("dashend");
         //if (upgrades.dashEndExplosion)
@@ -202,13 +213,16 @@ public class PlayerMovement : MonoBehaviour
         //}
     }
 
-    public void WallSlide()
+    public void CheckWallSlide()
     {
         if (wallSliding)
         {
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
         }
     }
+
+
+
 
     public void CoyoteCheck()
     {
@@ -241,7 +255,7 @@ public class PlayerMovement : MonoBehaviour
             wallSliding = false;
         }
     }
-   
+
     public void DashCheck()
     {
         if (controller.isGrounded)
@@ -249,6 +263,6 @@ public class PlayerMovement : MonoBehaviour
             canDash = true;
         }
     }
-   
+
 }
 

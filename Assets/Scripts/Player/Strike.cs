@@ -11,8 +11,10 @@ public class Strike : MonoBehaviour
     public Transform attackPointR;
     public Transform attackPointUp;
     public Transform attackPointDown;
+    
 
     [Header("Variables")]
+    public bool stickIsVertical = false;
     public int Recoil;
     public int RecoilD;
     public float attackRange = 0.5f;
@@ -30,6 +32,7 @@ public class Strike : MonoBehaviour
 
     public void AttackUp()
     {
+        print("attackUp");
         if (coolDown == false)
         {
             
@@ -52,6 +55,7 @@ public class Strike : MonoBehaviour
     }
     public void AttackDown()
     {
+        print("AttackDown");
         if (coolDown == false)
         {
             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPointDown.position, attackRange, enemyLayer);
@@ -77,42 +81,45 @@ public class Strike : MonoBehaviour
 
     public void AttackSide()
     {
-        
-        if (coolDown == false)
+        if (!stickIsVertical)
         {
-            StartCoroutine(SideAttack());
-            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPointR.position, attackRange, enemyLayer);
-            foreach (Collider2D enemy in hitEnemies)
+
+            if (coolDown == false)
             {
-               
-                Vector2 yVelocity = new Vector2(0, 0);
-                Player.velocity = new Vector2(Player.velocity.x, yVelocity.y);
-
-                /*if (transform.localPosition.x < 3)
-                {
-                    Player.AddForce(new Vector2(-Recoil, 0f), ForceMode2D.Impulse);
-                }
-                if (transform.localPosition.x > 3)
-                {
-                    Player.AddForce(new Vector2(Recoil, 0f), ForceMode2D.Impulse);
-                }
-                print(enemy.name);
-                */
-
-                if (RollCritical() == true)
-                {
-                    enemy.GetComponent<EnemyManager>().TakeDamage(playerManager.strikeDamage * critIncrease);
-                    
-                }
-                else
+                StartCoroutine(SideAttack());
+                Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPointR.position, attackRange, enemyLayer);
+                foreach (Collider2D enemy in hitEnemies)
                 {
 
-                    enemy.GetComponent<EnemyManager>().TakeDamage(playerManager.strikeDamage);
-                    
+                    Vector2 yVelocity = new Vector2(0, 0);
+                    Player.velocity = new Vector2(Player.velocity.x, yVelocity.y);
+
+                    /*if (transform.localPosition.x < 3)
+                    {
+                        Player.AddForce(new Vector2(-Recoil, 0f), ForceMode2D.Impulse);
+                    }
+                    if (transform.localPosition.x > 3)
+                    {
+                        Player.AddForce(new Vector2(Recoil, 0f), ForceMode2D.Impulse);
+                    }
+                    print(enemy.name);
+                    */
+
+                    if (RollCritical() == true)
+                    {
+                        enemy.GetComponent<EnemyManager>().TakeDamage(playerManager.strikeDamage * critIncrease);
+
+                    }
+                    else
+                    {
+
+                        enemy.GetComponent<EnemyManager>().TakeDamage(playerManager.strikeDamage);
+
+                    }
+
                 }
-                
+                StartCoroutine("CoolDown");
             }
-            StartCoroutine("CoolDown");
         }
     }
 

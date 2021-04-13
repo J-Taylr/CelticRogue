@@ -8,11 +8,12 @@ public class CharacterController2D : MonoBehaviour
 	[SerializeField] private bool airControl = false;                           // Whether or not a player can steer while jumping;
 	[SerializeField] private LayerMask whatIsGround;                            // A mask determining what is ground to the character
 	[SerializeField] private Transform groundCheck;                         // A position marking where to check if the player is grounded.
-	[SerializeField] private Transform wallCheck;							//A position marking where to check if the player is on a wall
+	[SerializeField] private Transform wallCheck;                           //A position marking where to check if the player is on a wall
+	[SerializeField] private Transform ledgeCheck;
 
 	const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
 	public bool isGrounded;            // Whether or not the player is grounded.
-	public bool isOnWall;			  // Whether or not the player is on a wall
+	public bool isOnWall;             // Whether or not the player is on a wall
 	private Rigidbody2D m_Rigidbody2D;
 	public bool facingRight = true;  // For determining which way the player is currently facing.
 	private Vector3 m_Velocity = Vector3.zero;
@@ -116,6 +117,7 @@ public class CharacterController2D : MonoBehaviour
 		}
 	}
 
+	
 
 	private void Flip()
 	{
