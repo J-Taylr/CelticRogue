@@ -37,6 +37,11 @@ public class PlayerMovement : MonoBehaviour
     public bool canDash = true;
     public bool dashing;
 
+    public float ledgeClimbXOffset1;
+    public float ledgeClimbYOffset1;
+    public float ledgeClimbXOffset2;
+    public float ledgeClimbYOffset2;
+
     [Header("Wall Movement")]
     public bool wallSliding;
     public float wallSlidingSpeed = 20;    // max speed character slides down walls
@@ -88,7 +93,8 @@ public class PlayerMovement : MonoBehaviour
             controller.Move(horizontalInput * Time.fixedDeltaTime);
         }
         CheckWallSlide();
-
+        CheckLedgeClimb();
+        CheckCanMove();
     }
 
 
@@ -221,7 +227,53 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void CheckCanMove()
+    {
+        if (!canMove)
+        {
+            rb.velocity = new Vector2(0, 0);
+        }
+    }
 
+    public void CheckLedgeClimb()
+    {
+        if (controller.ledgeDetected && !controller.canClimbLedge)
+        {
+            controller.canClimbLedge = true;
+
+
+            if (controller.facingRight)
+            {
+                controller.ledgePosOne = new Vector2(Mathf.Floor(controller.ledgePosBot.x + controller.k_GroundedRadius) - ledgeClimbXOffset1, Mathf.Floor(controller.ledgePosBot.y) + ledgeClimbYOffset1);
+                controller.ledgePosTwo = new Vector2(Mathf.Floor(controller.ledgePosBot.x + controller.k_GroundedRadius) + ledgeClimbXOffset2, Mathf.Floor(controller.ledgePosBot.y) + ledgeClimbYOffset2);
+            }
+            else
+            {
+                controller.ledgePosOne = new Vector2(Mathf.Ceil(controller.ledgePosBot.x - controller.k_GroundedRadius) + ledgeClimbXOffset1, Mathf.Floor(controller.ledgePosBot.y) + ledgeClimbYOffset1);
+                controller.ledgePosTwo = new Vector2(Mathf.Ceil(controller.ledgePosBot.x - controller.k_GroundedRadius) - ledgeClimbXOffset2, Mathf.Floor(controller.ledgePosBot.y) + ledgeClimbYOffset2);
+            }
+
+            canMove = false;
+            gameObject.layer = 12;
+            animator.SetBool("CanClimbLedge", controller.canClimbLedge);
+        }
+
+        if (controller.canClimbLedge)
+        {
+            transform.position = controller.ledgePosOne;
+            
+        }
+    }
+
+    public void FinishLedgeClimb()
+    {
+        controller.canClimbLedge = false;
+        transform.position = controller.ledgePosTwo;
+        gameObject.layer = 8;
+        canMove = true;
+        controller.ledgeDetected = false;
+        animator.SetBool("CanClimbLedge", controller.canClimbLedge);
+    }
 
 
     public void CoyoteCheck()
@@ -246,7 +298,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void SlideCheck()
     {
-        if (controller.isOnWall && !controller.isGrounded && horizontalInput != 0)
+        if (controller.isOnWall && !controller.isGrounded && horizontalInput != 0 && !controller.canClimbLedge)
         {
             wallSliding = true;
         }

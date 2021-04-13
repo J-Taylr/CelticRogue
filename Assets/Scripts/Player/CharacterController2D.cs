@@ -11,9 +11,18 @@ public class CharacterController2D : MonoBehaviour
 	[SerializeField] private Transform wallCheck;                           //A position marking where to check if the player is on a wall
 	[SerializeField] private Transform ledgeCheck;
 
-	const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
+	public float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
 	public bool isGrounded;            // Whether or not the player is grounded.
 	public bool isOnWall;             // Whether or not the player is on a wall
+	public bool isTouchingLedge;
+	public bool canClimbLedge = false;
+	
+
+	public bool ledgeDetected;
+	public Vector2 ledgePosBot;
+	public Vector2 ledgePosOne;
+	public Vector2 ledgePosTwo;
+	
 	private Rigidbody2D m_Rigidbody2D;
 	public bool facingRight = true;  // For determining which way the player is currently facing.
 	private Vector3 m_Velocity = Vector3.zero;
@@ -48,7 +57,8 @@ public class CharacterController2D : MonoBehaviour
 	private void FixedUpdate()
 	{
 		CheckGround();
-		CheckWall();
+		CheckSurroundings();
+		
 	}
 
 
@@ -101,25 +111,42 @@ public class CharacterController2D : MonoBehaviour
 		}
 	}
 
-	public void CheckWall()
+	public void CheckSurroundings()
     {
 		isOnWall = false;
+		isTouchingLedge = false;
 
-		Collider2D[] colliders = Physics2D.OverlapCircleAll(wallCheck.position, k_GroundedRadius, whatIsGround);///
-		for (int i = 0; i < colliders.Length; i++)
+		Collider2D[] wallColliders = Physics2D.OverlapCircleAll(wallCheck.position, k_GroundedRadius, whatIsGround);///
+		for (int i = 0; i < wallColliders.Length; i++)
 		{
-			if (colliders[i].gameObject != gameObject)
+			if (wallColliders[i].gameObject != gameObject)
 			{
 				isOnWall = true;
-				
 			}
-			
 		}
+
+		Collider2D[] ledgeColliders = Physics2D.OverlapCircleAll(ledgeCheck.position, k_GroundedRadius, whatIsGround);///
+		for (int i = 0; i < ledgeColliders.Length; i++)
+		{
+			if (ledgeColliders[i].gameObject != gameObject)
+			{
+				isTouchingLedge = true;
+			}
+		}
+
+		if (isOnWall && !isTouchingLedge && !ledgeDetected)
+        {
+			ledgeDetected = true;
+			ledgePosBot = wallCheck.position;
+        }
+
+
 	}
 
-	
+   
 
-	private void Flip()
+
+    private void Flip()
 	{
 		// Switch the way the player is labelled as facing.
 		facingRight = !facingRight;
