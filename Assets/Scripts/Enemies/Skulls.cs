@@ -5,28 +5,25 @@ using UnityEngine;
 public class Skulls : MonoBehaviour
 {
     private EnemyManager eManager;
+    private SkullSpawner spawner;
     // Start is called before the first frame update
     void Start()
     {
         eManager = GetComponent<EnemyManager>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-       if(eManager.currentHealth <= 0)
-        {
-            removeSkulls();
-        }
+        spawner = transform.parent.GetComponent<SkullSpawner>();
     }
 
     public void removeSkulls()
     {
-        SkullSpawner spawner = transform.parent.GetComponent<SkullSpawner>();
+
         if (spawner != null)
         {
-            Debug.Log("skull removed");
+            print("check");
             spawner.Skulls.Remove(this.gameObject);
+        }
+        else
+        {
+            return;
         }
     }
 }

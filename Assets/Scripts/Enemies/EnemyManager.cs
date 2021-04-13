@@ -13,6 +13,9 @@ public class EnemyManager : MonoBehaviour
     public Slider healthSlider;
     public GameObject statDrop;
 
+    private Skulls skulls;
+    private bool isSkull;
+
     private int poiDam;
     int dothit;
     float dotDelay;
@@ -20,11 +23,27 @@ public class EnemyManager : MonoBehaviour
     private void Awake()
     {
         healthSlider = gameObject.GetComponentInChildren<Slider>();
+        CheckEnemyType();
+    }
+
+    public void CheckEnemyType()
+    {
+        skulls = GetComponent<Skulls>();
+        if (skulls != null)
+        {
+            isSkull = true;
+        }
+        else
+        {
+            isSkull = false;
+        }
     }
 
 
     void Start()
     {
+        
+
 
         healthSlider.maxValue = maxHealth;
 
@@ -64,13 +83,17 @@ public class EnemyManager : MonoBehaviour
     {
         if (currentHealth <= 0)
         {
-           
+            if (isSkull)
+            {
+                skulls.removeSkulls();
+            }
             Die();
         }
     }
     public void Die()
     {
         Instantiate(statDrop, transform.position, Quaternion.identity);
+
         Destroy(gameObject);
     }
 }
