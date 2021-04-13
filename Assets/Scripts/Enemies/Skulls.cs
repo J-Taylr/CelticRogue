@@ -25,6 +25,7 @@ public class Skulls : MonoBehaviour
         SkullSpawner spawner = transform.parent.GetComponent<SkullSpawner>();
         if (spawner != null)
         {
+            Debug.Log("skull removed");
             spawner.Skulls.Remove(this.gameObject);
         }
     }

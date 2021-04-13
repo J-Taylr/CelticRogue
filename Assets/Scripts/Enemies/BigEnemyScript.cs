@@ -25,6 +25,7 @@ public class BigEnemyScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         RB = GetComponent<Rigidbody2D>();
         bc = GetComponent<BoxCollider2D>();
     }
