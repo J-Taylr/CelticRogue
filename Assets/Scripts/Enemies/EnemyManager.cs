@@ -10,7 +10,7 @@ public class EnemyManager : MonoBehaviour
     public int currentHealth;
 
     [Tooltip("This number = % Chance of enemy dropping an upgrade point on death")]  
-    public int spawnChance = 80;
+    static int spawnChance = 80;
 
     [Header("Components")]
     public Slider healthSlider;
@@ -105,7 +105,7 @@ public class EnemyManager : MonoBehaviour
     {
         int rndm = Random.Range(1, 100);
 
-        if (rndm < 20)
+        if (rndm <= spawnChance)
         {
             Instantiate(statDrop, transform.position, Quaternion.identity);
         }

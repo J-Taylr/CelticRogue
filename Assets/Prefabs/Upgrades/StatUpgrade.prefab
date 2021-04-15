@@ -865,7 +865,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 200
+      scalar: 100
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -1316,22 +1316,22 @@ ParticleSystem:
     enabled: 1
     gradient:
       serializedVersion: 2
-      minMaxState: 3
+      minMaxState: 1
       minColor: {r: 1, g: 1, b: 1, a: 1}
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.9811321, g: 0.37486652, b: 0.37486652, a: 1}
-        key1: {r: 0.3207547, g: 0.17702028, b: 0.09229262, a: 1}
-        key2: {r: 0.764151, g: 0.6581474, b: 0.18382876, a: 0}
+        key0: {r: 0.9716981, g: 0.8473234, b: 0.66460484, a: 1}
+        key1: {r: 0.9969115, g: 0.64940333, b: 0.16413045, a: 1}
+        key2: {r: 0.9056604, g: 0.89574534, b: 0.41438237, a: 0}
         key3: {r: 0.8396226, g: 0.4950605, b: 0.7785753, a: 0}
         key4: {r: 0.7075472, g: 0.030037368, b: 0.5920626, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
         key7: {r: 0, g: 0, b: 0, a: 0}
         ctime0: 0
-        ctime1: 10023
-        ctime2: 21395
+        ctime1: 23708
+        ctime2: 64764
         ctime3: 37586
         ctime4: 54163
         ctime5: 0
@@ -1346,7 +1346,7 @@ ParticleSystem:
         atime6: 0
         atime7: 0
         m_Mode: 0
-        m_NumColorKeys: 5
+        m_NumColorKeys: 3
         m_NumAlphaKeys: 2
       minGradient:
         serializedVersion: 2
@@ -3900,7 +3900,7 @@ ParticleSystem:
     ratio: 0.2
     lifetime:
       serializedVersion: 2
-      minMaxState: 1
+      minMaxState: 0
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -4054,25 +4054,25 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0.47881317
-          inSlope: -1.38559
-          outSlope: -1.38559
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0.10091741
-        - serializedVersion: 3
-          time: 0.7316284
-          value: 0.09321594
-          inSlope: 0
-          outSlope: 0
+          value: 0
+          inSlope: 2
+          outSlope: 2
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
-          time: 1
-          value: 0.008474588
+          time: 0.50739956
+          value: 0.12157926
+          inSlope: 0.0076068016
+          outSlope: 0.0076068016
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 0.99154663
+          value: 0.034313202
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -4846,9 +4846,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleController: {fileID: 1434337396}
-  pickupText: {fileID: 8501798371902984510, guid: 0080a497bf6dbb044909957550d9d751,
-    type: 3}
-  upgrade: 0
   activated: 0
 --- !u!61 &1434337394
 BoxCollider2D:

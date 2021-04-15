@@ -35,7 +35,7 @@ public class Strike : MonoBehaviour
         print("attackUp");
         if (coolDown == false)
         {
-            
+            animator.SetTrigger("UpAttack");
             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPointUp.position, attackRange, enemyLayer);
             foreach (Collider2D enemy in hitEnemies)
             {
@@ -58,6 +58,7 @@ public class Strike : MonoBehaviour
         print("AttackDown");
         if (coolDown == false)
         {
+            animator.SetTrigger("DownAttack");
             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPointDown.position, attackRange, enemyLayer);
             foreach (Collider2D enemy in hitEnemies)
             {
@@ -158,10 +159,12 @@ public class Strike : MonoBehaviour
 
     IEnumerator SideAttack()
     {
-        print("side attack animation");
+       // print("side attack animation");
         animator.SetBool("Attack", true);
         yield return new WaitForSeconds(.5f);
         animator.SetBool("Attack", false);
     }
+
+    
 
 }
