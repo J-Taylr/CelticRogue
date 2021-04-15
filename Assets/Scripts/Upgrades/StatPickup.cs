@@ -5,24 +5,23 @@ using UnityEngine;
 public class StatPickup : MonoBehaviour
 {
     public PickupParticleController particleController;
-    public GameObject pickupText;
-    public enum upgradeType { HEALTH, DAMAGE, CRITICAL, SPEED }
-    public upgradeType upgrade;
-
+   
+  
     public bool activated = false;
+
+
+
+
 
     private void Awake()
     {
         particleController = GetComponent<PickupParticleController>();
 
-        int Randm = Random.Range(0, 3);
+        
 
-        this.upgrade = (upgradeType)Randm;
+       
         
     }
-
-    
-    
 
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -35,30 +34,13 @@ public class StatPickup : MonoBehaviour
         }
     }
 
+    
     public void UpgradePlayer(PlayerManager player)
     {
         if (!activated)
         {
 
-            switch (upgrade)
-            {
-                case upgradeType.HEALTH: //player Health
-                    UpgradeHealth(player);
-
-                    break;
-                case upgradeType.DAMAGE: //player Damage
-                    UpgradeDamage(player);
-
-                    break;
-                case upgradeType.CRITICAL: //chance to critical
-                    UpgradeCritical(player);
-
-                    break;
-                case upgradeType.SPEED: //player speed
-                    UpgradeSpeed(player);
-
-                    break;
-            }
+            player.UpgradePoints++;
 
             activated = true;
             particleController.StopParticle();
@@ -66,6 +48,8 @@ public class StatPickup : MonoBehaviour
                 
     }
 
+
+    /*
 
     public void UpgradeHealth(PlayerManager player)
     {
@@ -128,6 +112,6 @@ public class StatPickup : MonoBehaviour
         go.GetComponent<UpgradeText>().ChangeText("speed", speedBuff);
 
 
-    }
+    }*/
 
 }

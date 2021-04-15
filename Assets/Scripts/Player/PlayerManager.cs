@@ -10,6 +10,8 @@ public class PlayerManager : MonoBehaviour
     public Animator animator;
 
     [Header("Core")]
+    public int UpgradePoints = 0;
+
     public int maxHealth = 10;
     public int currentHealth;
     public float moveSpeed = 40;
