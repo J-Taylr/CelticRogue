@@ -51,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Gravity")]
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2.0f;
+    public bool inGravityField = false;
 
     private void Awake()
     {
@@ -100,12 +101,12 @@ public class PlayerMovement : MonoBehaviour
 
     public void AdjustGravity()
     {
-        if (rb.velocity.y < 0 && !wallSliding && !dashing) // if player is falling
+        if (rb.velocity.y < 0 && !wallSliding && !dashing && !inGravityField) // if player is falling
         {
 
             rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
-        else if (rb.velocity.y > 0 && !isHoldingJump && !wallSliding && !dashing)
+        else if (rb.velocity.y > 0 && !isHoldingJump && !wallSliding && !dashing && !inGravityField)
         {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
         }

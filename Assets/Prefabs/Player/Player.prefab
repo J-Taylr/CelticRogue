@@ -6457,6 +6457,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthslider: {fileID: 375960192}
+  animator: {fileID: 0}
   maxHealth: 10
   currentHealth: 0
   moveSpeed: 35
