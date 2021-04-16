@@ -8,6 +8,7 @@ public class PlayerManager : MonoBehaviour
     [Header("Components")]
     public Slider healthslider;
     public Animator animator;
+    public GameObject statMenu;
 
     [Header("Core")]
     public int UpgradePoints = 0;
@@ -21,7 +22,7 @@ public class PlayerManager : MonoBehaviour
 
 
     public bool isInteracting = false;
-
+    public bool statMenuActive = false;
     public UpgradeController upgrades;
 
     [Header("Progression")]
@@ -35,6 +36,8 @@ public class PlayerManager : MonoBehaviour
     private void Awake()
     {
         animator = GetComponentInChildren<Animator>();
+        statMenu = GameObject.FindGameObjectWithTag("StatMenu");
+        statMenu.SetActive(false);
     }
 
 
@@ -92,10 +95,23 @@ public class PlayerManager : MonoBehaviour
             //print(crit + "normal hit");
             return false;
         }
-
-
     }
 
 
-    
+    public void ToggleStatMenu()
+    {
+        if (statMenuActive == true)
+        {
+            statMenu.SetActive(false);
+           
+            statMenuActive = false;
+        }
+        else
+        {
+            statMenu.SetActive(true);
+            
+            statMenuActive = true;
+        }
+
+    }
 }

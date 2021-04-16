@@ -7,6 +7,7 @@ public class InputManager : MonoBehaviour
     [Header("Components")]
     public InputMaster inputController;
     public PlayerMovement playerMovement;
+    public PlayerManager playerManager;
     public Strike strike;
     public CamFollow cam;
     
@@ -16,6 +17,7 @@ public class InputManager : MonoBehaviour
     {
         SetupControls();
         playerMovement = GetComponent<PlayerMovement>();
+        playerManager = GetComponent<PlayerManager>();
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CamFollow>();
         strike = GetComponent<Strike>();
 
@@ -56,6 +58,7 @@ public class InputManager : MonoBehaviour
             inputController.Player.Camup.canceled += ctx => cam.CamReturnUp();
             inputController.Player.CamDown.canceled += ctx => cam.CamReturnDown();
 
+             inputController.Player.Menu.performed += ctx => playerManager.ToggleStatMenu();
 
         
     }

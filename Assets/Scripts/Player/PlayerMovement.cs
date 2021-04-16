@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public Strike strike;
     public Animator animator;
     public UpgradeController upgrades;
-
+   
 
     [Header("Movement")]
     public bool canMove = true;
@@ -317,6 +317,12 @@ public class PlayerMovement : MonoBehaviour
             canDash = true;
         }
     }
+
+
+
+    
+
+
 
 }
 
