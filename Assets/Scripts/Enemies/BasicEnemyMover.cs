@@ -116,20 +116,23 @@ public class BasicEnemyMover : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("playerhit");
+            if (!other.gameObject.GetComponent<PlayerManager>().isImmune)
+            {
+                Debug.Log("playerhit");
 
-            other.gameObject.GetComponent<PlayerManager>().TakeDamage(damage);
-            other.gameObject.GetComponent<PlayerManager>().CheckHealth();
-            Rigidbody2D PRB = other.gameObject.GetComponent<Rigidbody2D>();
-            float pPos = transform.position.x;
-            Vector2 KB = new Vector2(pPos, KnockBackY);
-            if (transform.position.x < other.transform.position.x)
-            {
-             PRB.AddForce(new Vector2(KnockBackx, KnockBackY), ForceMode2D.Impulse);
-            }
-            if (transform.position.x > other.transform.position.x)
-            {
-                PRB.AddForce(new Vector2(-KnockBackx, KnockBackY), ForceMode2D.Impulse);
+                other.gameObject.GetComponent<PlayerManager>().TakeDamage();
+                other.gameObject.GetComponent<PlayerManager>().CheckHealth();
+                Rigidbody2D PRB = other.gameObject.GetComponent<Rigidbody2D>();
+                float pPos = transform.position.x;
+                Vector2 KB = new Vector2(pPos, KnockBackY);
+                if (transform.position.x < other.transform.position.x)
+                {
+                    PRB.AddForce(new Vector2(KnockBackx, KnockBackY), ForceMode2D.Impulse);
+                }
+                if (transform.position.x > other.transform.position.x)
+                {
+                    PRB.AddForce(new Vector2(-KnockBackx, KnockBackY), ForceMode2D.Impulse);
+                }
             }
         }
     }

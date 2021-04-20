@@ -20,7 +20,7 @@ public class PlayerManager : MonoBehaviour
     public int critChance = 1;
     public int damageResist = 0;
 
-
+    public bool isImmune = false;
     public bool isInteracting = false;
     public bool statMenuActive = false;
     public UpgradeController upgrades;
@@ -54,20 +54,16 @@ public class PlayerManager : MonoBehaviour
         healthslider.value = currentHealth;
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage()
     {
-        if (invincible)
-        {
-            print("invicible");
-        }
-        else
-        {
-            animator.SetTrigger("TakeDamage");
-            print("damage animation");
-            currentHealth -= damage - damageResist;
-            CheckHealth();
-        }
-        
+
+        isImmune = true;
+        animator.SetTrigger("TakeDamage");
+        print("damage animation");
+        currentHealth--;
+        CheckHealth();
+
+
     }
 
     public void CheckHealth()
@@ -103,13 +99,13 @@ public class PlayerManager : MonoBehaviour
         if (statMenuActive == true)
         {
             statMenu.SetActive(false);
-           
+
             statMenuActive = false;
         }
         else
         {
             statMenu.SetActive(true);
-            
+
             statMenuActive = true;
         }
 

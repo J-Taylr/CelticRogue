@@ -12,9 +12,10 @@ public class FallingRock : MonoBehaviour
     void OnCollisionEnter2D(Collision2D check) {
 
        
-        if (check.gameObject.tag =="Player")
+        if (check.gameObject.tag =="Player" && !check.gameObject.GetComponent<PlayerManager>().isImmune)
         {
-            check.gameObject.GetComponent<PlayerManager>().TakeDamage(damage);
+         
+            check.gameObject.GetComponent<PlayerManager>().TakeDamage();
 
         }
         

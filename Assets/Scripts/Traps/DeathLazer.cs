@@ -27,9 +27,9 @@ public class DeathLazer : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D check) {
-        if (check.tag == "Player")
+        if (check.tag == "Player" && !check.GetComponent<PlayerManager>().isImmune)
         {
-           check.GetComponent<PlayerManager>().TakeDamage(damage);
+           check.GetComponent<PlayerManager>().TakeDamage();
         }
     }
 }

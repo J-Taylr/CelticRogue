@@ -19,6 +19,7 @@ public class EnemyManager : MonoBehaviour
     private Skulls skulls;
     private bool isSkull;
 
+   
     private int poiDam;
     int dothit;
     float dotDelay;
@@ -80,6 +81,7 @@ public class EnemyManager : MonoBehaviour
     {
         currentHealth -= damage;
         healthSlider.value = currentHealth;
+       
     }
 
     public void CheckLife()

@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Movement")]
     public bool canMove = true;
-
+    public float moveSpeed = 1;
     public bool isHoldingJump = false;
 
     private float horizontalInput;
@@ -46,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
     public bool wallSliding;
     public float wallSlidingSpeed = 20;    // max speed character slides down walls
     public float wallBounce = 10;
-
+    private bool slideAnim = false;
 
     [Header("Gravity")]
     public float fallMultiplier = 2.5f;
@@ -124,10 +124,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (canMove)
         {
-            animator.SetTrigger("Jumping");
+            
 
             if (!controller.isGrounded && canDoubleJump && playerManager.doubleUnlock) //double jump
             {
+                animator.SetTrigger("Jumping");
                 Vector2 yVelocity = new Vector2(0, 0);
                 rb.velocity = new Vector2(rb.velocity.x, yVelocity.y); //set current Y velocity to 0
 
@@ -138,7 +139,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (controller.isGrounded) //single jump
             {
-
+                animator.SetTrigger("Jumping");
                 Vector2 yVelocity = new Vector2(0, 0);
                 rb.velocity = new Vector2(rb.velocity.x, yVelocity.y);
                 rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
@@ -148,7 +149,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (coyoteJump) //coyote jump 
             {
-
+                animator.SetTrigger("Jumping");
                 Vector2 yVelocity = new Vector2(0, 0);
                 rb.velocity = new Vector2(rb.velocity.x, yVelocity.y);
                 rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
@@ -162,6 +163,7 @@ public class PlayerMovement : MonoBehaviour
                 controller.isOnWall = false;
                 Vector2 yVelocity = new Vector2(0, 0);
                 rb.velocity = new Vector2(rb.velocity.x, yVelocity.y);
+                animator.SetTrigger("WallJump");
 
 
 
@@ -224,6 +226,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (wallSliding)
         {
+           
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
         }
     }
@@ -302,13 +305,26 @@ public class PlayerMovement : MonoBehaviour
     {
         if (controller.isOnWall && !controller.isGrounded && horizontalInput != 0 && !controller.canClimbLedge)
         {
+            callSlideAnim();
             wallSliding = true;
         }
         else
         {
+            animator.SetTrigger("OffWall");
             wallSliding = false;
+            slideAnim = false;
         }
     }
+
+    public void callSlideAnim()
+    {
+        if (slideAnim == false)
+        {
+            animator.SetTrigger("OnWall");
+            slideAnim = true;
+        }
+    }
+
 
     public void DashCheck()
     {

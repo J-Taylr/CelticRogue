@@ -5,11 +5,12 @@ using UnityEngine;
 public class CallAnimationEvents : MonoBehaviour
 {
     public PlayerMovement playerMovement;
-
+    public PlayerManager playerManager;
 
     private void Awake()
     {
         playerMovement = GetComponentInParent<PlayerMovement>();
+        playerManager = GetComponentInParent<PlayerManager>();
     }
 
 
@@ -19,4 +20,8 @@ public class CallAnimationEvents : MonoBehaviour
     }
 
 
+    public void EndImmunity()
+    {
+        playerManager.isImmune = false;
+    }
 }

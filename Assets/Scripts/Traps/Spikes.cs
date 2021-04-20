@@ -10,8 +10,16 @@ public class Spikes : MonoBehaviour
     void OnTriggerEnter2D(Collider2D player) {
         if (player.tag == "Player")
         {
-            player.GetComponent<PlayerManager>().TakeDamage(damage);
+            if (!player.GetComponent<PlayerManager>().isImmune)
+            {
+
+            player.GetComponent<PlayerManager>().TakeDamage();
             player.GetComponent<PlayerMovement>().PlayerJump();
+            }
+            else
+            {
+                return;
+            }
         }
     }
 

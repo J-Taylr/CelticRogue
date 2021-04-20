@@ -1,0 +1,347 @@
+fileFormatVersion: 2
+guid: 9c871474a5be43a4fb8812c0142ccba9
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2140247009581336557
+    second: wall_jump_sprite_sheet_0
+  - first:
+      213: -8609153516463468551
+    second: wall_jump_sprite_sheet_1
+  - first:
+      213: -1882460790569092210
+    second: wall_jump_sprite_sheet_2
+  - first:
+      213: -8638712592781294889
+    second: wall_jump_sprite_sheet_3
+  - first:
+      213: -3205857832116299054
+    second: wall_jump_sprite_sheet_4
+  - first:
+      213: -1282871497052382752
+    second: wall_jump_sprite_sheet_5
+  - first:
+      213: 1778927786253527052
+    second: wall_jump_sprite_sheet_6
+  - first:
+      213: 6511126965444312576
+    second: wall_jump_sprite_sheet_7
+  - first:
+      213: -1219146953117575419
+    second: wall_jump_sprite_sheet_8
+  - first:
+      213: -578652506418748265
+    second: wall_jump_sprite_sheet_9
+  - first:
+      213: -474370008546680812
+    second: wall_jump_sprite_sheet_10
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: wall_jump_sprite_sheet_0
+      rect:
+        serializedVersion: 2
+        x: 2074
+        y: 1696
+        width: 742
+        height: 1161
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de700b1d05fa3bd10800000000000000
+      internalID: 2140247009581336557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall_jump_sprite_sheet_2
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 1732
+        width: 890
+        height: 1019
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8b378a72e720e5e0800000000000000
+      internalID: -1882460790569092210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall_jump_sprite_sheet_3
+      rect:
+        serializedVersion: 2
+        x: 1163
+        y: 1734
+        width: 741
+        height: 1041
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d2c39eaaa02d1880800000000000000
+      internalID: -8638712592781294889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall_jump_sprite_sheet_4
+      rect:
+        serializedVersion: 2
+        x: 3019
+        y: 1732
+        width: 773
+        height: 1069
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2dadd4c79418283d0800000000000000
+      internalID: -3205857832116299054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall_jump_sprite_sheet_5
+      rect:
+        serializedVersion: 2
+        x: 3936
+        y: 1761
+        width: 940
+        height: 911
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e918bd9b23523ee0800000000000000
+      internalID: -1282871497052382752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall_jump_sprite_sheet_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 306
+        width: 988
+        height: 1010
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c08a6bc756500b810800000000000000
+      internalID: 1778927786253527052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall_jump_sprite_sheet_7
+      rect:
+        serializedVersion: 2
+        x: 1089
+        y: 364
+        width: 815
+        height: 894
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00e76c64a7b2c5a50800000000000000
+      internalID: 6511126965444312576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall_jump_sprite_sheet_8
+      rect:
+        serializedVersion: 2
+        x: 2038
+        y: 325
+        width: 898
+        height: 991
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5075d623e48b41fe0800000000000000
+      internalID: -1219146953117575419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall_jump_sprite_sheet_9
+      rect:
+        serializedVersion: 2
+        x: 3017
+        y: 325
+        width: 890
+        height: 1017
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 794658a7c9638f7f0800000000000000
+      internalID: -578652506418748265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall_jump_sprite_sheet_10
+      rect:
+        serializedVersion: 2
+        x: 4041
+        y: 364
+        width: 787
+        height: 995
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 410e9749df2ba69f0800000000000000
+      internalID: -474370008546680812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
