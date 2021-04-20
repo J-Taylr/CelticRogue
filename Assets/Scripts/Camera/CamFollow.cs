@@ -25,6 +25,12 @@ public class CamFollow : MonoBehaviour
 
     private void Update()
     {
+        TrackPlayer();
+    }
+
+
+    public void TrackPlayer()
+    {
         if (!cameraUp && !cameraDown)
         {
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(camPos.transform.position.x, camPos.transform.position.y, zOffset), camSpeed * Time.deltaTime);
@@ -37,8 +43,8 @@ public class CamFollow : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(camPos.transform.position.x, (camPos.transform.position.y - playerOffset), zOffset), camSpeed * Time.deltaTime);
         }
-
     }
+
 
     public void CamReturnUp()
     {
