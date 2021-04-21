@@ -6,7 +6,7 @@ public class BackgroundTransition : MonoBehaviour
 {
     public GameObject player;
     public float yValue;
-    public float transitionPoint = 0;
+    
     public float transitionDistance = 10;
 
     public float topAlpha;
@@ -19,6 +19,8 @@ public class BackgroundTransition : MonoBehaviour
 
     public SpriteRenderer topBackground;
     public SpriteRenderer belowBackground;
+
+
 
     private void Awake()
     {

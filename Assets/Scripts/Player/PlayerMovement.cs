@@ -128,6 +128,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (!controller.isGrounded && canDoubleJump && playerManager.doubleUnlock) //double jump
             {
+                
                 animator.SetTrigger("Jumping");
                 Vector2 yVelocity = new Vector2(0, 0);
                 rb.velocity = new Vector2(rb.velocity.x, yVelocity.y); //set current Y velocity to 0
@@ -139,6 +140,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (controller.isGrounded) //single jump
             {
+                print("jump");
                 animator.SetTrigger("Jumping");
                 Vector2 yVelocity = new Vector2(0, 0);
                 rb.velocity = new Vector2(rb.velocity.x, yVelocity.y);
@@ -167,7 +169,7 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-                if (controller.facingRight)
+                /*if (controller.facingRight)
                 {
                     rb.AddForce(new Vector2(wallBounce, jumpForce), ForceMode2D.Impulse);
                 }
@@ -175,7 +177,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     rb.AddForce(new Vector2(-wallBounce, jumpForce), ForceMode2D.Impulse);
 
-                }
+                }*/
 
                 //StartCoroutine(upgrades.WallJumpBuffs());
                 coyoteJump = false;
