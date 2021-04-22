@@ -31,14 +31,30 @@ public class FallingPlatform : MonoBehaviour
         }
     }
 
-    void PlatformDestroy() {
+    public void DestroyPlatform()
+    {
+        StartCoroutine(PlatformDestroy());
+    }
+
+    public void RegenPlatform()
+    {
+        StartCoroutine(PlatformRegen());
+    }
+    IEnumerator PlatformDestroy()
+    {
+        yield return new WaitForSeconds(tbf);
         sprite.color = nActive;
         plat.enabled = false;
     }
 
-    void PlatformRegen() {
+    IEnumerator PlatformRegen()
+    {
+        yield return new WaitForSeconds(tbr);
         plat.enabled = true;
         sprite.color = yActive;
     }
+
+
+    
    
 }

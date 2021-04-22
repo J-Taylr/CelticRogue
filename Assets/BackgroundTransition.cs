@@ -58,6 +58,9 @@ public class BackgroundTransition : MonoBehaviour
 
     }
 
+
+    
+
     // distance away from transistion point //above and below
 
 }
