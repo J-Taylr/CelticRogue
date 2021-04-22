@@ -5,56 +5,69 @@ using UnityEngine;
 public class FallingPlatform : MonoBehaviour
 {
     
-    public BoxCollider2D plat;
-    public SpriteRenderer sprite;
-    public Color nActive;
-    public Color yActive;
-    public float tbf; //Time before falling
-    public float tbr; //time before reappearing
+    public BoxCollider2D platformCollider;
+    public Animator animator;
 
-    void Start() {
-        sprite.color = yActive;
+    public bool platformActive = true;
+    public float respawnDelay = 3;
+    public float timeRemaining;
+
+    private void Awake()
+    {
+        platformCollider = GetComponent<BoxCollider2D>();
+        animator = GetComponentInChildren<Animator>();
+        timeRemaining = respawnDelay;
+        platformActive = true;
     }
 
-    void OnTriggerEnter2D(Collider2D player) {
-        if (player.tag == "Player")
+
+    private void Update()
+    {
+        DelayTimer();
+    }
+
+    public void DelayTimer()
+    {
+        if (!platformActive)
         {
-            Invoke("PlatformDestroy", tbf);
+            if (timeRemaining > 0)
+            {
+                timeRemaining -= Time.deltaTime;
+            }
+            else
+            {
+                
+                timeRemaining = 0;
+                animator.SetBool("PlatformRegen", true);
+                
+            }
         }
     }
 
-    void OnTriggerExit2D(Collider2D play) {
-        if (play.tag == "Player")
-        {
-            CancelInvoke("PlatformRegen");
-            Invoke("PlatformRegen",tbr);
-        }
-    }
-
-    public void DestroyPlatform()
+    public void StartAnimLoop()
     {
-        StartCoroutine(PlatformDestroy());
+        animator.SetTrigger("PlatformFall");
     }
 
-    public void RegenPlatform()
+
+    public void TurnOffPlatform()
     {
-        StartCoroutine(PlatformRegen());
+        
+        platformCollider.enabled = false;
+        platformActive = false;
     }
-    IEnumerator PlatformDestroy()
-    {
-        yield return new WaitForSeconds(tbf);
-        sprite.color = nActive;
-        plat.enabled = false;
-    }
-
-    IEnumerator PlatformRegen()
-    {
-        yield return new WaitForSeconds(tbr);
-        plat.enabled = true;
-        sprite.color = yActive;
-    }
-
-
-    
    
+
+    public void TurnOnPlatform()
+    {
+        animator.SetBool("PlatformRegen", false);
+        platformCollider.enabled = true;
+        platformActive = true;
+        timeRemaining = respawnDelay;
+
+    }
+
+
+
+
 }
