@@ -6,10 +6,14 @@ public class PickupParticleController : MonoBehaviour
 {
     public ParticleSystem pickupParticle;
     private ParticleSystem.MainModule mainModule;
+    private ParticleSystem.EmissionModule emission;
+    private ParticleSystem.VelocityOverLifetimeModule velocity;
 
     private void Awake()
     {
         mainModule = pickupParticle.main;
+        emission = pickupParticle.emission;
+        velocity = pickupParticle.velocityOverLifetime;
     }
 
     private void Start()
@@ -22,6 +26,7 @@ public class PickupParticleController : MonoBehaviour
     {
         print("stop particle");
         mainModule.loop = false;
+
         Destroy(gameObject, 10);
     }
 

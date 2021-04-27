@@ -169,7 +169,7 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-                /*if (controller.facingRight)
+                if (controller.facingRight)
                 {
                     rb.AddForce(new Vector2(wallBounce, jumpForce), ForceMode2D.Impulse);
                 }
@@ -177,7 +177,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     rb.AddForce(new Vector2(-wallBounce, jumpForce), ForceMode2D.Impulse);
 
-                }*/
+                }
 
                 //StartCoroutine(upgrades.WallJumpBuffs());
                 coyoteJump = false;

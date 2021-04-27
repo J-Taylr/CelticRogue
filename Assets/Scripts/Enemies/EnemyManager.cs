@@ -97,7 +97,10 @@ public class EnemyManager : MonoBehaviour
     }
     public void Die()
     {
-        SpawnChance();
+        if (!isSkull)
+        {
+            SpawnChance();
+        }
 
         Destroy(gameObject);
     }
