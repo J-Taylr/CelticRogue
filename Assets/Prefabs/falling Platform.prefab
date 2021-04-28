@@ -25,9 +25,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 970578605742865951}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 33.1, y: 9.36, z: 920.65625}
-  m_LocalScale: {x: 0.7732423, y: 0.7740163, z: 1}
+  m_LocalScale: {x: 0.88141453, y: 0.87785864, z: 1}
   m_Children:
   - {fileID: 5334452691310746980}
   m_Father: {fileID: 0}
@@ -75,6 +75,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   platformActive: 0
   respawnDelay: 3
+  timeRemaining: 0
 --- !u!1 &1741183243058202705
 GameObject:
   m_ObjectHideFlags: 0
@@ -147,7 +148,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   platform: {fileID: 0}
-  animator: {fileID: 0}
 --- !u!1 &2854636009097509877
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,7 +160,7 @@ GameObject:
   - component: {fileID: 140785421152463936}
   - component: {fileID: 4236727075475878676}
   - component: {fileID: 6213791304064471799}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GreenSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,7 +176,7 @@ Transform:
   m_GameObject: {fileID: 2854636009097509877}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5334452691310746980}
   m_RootOrder: 0
@@ -220,7 +220,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 3bb98be3f7ef2d44589ab8804f9d5b63, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fc663205b228bb54983049b1a8601f91, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
