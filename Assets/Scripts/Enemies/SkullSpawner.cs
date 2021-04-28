@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SkullSpawner : MonoBehaviour
 {
-
+    public int max;
     public GameObject prefab;
     public List<GameObject> Skulls;
     public Vector3 size;
@@ -20,7 +20,7 @@ public class SkullSpawner : MonoBehaviour
     void Update()
     {
         center = gameObject.transform.localPosition;
-        if (Skulls.Count <= 3)
+        if (Skulls.Count <= max)
         {
             Spawn();
         }
