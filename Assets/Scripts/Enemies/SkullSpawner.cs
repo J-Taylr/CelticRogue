@@ -4,16 +4,23 @@ using UnityEngine;
 
 public class SkullSpawner : MonoBehaviour
 {
+    private bool Wave1 = true;
+    private bool Wave2 = true;
+    private bool Wave3 = true;
     public int max;
+
     public GameObject prefab;
+
     public List<GameObject> Skulls;
+
     public Vector3 size;
     public Vector3 center;
 
+    public EnemyManager EM;
     // Start is called before the first frame update
     void Start()
     {
-        
+        EM = gameObject.GetComponent<EnemyManager>();
     }
 
     // Update is called once per frame

@@ -20,7 +20,7 @@ public class AStar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SkullSpawner spawner = transform.parent.GetComponent<SkullSpawner>();
+        SpawnerMiniBoss spawner = transform.parent.GetComponent<SpawnerMiniBoss>();
         spawner.Skulls.Add(this.gameObject);
         Vector3 position = new Vector3(transform.position.x, transform.position.y, 0);
 
