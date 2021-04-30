@@ -14,6 +14,7 @@ TagManager:
   - MajorUpgrade
   - UpgradeSpawn
   - StatMenu
+  - Floor
   layers:
   - Default
   - TransparentFX
