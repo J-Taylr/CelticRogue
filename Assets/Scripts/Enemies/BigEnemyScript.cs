@@ -4,105 +4,114 @@ using UnityEngine;
 
 public class BigEnemyScript : MonoBehaviour
 {
-    [Header("Movement")]
-    public int speed;
+    public BoxCollider2D Bc;
+    public BoxCollider2D Bc2;
+
+    public GameObject Player;
+    public GameObject pos;
+    public GameObject Projectile;
+
+
+    public float speed;
+    public float power;
+
+    public int KB;
     public int damage;
-    public float distance = 5;
-    private bool movingRight = true;
-    public bool attacking = false;
-    public Rigidbody2D RB;
 
-    public bool stomp = false;
-    public bool moving = true;
-    public bool A;
-    public BoxCollider2D trigger;
-    private BoxCollider2D bc;
-    public Transform groundDetection;
-    public GameObject player;
-    public float offsetY = 5;
+    private Rigidbody2D R;
+    private Rigidbody2D PR;
+    public bool M;
 
-    [SerializeField] private LayerMask whatIsPlayer;
+    public Animator A;
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        RB = GetComponent<Rigidbody2D>();
-        bc = GetComponent<BoxCollider2D>();
+        Player = GameObject.FindGameObjectWithTag("Player");
+        pos = GameObject.Find("CrushPos");
+        R = this.GetComponent<Rigidbody2D>();
+        PR = Player.GetComponent<Rigidbody2D>();
+        A = GetComponent<Animator>();
     }
+
     // Update is called once per frame
     void Update()
     {
-        if (A == true)
+        if (M == true)
         {
-            Hover();
+            MoveTo();
+
         }
         else
         {
-            EnemyMove();
+            M = false;
         }
     }
-    public void EnemyMove()
-    {
-        if (moving == true)
-        {
-            transform.Translate(Vector2.right * speed * Time.deltaTime);
 
-            RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, distance, whatIsPlayer);
-            if (groundInfo.collider == false)
-            {
-                if (movingRight == true)
-                {
-                    transform.eulerAngles = new Vector3(0, -180, 0);
-                    movingRight = false;
-                }
-                else
-                {
-                    transform.eulerAngles = new Vector3(0, 0, 0);
-                    movingRight = true;
-                }
-                print(groundInfo.collider);
-            }
-        }
-    }
-    public void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.tag == ("Player") && (stomp == false))
+        if (other.tag == "Player")
         {
-            moving = false;
-            A = true;
-            stomp = true;
+            M = true;
         }
     }
-    public void Hover()
-    {
-        transform.position = new Vector2(player.transform.position.x, offsetY);
-        StartCoroutine("Stomp");
-        StartCoroutine("Cooldown");
-    }
-    IEnumerator Stomp()
-    {
-        yield return new WaitForSeconds(1f);
-        Crash();
-        yield return new WaitForSeconds(2f);
-    }
-    public void Crash()
-    {
-        RB.AddForce(new Vector2(0, -0.5f), ForceMode2D.Impulse);
-    }
-    IEnumerator Cooldown()
-    {
-        yield return new WaitForSeconds(3f);
-        A = false;
-        moving = true;
-        yield return new WaitForSeconds(3f);
-        stomp = false;
-    }
-    private void OnCollisionEnter2D(Collision2D other)
+    public void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            player.GetComponent<PlayerManager>().currentHealth -= damage;
-            player.GetComponent<PlayerManager>().CheckHealth();
+
+            other.gameObject.GetComponent<PlayerManager>().currentHealth -= damage;
+            if (transform.position.x <= other.transform.position.x)
+            {
+                Debug.Log("Smack");
+                PR.AddForce(new Vector2(KB, 10), ForceMode2D.Impulse);
+            }
+
+            if (transform.position.x > other.transform.position.x)
+            {
+                Debug.Log("Smack2");
+                PR.AddForce(new Vector2(-KB, 10), ForceMode2D.Impulse);
+            }
+            StartCoroutine("K");
         }
+    }
+    void MoveTo()
+    {
+        float step = speed * Time.deltaTime;
+        transform.position = Vector2.MoveTowards(transform.position, pos.transform.position, step);
+        StartCoroutine("Crush");
+    }
+    IEnumerator Crush()
+    {
+        A.SetBool("Shake", true);
+        yield return new WaitForSeconds(3);
+        A.SetBool("Shake", false);
+        M = false;
+        Attack();
+        StartCoroutine("CoolDown");
+    }
+    IEnumerator K()
+    {
+        Player.layer = 11;
+        yield return new WaitForSeconds(3);
+        Player.layer = 8;
+
+    }
+    IEnumerator CoolDown()
+    {
+        StartCoroutine("Fire");
+        Bc.enabled = false;
+        yield return new WaitForSeconds(3);
+        Bc.enabled = true;
+    }
+    void Attack()
+    {
+        R.AddForce(-transform.up * power, ForceMode2D.Impulse);
+    }
+    IEnumerator Fire()
+    {
+        yield return new WaitForSeconds(0);
+        Quaternion rot = new Quaternion(0, 0, 180, 0);
+        Instantiate(Projectile, transform.position, transform.rotation);
+        Instantiate(Projectile, transform.position, rot);
     }
 }
