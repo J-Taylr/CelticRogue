@@ -21,7 +21,7 @@ public class AStar : MonoBehaviour
     void Start()
     {
         SpawnerMiniBoss spawner = transform.parent.GetComponent<SpawnerMiniBoss>();
-        spawner.Skulls.Add(this.gameObject);
+        
         Vector3 position = new Vector3(transform.position.x, transform.position.y, 0);
 
         target = GameObject.FindGameObjectWithTag("Player").transform;

@@ -9,6 +9,7 @@ public class PlayerManager : MonoBehaviour
     public Slider healthslider;
     public Animator animator;
     public GameObject statMenu;
+    public GameObject mapUI;
 
     [Header("Core")]
     public int UpgradePoints = 0;
@@ -23,6 +24,7 @@ public class PlayerManager : MonoBehaviour
     public bool isImmune = false;
     public bool isInteracting = false;
     public bool statMenuActive = false;
+    public bool mapActive = false;
     public UpgradeController upgrades;
 
     [Header("Progression")]
@@ -38,6 +40,7 @@ public class PlayerManager : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         statMenu = GameObject.FindGameObjectWithTag("StatMenu");
         statMenu.SetActive(false);
+        mapUI.SetActive(false);
     }
 
 
@@ -96,17 +99,32 @@ public class PlayerManager : MonoBehaviour
 
     public void ToggleStatMenu()
     {
-        if (statMenuActive == true)
-        {
-            statMenu.SetActive(false);
+        statMenuActive = !statMenuActive;
 
-            statMenuActive = false;
-        }
-        else
+        if (statMenuActive)
         {
             statMenu.SetActive(true);
 
-            statMenuActive = true;
+        }
+        else
+        {
+            statMenu.SetActive(false);
+
+        }
+
+    }
+
+    public void ToggleMap()
+    {
+        mapActive = !mapActive;
+
+        if (mapActive)
+        {
+            mapUI.SetActive(true);
+        }
+        else
+        {
+            mapUI.SetActive(false);
         }
 
     }

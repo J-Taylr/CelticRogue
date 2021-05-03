@@ -16,7 +16,7 @@ public class EnemyManager : MonoBehaviour
     public Slider healthSlider;
     public GameObject statDrop;
 
-    private Skulls skulls;
+    private Skulls skulls; 
     private bool isSkull;
 
    
@@ -33,6 +33,7 @@ public class EnemyManager : MonoBehaviour
     public void CheckEnemyType()
     {
         skulls = GetComponent<Skulls>();
+
         if (skulls != null)
         {
             isSkull = true;
