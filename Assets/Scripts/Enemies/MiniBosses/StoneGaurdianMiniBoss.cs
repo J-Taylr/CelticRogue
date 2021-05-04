@@ -62,7 +62,13 @@ public class StoneGaurdianMiniBoss : MonoBehaviour
 
         }
     }
-
+    private void OnCollisionStay2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("GroundCheck"))
+        {
+            StartCoroutine("Fire");
+        }
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")
@@ -125,7 +131,7 @@ public class StoneGaurdianMiniBoss : MonoBehaviour
             Instantiate(Projectile, transform.position, transform.rotation);
             Instantiate(Projectile, transform.position, rot);
             shooting = false;
-            yield return new WaitForSeconds(0);
+            yield return new WaitForSeconds(3);
             shooting = true;
 
         }

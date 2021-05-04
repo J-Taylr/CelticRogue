@@ -16,8 +16,10 @@ public class EnemyManager : MonoBehaviour
     public Slider healthSlider;
     public GameObject statDrop;
 
-    private Skulls skulls; 
-    private bool isSkull;
+    private Skulls skulls;
+    private SkullsMiniBoss BossSkulls;
+    public bool isSkull;
+    public bool MSkull;
 
    
     private int poiDam;
@@ -33,15 +35,8 @@ public class EnemyManager : MonoBehaviour
     public void CheckEnemyType()
     {
         skulls = GetComponent<Skulls>();
-
-        if (skulls != null)
-        {
-            isSkull = true;
-        }
-        else
-        {
-            isSkull = false;
-        }
+        BossSkulls = GetComponent<SkullsMiniBoss>();
+       
     }
 
 
@@ -93,11 +88,17 @@ public class EnemyManager : MonoBehaviour
             {
                 skulls.removeSkulls();
             }
+            if (MSkull)
+            {
+                BossSkulls.removeSkulls();
+            }
             Die();
         }
     }
     public void Die()
     {
+        Debug.Log("dieing");
+
         if (!isSkull)
         {
             SpawnChance();

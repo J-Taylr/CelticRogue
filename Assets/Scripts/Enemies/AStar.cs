@@ -20,16 +20,12 @@ public class AStar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SpawnerMiniBoss spawner = transform.parent.GetComponent<SpawnerMiniBoss>();
-        
-        Vector3 position = new Vector3(transform.position.x, transform.position.y, 0);
-
         target = GameObject.FindGameObjectWithTag("Player").transform;
-
+        SpawnerMiniBoss spawner = transform.parent.GetComponent<SpawnerMiniBoss>();
+        Vector3 position = new Vector3(transform.position.x, transform.position.y, 0);
         seeker = GetComponent<Seeker>();
-
         rb = GetComponent<Rigidbody2D>();
-
+        spawner.Skulls.Add(this.gameObject);
         InvokeRepeating("UpdatePath", 0f, .5f);
     }
     void UpdatePath()
