@@ -14,7 +14,7 @@ public class SkullsMiniBoss : MonoBehaviour
         eManager = GetComponent<EnemyManager>();
         spawner = transform.parent.GetComponent<SpawnerMiniBoss>();
         eManager.MSkull = true;
-
+        spawner.Skulls.Add(this.gameObject);
     }
 
     public void removeSkulls()
@@ -32,7 +32,12 @@ public class SkullsMiniBoss : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
-        other.gameObject.GetComponent<PlayerManager>().TakeDamage();
+        if (other.gameObject.CompareTag("Player"))
+        {
+
+            other.gameObject.GetComponent<PlayerManager>().TakeDamage();
+
+        }
     }
 
 }

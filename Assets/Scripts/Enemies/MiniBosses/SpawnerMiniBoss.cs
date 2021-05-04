@@ -65,8 +65,6 @@ public class SpawnerMiniBoss : MonoBehaviour
         Instantiate(prefab, pos, Quaternion.identity, this.gameObject.transform);
         Instantiate(prefab, pos, Quaternion.identity, this.gameObject.transform);
         Instantiate(prefab, pos, Quaternion.identity, this.gameObject.transform);
-        Instantiate(prefab, pos, Quaternion.identity, this.gameObject.transform);
-        Instantiate(prefab, pos, Quaternion.identity, this.gameObject.transform);
         Wave1 = false;
     }
     private void W2()
@@ -76,19 +74,11 @@ public class SpawnerMiniBoss : MonoBehaviour
         Instantiate(prefab, pos, Quaternion.identity, this.gameObject.transform);
         Instantiate(prefab, pos, Quaternion.identity, this.gameObject.transform);
         Instantiate(prefab, pos, Quaternion.identity, this.gameObject.transform);
-        Instantiate(prefab, pos, Quaternion.identity, this.gameObject.transform);
-        Instantiate(prefab, pos, Quaternion.identity, this.gameObject.transform);
-        Instantiate(prefab, pos, Quaternion.identity, this.gameObject.transform);
         Wave2 = false;
     }
     private void W3()
     {
         Vector3 pos = center + new Vector3(Random.Range(-size.x / 2, size.x / 2), Random.Range(-size.y / 2, size.y / 2), Random.Range(-size.z / 2, size.z / 2));
-        Instantiate(prefab, pos, Quaternion.identity, this.gameObject.transform);
-        Instantiate(prefab, pos, Quaternion.identity, this.gameObject.transform);
-        Instantiate(prefab, pos, Quaternion.identity, this.gameObject.transform);
-        Instantiate(prefab, pos, Quaternion.identity, this.gameObject.transform);
-        Instantiate(prefab, pos, Quaternion.identity, this.gameObject.transform);
         Instantiate(prefab, pos, Quaternion.identity, this.gameObject.transform);
         Instantiate(prefab, pos, Quaternion.identity, this.gameObject.transform);
         Instantiate(prefab, pos, Quaternion.identity, this.gameObject.transform);

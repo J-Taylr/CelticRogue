@@ -6,6 +6,8 @@ public class Skulls : MonoBehaviour
 {
     private EnemyManager eManager;
     private SkullSpawner spawner;
+
+    public GameObject Player;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +15,7 @@ public class Skulls : MonoBehaviour
         spawner = transform.parent.GetComponent<SkullSpawner>();
         eManager.isSkull = true;
         spawner.Skulls.Add(this.gameObject);
+        Player = GameObject.FindGameObjectWithTag("Player");
     }
 
     public void removeSkulls()
@@ -26,6 +29,15 @@ public class Skulls : MonoBehaviour
         else
         {
             return;
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+
+            other.gameObject.GetComponent<PlayerManager>().TakeDamage();
+           
         }
     }
 }

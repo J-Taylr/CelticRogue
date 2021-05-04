@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
-public class AStar : MonoBehaviour
+public class AStarC : MonoBehaviour
 {
     public Transform target;
     public Transform enemyGFX;
@@ -21,10 +21,12 @@ public class AStar : MonoBehaviour
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
-        SpawnerMiniBoss spawner = transform.parent.GetComponent<SpawnerMiniBoss>();
+        SkullSpawner spawner = transform.parent.GetComponent<SkullSpawner>();
         Vector3 position = new Vector3(transform.position.x, transform.position.y, 0);
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
+
+
         InvokeRepeating("UpdatePath", 0f, .5f);
     }
     void UpdatePath()
@@ -49,9 +51,10 @@ public class AStar : MonoBehaviour
         if (path == null)
             return;
 
-        if(currentWaypoint >= path.vectorPath.Count)
+        if (currentWaypoint >= path.vectorPath.Count)
         {
             reachedEndofPath = true;
+            return;
         }
         else
         {
@@ -66,7 +69,7 @@ public class AStar : MonoBehaviour
         }
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
 
-        if(distance < nextWaypointDistance)
+        if (distance < nextWaypointDistance)
         {
             currentWaypoint++;
         }
@@ -85,5 +88,4 @@ public class AStar : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, range);
     }
-
 }

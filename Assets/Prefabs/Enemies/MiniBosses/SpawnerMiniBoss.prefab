@@ -68,6 +68,8 @@ MonoBehaviour:
   healthSlider: {fileID: 2279863938953270568}
   statDrop: {fileID: 8522888314842647884, guid: ea90c6acc31c5034daa4f7ef5bc67d0a,
     type: 3}
+  isSkull: 0
+  MSkull: 0
 --- !u!114 &2279863937520187389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,8 +82,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3016af44044c0f24ea07629047ff902a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  KD: 0
   max: 7
-  prefab: {fileID: 472658798386008020, guid: 00ff82c8458d55848aac9b694c49d941, type: 3}
+  prefab: {fileID: 6077766359720012553, guid: 00ff82c8458d55848aac9b694c49d941, type: 3}
   Skulls: []
   size: {x: 15, y: 15, z: 0}
   center: {x: 0, y: 0, z: 0}
@@ -192,7 +195,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ff8d80ccfb514d944a74bc5a63e8aed1, type: 3}
-  m_Color: {r: 0.9622642, g: 0.45560154, b: 0, a: 1}
+  m_Color: {r: 0.43190622, g: 0, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

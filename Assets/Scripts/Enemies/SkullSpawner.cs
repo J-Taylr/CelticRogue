@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class SkullSpawner : MonoBehaviour
 {
-    private bool Wave1 = true;
-    private bool Wave2 = true;
-    private bool Wave3 = true;
     public int max;
 
     public GameObject prefab;

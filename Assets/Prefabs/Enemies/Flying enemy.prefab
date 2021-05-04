@@ -38,7 +38,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8751093242357409646}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -595,9 +595,10 @@ GameObject:
   - component: {fileID: 9013122323483346502}
   - component: {fileID: 1549907264}
   - component: {fileID: 1549907262}
-  - component: {fileID: 8119605781662016809}
   - component: {fileID: 489342357}
   - component: {fileID: 1772856136494213311}
+  - component: {fileID: 1876621272831489312}
+  - component: {fileID: 5633633413904747527}
   m_Layer: 9
   m_Name: Flying enemy
   m_TagString: Untagged
@@ -614,7 +615,7 @@ Transform:
   m_GameObject: {fileID: 9013122323483346497}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.09, y: 6.92, z: 0}
-  m_LocalScale: {x: 0.279192, y: 0.279192, z: 0.279192}
+  m_LocalScale: {x: 0.6340194, y: 0.6340194, z: 0.6340194}
   m_Children:
   - {fileID: 9013122323214082270}
   - {fileID: 9013122322669257339}
@@ -634,11 +635,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c7d942a8e57f0c4ab7858ce4f261ac9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 1
   currentHealth: 5
   healthSlider: {fileID: 9013122322092436931}
   statDrop: {fileID: 8522888314842647884, guid: ea90c6acc31c5034daa4f7ef5bc67d0a,
     type: 3}
+  isSkull: 0
+  MSkull: 0
 --- !u!58 &1549907264
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -683,23 +686,6 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
---- !u!114 &8119605781662016809
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9013122323483346497}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bb80f0fc2a598345a7524088f10eb3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  enemyGFX: {fileID: 9013122322669257339}
-  range: 7
-  speed: 800
-  nextWaypointDistance: 3
 --- !u!50 &489342357
 Rigidbody2D:
   serializedVersion: 4
@@ -733,3 +719,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abf97c3f174d45c44800c48e7b0c4317, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 0}
+--- !u!114 &1876621272831489312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9013122323483346497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f14285d0d081b7a48a17e7604a440ade, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aiPath: {fileID: 0}
+--- !u!114 &5633633413904747527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9013122323483346497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b58aa3c2e8dc05e459403a1c1e4edad1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  enemyGFX: {fileID: 0}
+  range: 10
+  speed: 400
+  nextWaypointDistance: 3

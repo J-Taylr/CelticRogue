@@ -457,10 +457,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c7d942a8e57f0c4ab7858ce4f261ac9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 50
+  maxHealth: 5
   currentHealth: 0
   healthSlider: {fileID: 0}
   statDrop: {fileID: 0}
+  isSkull: 0
+  MSkull: 0
 --- !u!50 &7549989509120876192
 Rigidbody2D:
   serializedVersion: 4
