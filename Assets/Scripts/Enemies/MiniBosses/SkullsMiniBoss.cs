@@ -6,20 +6,23 @@ public class SkullsMiniBoss : MonoBehaviour
 {
     private EnemyManager eManager;
     private SpawnerMiniBoss spawner;
+
+    public int damage = 1;
     // Start is called before the first frame update
     void Start()
     {
         eManager = GetComponent<EnemyManager>();
         spawner = transform.parent.GetComponent<SpawnerMiniBoss>();
-        spawner.Skulls.Add(this.gameObject);
+        eManager.MSkull = true;
+
     }
 
     public void removeSkulls()
     {
-
         if (spawner != null)
         {
-            print("check");
+            Debug.Log("remove");
+
             spawner.Skulls.Remove(this.gameObject);
         }
         else
@@ -27,4 +30,9 @@ public class SkullsMiniBoss : MonoBehaviour
             return;
         }
     }
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        other.gameObject.GetComponent<PlayerManager>().TakeDamage();
+    }
+
 }

@@ -20,6 +20,7 @@ public class DashBoss : MonoBehaviour
     private BoxCollider2D bc;
     public Transform groundDetection;
     public Transform wallDetection;
+    public Transform Check;
     public Vector3 r;
     [SerializeField] private LayerMask lm;
     // Start is called before the first frame update
@@ -27,6 +28,8 @@ public class DashBoss : MonoBehaviour
     {
         RB = GetComponent<Rigidbody2D>();
         bc = GetComponent<BoxCollider2D>();
+        groundDetection = transform.GetChild(0);
+        wallDetection = transform.GetChild(0);
     }
 
     // Update is called once per frame
@@ -36,6 +39,7 @@ public class DashBoss : MonoBehaviour
         Vector3 pos = transform.position;
         pos.z = 0;
         transform.position = pos;
+        Debug.DrawLine(Check.position + transform.right * bc.size.x, transform.position + transform.right * distance, Color.green);
     }
 
     public void PlayerCast()
@@ -45,9 +49,9 @@ public class DashBoss : MonoBehaviour
             wallCheck();
             EnemyMove();
         }
-        Debug.DrawLine(transform.position + transform.right * bc.size.x, transform.position + transform.right * distance, Color.green);
+       
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position + transform.right * bc.size.x, transform.right, distance);
+        RaycastHit2D hit = Physics2D.Raycast(Check.position + transform.right * bc.size.x, transform.right, distance);
 
         if (hit.collider != null && hit.collider.tag == "Player" && attacking == false)
         {
@@ -96,7 +100,7 @@ public class DashBoss : MonoBehaviour
 
     public void State1()
     {
-        RB.AddForce(new Vector2(0f, 15f), ForceMode2D.Impulse);
+        RB.AddForce(new Vector2(0f, 30f), ForceMode2D.Impulse);
     }
     public void State2()
     {

@@ -22,8 +22,13 @@ public class StoneGaurdianMiniBoss : MonoBehaviour
     private Rigidbody2D R;
     private Rigidbody2D PR;
     public bool M;
+    public bool shooting = true;
+    private bool Timeron = false;
 
     public Animator A;
+
+    public float timeRemaining = 3;
+    public float MaxTime = 3;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,22 +42,32 @@ public class StoneGaurdianMiniBoss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (M == true)
+        if (Timeron)
+        {
+            if (timeRemaining > 0)
+            {
+                timeRemaining -= Time.deltaTime;
+            }
+            else
+            {
+                Debug.Log("Time has run out");
+                Timeron = false;
+                timeRemaining = MaxTime;
+                Attack();
+            }
+        }
+        if (Timeron == true)
         {
             MoveTo();
 
         }
-        else
-        {
-            M = false;
-        }
     }
 
-    private void OnTriggerStay2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")
         {
-            M = true;
+            Timeron = true;
         }
     }
     public void OnCollisionEnter2D(Collision2D other)
@@ -72,25 +87,23 @@ public class StoneGaurdianMiniBoss : MonoBehaviour
                 Debug.Log("Smack2");
                 PR.AddForce(new Vector2(-KB, 10), ForceMode2D.Impulse);
             }
-            StartCoroutine("K");
+            StartCoroutine("Layerswap");
         }
+       
     }
     void MoveTo()
     {
         float step = speed * Time.deltaTime;
         transform.position = Vector2.MoveTowards(transform.position, pos.transform.position, step);
-        StartCoroutine("Crush");
-    }
-    IEnumerator Crush()
-    {
-        A.SetBool("Shake", true);
-        yield return new WaitForSeconds(3);
-        A.SetBool("Shake", false);
-        M = false;
-        Attack();
         StartCoroutine("CoolDown");
+
     }
-    IEnumerator K()
+    void Attack()
+    {
+        R.AddForce(-transform.up * power, ForceMode2D.Impulse);
+    }
+   
+    IEnumerator Layerswap()
     {
         Player.layer = 11;
         yield return new WaitForSeconds(3);
@@ -99,20 +112,22 @@ public class StoneGaurdianMiniBoss : MonoBehaviour
     }
     IEnumerator CoolDown()
     {
-        StartCoroutine("Fire");
         Bc.enabled = false;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(6);
         Bc.enabled = true;
     }
-    void Attack()
-    {
-        R.AddForce(-transform.up * power, ForceMode2D.Impulse);
-    }
+
     IEnumerator Fire()
     {
-        yield return new WaitForSeconds(0);
-        Quaternion rot = new Quaternion(0, 0, 180, 0);
-        Instantiate(Projectile, transform.position, transform.rotation);
-        Instantiate(Projectile, transform.position, rot);
+        if (shooting == true)
+        {
+            Quaternion rot = new Quaternion(0, 0, 180, 0);
+            Instantiate(Projectile, transform.position, transform.rotation);
+            Instantiate(Projectile, transform.position, rot);
+            shooting = false;
+            yield return new WaitForSeconds(0);
+            shooting = true;
+
+        }
     }
 }

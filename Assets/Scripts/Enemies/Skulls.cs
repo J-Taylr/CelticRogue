@@ -11,6 +11,8 @@ public class Skulls : MonoBehaviour
     {
         eManager = GetComponent<EnemyManager>();
         spawner = transform.parent.GetComponent<SkullSpawner>();
+        eManager.isSkull = true;
+        spawner.Skulls.Add(this.gameObject);
     }
 
     public void removeSkulls()

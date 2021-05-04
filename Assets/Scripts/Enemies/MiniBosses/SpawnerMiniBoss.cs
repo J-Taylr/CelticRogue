@@ -7,6 +7,7 @@ public class SpawnerMiniBoss : MonoBehaviour
     private bool Wave1 = true;
     private bool Wave2 = true;
     private bool Wave3 = true;
+    public bool KD = false;
     public int max;
 
     public GameObject prefab;
@@ -46,10 +47,11 @@ public class SpawnerMiniBoss : MonoBehaviour
     }
     public void Spawn()
     {
-
-        Vector3 pos = center + new Vector3(Random.Range(-size.x / 2, size.x / 2), Random.Range(-size.y / 2, size.y / 2), Random.Range(-size.z / 2, size.z / 2));
-        GameObject skull = Instantiate(prefab, pos, Quaternion.identity, this.gameObject.transform);
-
+        if (!KD)
+        {
+            Vector3 pos = center + new Vector3(Random.Range(-size.x / 2, size.x / 2), Random.Range(-size.y / 2, size.y / 2), Random.Range(-size.z / 2, size.z / 2));
+            GameObject skull = Instantiate(prefab, pos, Quaternion.identity, this.gameObject.transform);
+        }
 
     }
     private void OnDrawGizmosSelected()
