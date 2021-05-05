@@ -136,6 +136,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1999820585532694630, guid: 4141e1b660336de469d0c90e2bfafc07,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4991545964321580788, guid: 4141e1b660336de469d0c90e2bfafc07,
         type: 3}
       propertyPath: m_SortingOrder

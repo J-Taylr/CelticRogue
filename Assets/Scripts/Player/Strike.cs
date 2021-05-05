@@ -161,7 +161,7 @@ public class Strike : MonoBehaviour
     {
        // print("side attack animation");
         animator.SetBool("Attack", true);
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(0.2f);
         animator.SetBool("Attack", false);
     }
 

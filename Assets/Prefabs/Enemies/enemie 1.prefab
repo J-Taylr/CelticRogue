@@ -5345,7 +5345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c7d942a8e57f0c4ab7858ce4f261ac9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20
+  maxHealth: 5
   currentHealth: 0
   healthSlider: {fileID: 2744536722306919224}
   statDrop: {fileID: 0}
