@@ -39,8 +39,8 @@ public class PlayerManager : MonoBehaviour
     {
         animator = GetComponentInChildren<Animator>();
         statMenu = GameObject.FindGameObjectWithTag("StatMenu");
-        statMenu.SetActive(false);
         mapUI.SetActive(false);
+        statMenu.SetActive(false);
     }
 
 

@@ -20,11 +20,13 @@ public class GameManager : MonoBehaviour
             _instance = this;
         }
     }
-
+    //starthere//starthere//starthere//starthere//starthere//starthere//starthere//starthere//starthere//starthere//starthere//starthere//starthere
 
 
     public GameObject player;
-    public Transform spawn;
+    public Transform spawnPoint;
+
+
 
     private void Start()
     {
@@ -32,7 +34,7 @@ public class GameManager : MonoBehaviour
         print("remember to disable cursor in THIS script");
 
         player = GameObject.FindGameObjectWithTag("Player");
-        spawn = GameObject.FindGameObjectWithTag("Spawn").transform;
+        
     }
 
    
@@ -40,7 +42,7 @@ public class GameManager : MonoBehaviour
 
     public void RespawnPlayer()
     {
-        player.transform.position = spawn.position;
+        player.transform.position = spawnPoint.position;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
