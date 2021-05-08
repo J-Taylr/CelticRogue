@@ -34,7 +34,9 @@ public class PlayerMovement : MonoBehaviour
     [Header("Dashing")]
     public float dashDuration = 0.5f;
     public float dashPower = 40;
+    public float dashCooldown = 2;
     public bool canDash = true;
+    public bool dashCooldownActive = false;
     public bool dashing;
 
     public float ledgeClimbXOffset1;
@@ -192,7 +194,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void StartDash()
     {
-        if (playerManager.dashUnlock && canDash && canMove && horizontalInput !=0)
+        if (playerManager.dashUnlock && canDash && !dashCooldownActive && canMove && horizontalInput !=0)
         {
             StartCoroutine(PlayerDash());
             dashing = true;
@@ -200,6 +202,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    
 
 
     IEnumerator PlayerDash()
@@ -213,6 +216,7 @@ public class PlayerMovement : MonoBehaviour
         rb.AddForce(new Vector2((horizontalInput * dashPower), 0));
         playerManager.moveSpeed += 40;
         yield return new WaitForSeconds(dashDuration);
+        StartCoroutine(DashCoolDown());
         rb.gravityScale = 4;
         playerManager.moveSpeed = 40;
         gameObject.layer = 8; // player collides normally again
@@ -223,6 +227,15 @@ public class PlayerMovement : MonoBehaviour
         //    upgrades.SlamAttack();
         //}
     }
+
+
+    IEnumerator DashCoolDown()
+    {
+        dashCooldownActive = true;
+        yield return new WaitForSeconds(dashCooldown);
+        dashCooldownActive = false;
+    }
+
 
     public void CheckWallSlide()
     {
