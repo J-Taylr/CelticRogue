@@ -15,6 +15,7 @@ TagManager:
   - UpgradeSpawn
   - StatMenu
   - Floor
+  - AudioManager
   layers:
   - Default
   - TransparentFX
