@@ -23,13 +23,18 @@ public class GameManager : MonoBehaviour
     //starthere//starthere//starthere//starthere//starthere//starthere//starthere//starthere//starthere//starthere//starthere//starthere//starthere
 
 
+    public AudioManager audioManager;
     public GameObject player;
     public Transform spawnPoint;
+
+    public enum TerrainZone {FOREST, SWAMP, CAVE};
+    public TerrainZone terrain;
 
 
 
     private void Start()
     {
+        terrain = TerrainZone.FOREST;
         // Cursor.visible = false;
         print("remember to disable cursor in THIS script");
 
@@ -37,12 +42,26 @@ public class GameManager : MonoBehaviour
         
     }
 
-   
 
+    private void Update()
+    {
+        CheckPos();
+    }
+
+    public void CheckPos()
+    {
+        if (player.transform.position.y <= -80)
+        {
+            terrain = TerrainZone.CAVE;
+        }
+    }
 
     public void RespawnPlayer()
     {
         player.transform.position = spawnPoint.position;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+   
+
 }

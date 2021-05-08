@@ -1100,7 +1100,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1325604219508422701
 Transform:
   m_ObjectHideFlags: 0
@@ -1178,6 +1178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8cb30a2de3e13c42b55d7394d9f4a13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioManager: {fileID: 0}
   playerMovement: {fileID: 0}
   playerManager: {fileID: 0}
 --- !u!1 &2545423756639599710
@@ -6375,6 +6376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8cb30a2de3e13c42b55d7394d9f4a13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioManager: {fileID: 0}
   playerMovement: {fileID: 0}
   playerManager: {fileID: 0}
 --- !u!1 &6687893165757942431
@@ -6428,8 +6430,6 @@ GameObject:
   - component: {fileID: 3145982855521772255}
   - component: {fileID: 9198682013305695576}
   - component: {fileID: 109173956}
-  - component: {fileID: 603278158}
-  - component: {fileID: 3203244088790383911}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -6603,7 +6603,7 @@ MonoBehaviour:
   isInteracting: 0
   statMenuActive: 0
   mapActive: 0
-  upgrades: {fileID: 603278158}
+  upgrades: {fileID: 0}
   doubleUnlock: 1
   wallJumpUnlock: 1
   dashUnlock: 1
@@ -6686,92 +6686,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dashParticle: {fileID: 0}
---- !u!114 &603278158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6987421072757631175}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99eeacbe37123dc4bbc86b7ae94cc0ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 1950619213}
-  playerManager: {fileID: 8318350178895994125}
-  playerController: {fileID: 3145982855521772255}
-  bullet: {fileID: 6042985196195199926, guid: 859d3fb2be368ef41ab719f5df4d7dc8, type: 3}
-  ranged: 0
-  dOTRanged: 0
-  slam: 0
-  slamRadius: 10
-  slamDamage: 10
-  slamMask:
-    serializedVersion: 2
-    m_Bits: 0
-  slamForce: 10
-  dashEndExplosion: 0
-  dashAttack: 0
-  dashDamage: 10
-  wallJumpBuffDuration: 2
-  wallJumpBuff: 2
-  wallJumpExplosion: 0
-  walljumpDamageBoost: 0
-  wallJumpInvincibility: 0
-  rage: 0
-  damageResist: 2
-  damageMultiplier: 2
-  rageDuration: 2
-  dOTAttacker: 0
-  dOTTicks: 3
-  dOTDamage: 1
-  dOTSplit: 1
-  tempInvincibility: 0
-  invincDuration: 2
---- !u!114 &3203244088790383911
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6987421072757631175}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99eeacbe37123dc4bbc86b7ae94cc0ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 1950619213}
-  playerManager: {fileID: 8318350178895994125}
-  playerController: {fileID: 3145982855521772255}
-  bullet: {fileID: 6042985196195199926, guid: 859d3fb2be368ef41ab719f5df4d7dc8, type: 3}
-  ranged: 0
-  dOTRanged: 0
-  slam: 0
-  slamRadius: 10
-  slamDamage: 10
-  slamMask:
-    serializedVersion: 2
-    m_Bits: 0
-  slamForce: 10
-  dashEndExplosion: 0
-  dashAttack: 0
-  dashDamage: 10
-  wallJumpBuffDuration: 2
-  wallJumpBuff: 2
-  wallJumpExplosion: 0
-  walljumpDamageBoost: 0
-  wallJumpInvincibility: 0
-  rage: 0
-  damageResist: 2
-  damageMultiplier: 2
-  rageDuration: 2
-  dOTAttacker: 0
-  dOTTicks: 3
-  dOTDamage: 1
-  dOTSplit: 1
-  tempInvincibility: 0
-  invincDuration: 2
 --- !u!1 &7535639988435796682
 GameObject:
   m_ObjectHideFlags: 0
