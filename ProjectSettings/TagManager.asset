@@ -16,6 +16,7 @@ TagManager:
   - StatMenu
   - Floor
   - AudioManager
+  - GameMan
   layers:
   - Default
   - TransparentFX
