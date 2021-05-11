@@ -72,6 +72,13 @@ public class GameManager : MonoBehaviour
     public void Restart()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("Spawn");
+
+        for (int i = 0; i < spawnPoints.Length; i++)
+        {
+            spawnPoints[i].GetComponent<SpawnPointManager>().FindGameManager();
+        }
+
         if (dashDead)
         {
             player.transform.position = dashSpawn.position;
