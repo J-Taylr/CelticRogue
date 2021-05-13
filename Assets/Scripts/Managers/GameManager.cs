@@ -56,6 +56,18 @@ public class GameManager : MonoBehaviour
         {
             terrain = TerrainZone.CAVE;
         }
+
+
+    }
+
+    public void TerrainForest()
+    {
+        terrain = TerrainZone.FOREST;
+    }
+
+    public void TerrainSwamp()
+    {
+        terrain = TerrainZone.SWAMP;
     }
 
     public void RespawnPlayer()
