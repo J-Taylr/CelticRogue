@@ -8,7 +8,8 @@ public class PlayerManager : MonoBehaviour
     [Header("Components")]
     public Slider healthslider;
     public Animator animator;
-    public GameObject statMenu;
+    public Animator healthUI;
+    public Animator damageUI;
     public GameObject mapUI;
 
     [Header("Core")]
@@ -38,9 +39,9 @@ public class PlayerManager : MonoBehaviour
     private void Awake()
     {
         animator = GetComponentInChildren<Animator>();
-        statMenu = GameObject.FindGameObjectWithTag("StatMenu");
+        
         mapUI.SetActive(false);
-        statMenu.SetActive(false);
+        
     }
 
 
@@ -103,12 +104,13 @@ public class PlayerManager : MonoBehaviour
 
         if (statMenuActive)
         {
-            statMenu.SetActive(true);
-
+            healthUI.SetTrigger("UiON");
+            damageUI.SetTrigger("UiON");
         }
         else
         {
-            statMenu.SetActive(false);
+            healthUI.SetTrigger("UiOff");
+            damageUI.SetTrigger("UiOff");
 
         }
 

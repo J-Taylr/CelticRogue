@@ -119,6 +119,79 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &503903033
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 503903034}
+  - component: {fileID: 503903035}
+  m_Layer: 0
+  m_Name: Light 2D
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &503903034
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 503903033}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5199990085081996631}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &503903035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 503903033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85a34663ca705a54eac3205e225a6d45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightPresetId: 0
+  eventPresetId: 0
+  nightLayer: 0
+  color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  size: 23.8
+  coreSize: 0.5
+  spotAngle: 360
+  outerAngle: 15
+  maskTranslucency: 0
+  maskTranslucencyIntensity: 1
+  litMode: 0
+  applyRotation: 0
+  textureSize: 2
+  meshMode:
+    enable: 0
+    alpha: 0.5
+    shader: 0
+    materials:
+    - {fileID: 0}
+    sortingLayer:
+      name: Default
+      Order: 0
+  bumpMap:
+    intensity: 1
+    depth: 1
+  whenInsideCollider: 1
+  lightSprite: 0
+  sprite: {fileID: 21300000, guid: 6592d6be03fd808449716a11558d506f, type: 3}
+  spriteFlipX: 0
+  spriteFlipY: 0
 --- !u!1 &780406829
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,7 +224,7 @@ RectTransform:
   m_Children:
   - {fileID: 375960191}
   m_Father: {fileID: 5199990085081996631}
-  m_RootOrder: 7
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1094,13 +1167,13 @@ GameObject:
   - component: {fileID: 1325604219508422701}
   - component: {fileID: 3855756504366564186}
   - component: {fileID: 1587279015286667431}
-  m_Layer: 8
-  m_Name: Sprite (3)
+  m_Layer: 15
+  m_Name: Minimap Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1325604219508422701
 Transform:
   m_ObjectHideFlags: 0
@@ -1109,11 +1182,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1999820585532694630}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.008, y: 0.025, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children: []
   m_Father: {fileID: 5199990085081996631}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3855756504366564186
 SpriteRenderer:
@@ -6455,8 +6528,9 @@ Transform:
   - {fileID: 2723969344780276859}
   - {fileID: 576879055887562489}
   - {fileID: 1794753907}
-  - {fileID: 780406830}
   - {fileID: 1325604219508422701}
+  - {fileID: 503903034}
+  - {fileID: 780406830}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6590,7 +6664,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthslider: {fileID: 375960192}
   animator: {fileID: 0}
-  statMenu: {fileID: 0}
+  healthUI: {fileID: 0}
+  damageUI: {fileID: 0}
   mapUI: {fileID: 0}
   UpgradePoints: 0
   maxHealth: 10
@@ -6631,18 +6706,20 @@ MonoBehaviour:
   moveSpeed: 1
   isHoldingJump: 0
   jumpForce: 16
-  doubleJumpForce: 12
+  doubleJumpForce: 16
   dashDuration: 0.3
   dashPower: 120
+  dashCooldown: 0.8
   canDash: 1
+  dashCooldownActive: 0
   dashing: 0
   ledgeClimbXOffset1: 0.3
   ledgeClimbYOffset1: 0
   ledgeClimbXOffset2: 1
   ledgeClimbYOffset2: 2
   wallSliding: 0
-  wallSlidingSpeed: 10
-  wallBounce: 250
+  wallSlidingSpeed: 0
+  wallBounce: 500
   fallMultiplier: 6
   lowJumpMultiplier: 10
   inGravityField: 0
@@ -6666,7 +6743,7 @@ MonoBehaviour:
   attackPointDown: {fileID: 1110181049400350021}
   stickIsVertical: 0
   Recoil: 100
-  RecoilD: 30
+  RecoilD: 20
   attackRange: 0.75
   critIncrease: 3
   enemyLayer:
