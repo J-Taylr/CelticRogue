@@ -10,7 +10,7 @@ public class EnemyManager : MonoBehaviour
     public int currentHealth;
 
     [Tooltip("This number = % Chance of enemy dropping an upgrade point on death")]  
-    static int spawnChance = 80;
+    static int spawnChance = 20;
 
     [Header("Components")]
     public Slider healthSlider;

@@ -24,6 +24,7 @@ public class HealthUpgrader : MonoBehaviour
 
     public void ChangeSprite()
     {
+        UpgradePlayer();
         spriteHolder.sprite = Sprites[spriteChoice];
         fadeHolder.sprite = Sprites[spriteChoice];
 
