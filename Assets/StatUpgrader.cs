@@ -30,7 +30,7 @@ public class StatUpgrader : MonoBehaviour
 
     public void UpgradeHealth()
     {
-        if (playerManager.UpgradePoints > 0 && healthSlider.value < healthSlider.maxValue)
+        if (playerManager.UpgradePoints > 0)
         {
             playerManager.UpgradePoints--;
             playerManager.maxHealth += 1;
@@ -42,33 +42,12 @@ public class StatUpgrader : MonoBehaviour
 
     public void UpgradeDamage()
     {
-        if (playerManager.UpgradePoints > 0 && damageSlider.value < damageSlider.maxValue)
+        if (playerManager.UpgradePoints > 0)
         {
             playerManager.UpgradePoints--;
-            // playerManager.strikeDamage += x damage
+            playerManager.strikeDamage += 1;
 
             damageSlider.value += 1;
-        }
-    }
-
-    public void UpgradeCritical()
-    {
-        if (playerManager.UpgradePoints > 0 && criticalSlider.value < criticalSlider.maxValue)
-        {
-            playerManager.UpgradePoints--;
-            //playerManager.critChance += x critchance
-
-            criticalSlider.value += 1;
-        }
-    }
-    public void UpgradeSpeed()
-    {
-        if (playerManager.UpgradePoints > 0 && speedSlider.value < speedSlider.maxValue)
-        {
-            playerManager.UpgradePoints--;
-            //playerManager.moveSpeed += x speed 
-
-            speedSlider.value += 1;
         }
     }
 }
