@@ -1,0 +1,392 @@
+fileFormatVersion: 2
+guid: 0ad51ebca3f428d478b6b455a70bd0df
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1727076761841537501
+    second: fire elemental start up 200_0
+  - first:
+      213: -8729126934029861276
+    second: fire elemental start up 200_1
+  - first:
+      213: 2714624907702754070
+    second: fire elemental start up 200_2
+  - first:
+      213: 8650254506175965181
+    second: fire elemental start up 200_3
+  - first:
+      213: 623919411931304860
+    second: fire elemental start up 200_4
+  - first:
+      213: 8880568771305824948
+    second: fire elemental start up 200_5
+  - first:
+      213: 115055110286222134
+    second: fire elemental start up 200_6
+  - first:
+      213: 3339396679494656926
+    second: fire elemental start up 200_7
+  - first:
+      213: 6371814221976406667
+    second: fire elemental start up 200_8
+  - first:
+      213: 596765354414942811
+    second: fire elemental start up 200_9
+  - first:
+      213: -2032203223192936634
+    second: fire elemental start up 200_10
+  - first:
+      213: 4371828187437047950
+    second: fire elemental start up 200_11
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: fire elemental start up 200_0
+      rect:
+        serializedVersion: 2
+        x: 7137
+        y: 5248
+        width: 1845
+        height: 2472
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd195691a2fc7f710800000000000000
+      internalID: 1727076761841537501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire elemental start up 200_1
+      rect:
+        serializedVersion: 2
+        x: 9557
+        y: 5248
+        width: 1851
+        height: 2472
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46efad96d49ebd680800000000000000
+      internalID: -8729126934029861276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire elemental start up 200_2
+      rect:
+        serializedVersion: 2
+        x: 463
+        y: 2624
+        width: 1846
+        height: 2466
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61bdc0a88f84ca520800000000000000
+      internalID: 2714624907702754070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire elemental start up 200_3
+      rect:
+        serializedVersion: 2
+        x: 2801
+        y: 2624
+        width: 1851
+        height: 2466
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df7275174a0eb0870800000000000000
+      internalID: 8650254506175965181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire elemental start up 200_4
+      rect:
+        serializedVersion: 2
+        x: 5139
+        y: 2624
+        width: 1845
+        height: 2466
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c93d2a4466b98a800800000000000000
+      internalID: 623919411931304860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire elemental start up 200_5
+      rect:
+        serializedVersion: 2
+        x: 7383
+        y: 2624
+        width: 1851
+        height: 2466
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b26c190f3e1e3b70800000000000000
+      internalID: 8880568771305824948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire elemental start up 200_6
+      rect:
+        serializedVersion: 2
+        x: 9715
+        y: 2624
+        width: 1851
+        height: 2466
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63324326302c89100800000000000000
+      internalID: 115055110286222134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire elemental start up 200_7
+      rect:
+        serializedVersion: 2
+        x: 463
+        y: 0
+        width: 1846
+        height: 2466
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e93e56d469be75e20800000000000000
+      internalID: 3339396679494656926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire elemental start up 200_8
+      rect:
+        serializedVersion: 2
+        x: 2877
+        y: 0
+        width: 1852
+        height: 2466
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8a8fab864b3d6850800000000000000
+      internalID: 6371814221976406667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire elemental start up 200_9
+      rect:
+        serializedVersion: 2
+        x: 5297
+        y: 0
+        width: 1851
+        height: 2466
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5aa9249de2284800800000000000000
+      internalID: 596765354414942811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire elemental start up 200_10
+      rect:
+        serializedVersion: 2
+        x: 7553
+        y: 0
+        width: 1845
+        height: 2466
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64f5e228fe92cc3e0800000000000000
+      internalID: -2032203223192936634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire elemental start up 200_11
+      rect:
+        serializedVersion: 2
+        x: 9803
+        y: 0
+        width: 1851
+        height: 2466
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e80a933d29adbac30800000000000000
+      internalID: 4371828187437047950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 481911e5b5ef2254ca3c4818fc8047b2
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

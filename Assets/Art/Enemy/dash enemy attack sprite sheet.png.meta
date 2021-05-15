@@ -1,0 +1,368 @@
+fileFormatVersion: 2
+guid: 1f60a48e541087541953802487a756a1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1685061921594362647
+    second: dash enemy attack sprite sheet_0
+  - first:
+      213: 6166330946144339746
+    second: dash enemy attack sprite sheet_1
+  - first:
+      213: -5403792947430653332
+    second: dash enemy attack sprite sheet_2
+  - first:
+      213: 8680878035768458345
+    second: dash enemy attack sprite sheet_3
+  - first:
+      213: 1956478503541289131
+    second: dash enemy attack sprite sheet_4
+  - first:
+      213: 7009085083243861734
+    second: dash enemy attack sprite sheet_5
+  - first:
+      213: -5149308659828446921
+    second: dash enemy attack sprite sheet_6
+  - first:
+      213: -3980361352593225871
+    second: dash enemy attack sprite sheet_7
+  - first:
+      213: 7292857428111542505
+    second: dash enemy attack sprite sheet_8
+  - first:
+      213: -4981992156362896282
+    second: dash enemy attack sprite sheet_9
+  - first:
+      213: 8828714669886732054
+    second: dash enemy attack sprite sheet_10
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 0
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: dash enemy attack sprite sheet_0
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 5770
+        width: 1547
+        height: 1564
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71b4b2dc3ea826710800000000000000
+      internalID: 1685061921594362647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash enemy attack sprite sheet_1
+      rect:
+        serializedVersion: 2
+        x: 5027
+        y: 5664
+        width: 1717
+        height: 2056
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2278e6c2355339550800000000000000
+      internalID: 6166330946144339746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash enemy attack sprite sheet_2
+      rect:
+        serializedVersion: 2
+        x: 9328
+        y: 5108
+        width: 1781
+        height: 2671
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6282a0e1fed105b0800000000000000
+      internalID: -5403792947430653332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash enemy attack sprite sheet_3
+      rect:
+        serializedVersion: 2
+        x: 1143
+        y: 2501
+        width: 2127
+        height: 2741
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96c387c849ca87870800000000000000
+      internalID: 8680878035768458345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash enemy attack sprite sheet_4
+      rect:
+        serializedVersion: 2
+        x: 4406
+        y: 2343
+        width: 2948
+        height: 2284
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba0344645dec62b10800000000000000
+      internalID: 1956478503541289131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash enemy attack sprite sheet_5
+      rect:
+        serializedVersion: 2
+        x: 8314
+        y: 2331
+        width: 3018
+        height: 2033
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e65d3b5fb5454160800000000000000
+      internalID: 7009085083243861734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash enemy attack sprite sheet_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 246
+        width: 3223
+        height: 1763
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 739251c5e0bf988b0800000000000000
+      internalID: -5149308659828446921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash enemy attack sprite sheet_7
+      rect:
+        serializedVersion: 2
+        x: 2789
+        y: 2003
+        width: 264
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 177ccfc407ae2c8c0800000000000000
+      internalID: -3980361352593225871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash enemy attack sprite sheet_8
+      rect:
+        serializedVersion: 2
+        x: 3551
+        y: 351
+        width: 3387
+        height: 1588
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e84820113f653560800000000000000
+      internalID: 7292857428111542505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash enemy attack sprite sheet_9
+      rect:
+        serializedVersion: 2
+        x: 7359
+        y: 351
+        width: 4336
+        height: 1248
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66c053e87886cdab0800000000000000
+      internalID: -4981992156362896282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash enemy attack sprite sheet_10
+      rect:
+        serializedVersion: 2
+        x: 1365
+        y: 240
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 617f0e93735e58a70800000000000000
+      internalID: 8828714669886732054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 20ca0f13a927d5d448d9b80c678f095b
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

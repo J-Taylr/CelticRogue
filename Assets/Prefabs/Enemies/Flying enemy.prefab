@@ -25,8 +25,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8751093242357409646}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.25, y: 0.022, z: 0}
-  m_LocalScale: {x: 0.69132, y: 0.69093, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 9013122323483346500}
   m_RootOrder: 2
@@ -216,7 +216,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9013122322669257339}
   - component: {fileID: 9013122322669257341}
-  - component: {fileID: 1870187504}
+  - component: {fileID: 3360614815125077684}
   m_Layer: 9
   m_Name: Render
   m_TagString: Untagged
@@ -232,8 +232,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9013122322669257338}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.67807, y: 0.67807, z: 0.67807}
+  m_LocalPosition: {x: 0.2, y: 0.28, z: 0}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.67807}
   m_Children: []
   m_Father: {fileID: 9013122323483346500}
   m_RootOrder: 1
@@ -288,19 +288,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1870187504
-MonoBehaviour:
+--- !u!95 &3360614815125077684
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9013122322669257338}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f14285d0d081b7a48a17e7604a440ade, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  aiPath: {fileID: 0}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1c9e3485ecd15444a98278c46dab80fb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &9013122322881696619
 GameObject:
   m_ObjectHideFlags: 0
@@ -599,6 +605,7 @@ GameObject:
   - component: {fileID: 1772856136494213311}
   - component: {fileID: 1876621272831489312}
   - component: {fileID: 5633633413904747527}
+  - component: {fileID: 7616360262977846149}
   m_Layer: 9
   m_Name: Flying enemy
   m_TagString: Untagged
@@ -732,7 +739,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f14285d0d081b7a48a17e7604a440ade, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aiPath: {fileID: 0}
+  aiPath: {fileID: 7616360262977846149}
 --- !u!114 &5633633413904747527
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -750,3 +757,39 @@ MonoBehaviour:
   range: 10
   speed: 400
   nextWaypointDistance: 3
+--- !u!114 &7616360262977846149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9013122323483346497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6eb1402c17e84a9282a7f0f62eb584f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 2
+  radius: 0.5
+  height: 2
+  repathRate: 0.5
+  canSearch: 1
+  canMove: 1
+  maxSpeed: 1
+  gravity: {x: NaN, y: NaN, z: NaN}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  centerOffsetCompatibility: NaN
+  orientation: 0
+  enableRotation: 1
+  targetCompatibility: {fileID: 0}
+  maxAcceleration: -2.5
+  rotationSpeed: 360
+  slowdownDistance: 0.6
+  pickNextWaypointDist: 2
+  endReachedDistance: 0.2
+  alwaysDrawGizmos: 0
+  slowWhenNotFacingTarget: 1
+  whenCloseToDestination: 0
+  constrainInsideGraph: 0
