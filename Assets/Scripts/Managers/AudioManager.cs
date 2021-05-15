@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-   // FMOD.Studio.EventInstance menuMusic;
-   // FMOD.Studio.EventInstance inGameMusic;
+    FMOD.Studio.EventInstance menuMusic;
+    FMOD.Studio.EventInstance inGameMusic;
+    FMOD.Studio.EventInstance bossMusic;
 
     //Player sounds
     FMOD.Studio.EventInstance footStep;
@@ -20,39 +21,38 @@ public class AudioManager : MonoBehaviour
     FMOD.Studio.EventInstance skullTakeDamage;
     FMOD.Studio.EventInstance enemyDamage;
 
+    [Tooltip("1 = Menu, 2 = Main Level")]
+    public int scene = 0;
     private void Start()
     {
         GetInstances();
+        ChooseMusic();
     }
 
     private void Update()
     {
+        CheckMusicPos();
         CheckFootstepPos();
     }
 
-    public void GetInstances()
+    public void ChooseMusic()
     {
-        //menuMusic = FMODUnity.RuntimeManager.CreateInstance("");
-       // inGameMusic = FMODUnity.RuntimeManager.CreateInstance("");
+        switch (scene)
+        {
+            case 1:
+                menuMusic.start();
+                break;
+            case 2:
+                inGameMusic.start();
+                break;
 
-        footStep = FMODUnity.RuntimeManager.CreateInstance("event:/Player/FootSteps");
-        dash = FMODUnity.RuntimeManager.CreateInstance("event:/Player/Dash");
-        attack = FMODUnity.RuntimeManager.CreateInstance("event:/Player/Attack");
-        takeDamage = FMODUnity.RuntimeManager.CreateInstance("event:/Player/TakeDamage");
-        death = FMODUnity.RuntimeManager.CreateInstance("event:/Player/Death");
+           
+        }
 
-
-        skullSpawn = FMODUnity.RuntimeManager.CreateInstance("event:/Enemies/SkullSpawn");
-        skullTakeDamage = FMODUnity.RuntimeManager.CreateInstance("event:/Enemies/SkullDamage");
-        enemyDamage = FMODUnity.RuntimeManager.CreateInstance("event:/Enemies/TakeDamage");
+           
     }
 
-
-    public void Footstep()
-    {
-        footStep.start();
-    }
-
+  
     public void CheckFootstepPos()
     {
         if (GameManager.Instance.terrain == GameManager.TerrainZone.CAVE)
@@ -64,6 +64,34 @@ public class AudioManager : MonoBehaviour
             footStep.setParameterByName("FootSteps", 0);
         }
     }
+
+    
+
+    public void CheckMusicPos()
+    {
+        switch (GameManager.Instance.terrain)
+        {
+            case GameManager.TerrainZone.FOREST:
+                inGameMusic.setParameterByName("Areas", 0);
+
+                break;
+            case GameManager.TerrainZone.SWAMP:
+                inGameMusic.setParameterByName("Areas", 1);
+
+                break;
+            case GameManager.TerrainZone.CAVE:
+                inGameMusic.setParameterByName("Areas", 2);
+
+                break;
+            
+        }
+    }
+
+    public void Footstep()
+    {
+        footStep.start();
+    }
+
 
     public void PlayerAttack()
     {
@@ -85,4 +113,24 @@ public class AudioManager : MonoBehaviour
     {
         death.start();
     }
+
+
+    public void GetInstances()
+    {
+        menuMusic = FMODUnity.RuntimeManager.CreateInstance("event:/Music/TitleScreenMusic");
+        inGameMusic = FMODUnity.RuntimeManager.CreateInstance("event:/Music/Main Music");
+        bossMusic = FMODUnity.RuntimeManager.CreateInstance("event:/Music/Boss Music");
+
+        footStep = FMODUnity.RuntimeManager.CreateInstance("event:/Player/FootSteps");
+        dash = FMODUnity.RuntimeManager.CreateInstance("event:/Player/Dash");
+        attack = FMODUnity.RuntimeManager.CreateInstance("event:/Player/Attack");
+        takeDamage = FMODUnity.RuntimeManager.CreateInstance("event:/Player/TakeDamage");
+        death = FMODUnity.RuntimeManager.CreateInstance("event:/Player/Death");
+
+
+        skullSpawn = FMODUnity.RuntimeManager.CreateInstance("event:/Enemies/SkullSpawn");
+        skullTakeDamage = FMODUnity.RuntimeManager.CreateInstance("event:/Enemies/SkullDamage");
+        enemyDamage = FMODUnity.RuntimeManager.CreateInstance("event:/Enemies/TakeDamage");
+    }
+
 }

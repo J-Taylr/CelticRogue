@@ -19,13 +19,15 @@ public class GameManager : MonoBehaviour
         {
             _instance = this;
         }
+        DontDestroyOnLoad(this.gameObject);
     }
     //starthere//starthere//starthere//starthere//starthere//starthere//starthere//starthere//starthere//starthere//starthere//starthere//starthere
 
 
     public AudioManager audioManager;
-    public GameObject player;
-    public Transform spawnPoint;
+    public GameObject player, dashDoor, spawnDoor;
+    public Transform spawnPoint,dashSpawn,spawnerSpawn;
+    public bool dashDead, spawnDead;
 
     public enum TerrainZone {FOREST, SWAMP, CAVE};
     public TerrainZone terrain;
@@ -39,7 +41,7 @@ public class GameManager : MonoBehaviour
         print("remember to disable cursor in THIS script");
 
         player = GameObject.FindGameObjectWithTag("Player");
-        
+
     }
 
 
@@ -54,6 +56,18 @@ public class GameManager : MonoBehaviour
         {
             terrain = TerrainZone.CAVE;
         }
+
+
+    }
+
+    public void TerrainForest()
+    {
+        terrain = TerrainZone.FOREST;
+    }
+
+    public void TerrainSwamp()
+    {
+        terrain = TerrainZone.SWAMP;
     }
 
     public void RespawnPlayer()
@@ -62,6 +76,25 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-   
+    public void MiniBoss(string boss) {
+        SceneManager.LoadScene(boss);
+        Invoke("Restart", 0.01f);
+    }
 
+    public void Restart()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("Spawn");
+
+        for (int i = 0; i < spawnPoints.Length; i++)
+        {
+            spawnPoints[i].GetComponent<SpawnPointManager>().FindGameManager();
+        }
+
+        if (dashDead)
+        {
+            player.transform.position = dashSpawn.position;
+        }
+        
+    }
 }

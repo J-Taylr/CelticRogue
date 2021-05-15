@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{e349c7be-464e-404d-993c-3f44365797e0}">
+		<property name="assetPath">
+			<value>high voices.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>88.685714285714283</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{988fa58b-d162-4361-b30d-2314370fed9a}</destination>
+		</relationship>
+	</object>
+</objects>
