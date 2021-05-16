@@ -8,6 +8,8 @@ public class MenuManager : MonoBehaviour
 {
  
     public GameObject instructionMenu;
+    public GameObject credits;
+
 
     public AudioSource menuMusic;
     public AudioSource startGame;
@@ -41,6 +43,15 @@ public class MenuManager : MonoBehaviour
         instructionMenu.SetActive(false);
     }
 
+    public void OpenCredits()
+    {
+        openInst.Play();
+        credits.SetActive(true);
+    }
 
-
+    public void CloseCredits()
+    {
+        closeInst.Play();
+        credits.SetActive(false);
+    }
 }

@@ -13,7 +13,7 @@ public class EnemyManager : MonoBehaviour
     static int spawnChance = 20;
 
     [Header("Components")]
-    public Slider healthSlider;
+   
     public GameObject statDrop;
 
     private Skulls skulls;
@@ -28,7 +28,7 @@ public class EnemyManager : MonoBehaviour
 
     private void Awake()
     {
-        healthSlider = gameObject.GetComponentInChildren<Slider>();
+        
         CheckEnemyType();
     }
 
@@ -45,7 +45,7 @@ public class EnemyManager : MonoBehaviour
         
 
 
-        healthSlider.maxValue = maxHealth;
+        
 
         currentHealth = maxHealth;
     }
@@ -76,8 +76,6 @@ public class EnemyManager : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        healthSlider.value = currentHealth;
-       
     }
 
     public void CheckLife()

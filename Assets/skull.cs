@@ -5,7 +5,7 @@ using Pathfinding;
 public class skull : MonoBehaviour
 {
     public AIPath aiPath;
-    // Start is called before the first frame update
+    
     void Start()
     {
         

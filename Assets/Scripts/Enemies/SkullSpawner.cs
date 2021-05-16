@@ -7,26 +7,40 @@ public class SkullSpawner : MonoBehaviour
     public int max;
 
     public GameObject prefab;
+    public Transform player;
 
     public List<GameObject> Skulls;
 
     public Vector3 size;
     public Vector3 center;
+    public float spawnRange;
+
+    public bool isActive;
 
     public EnemyManager EM;
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         EM = gameObject.GetComponent<EnemyManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        CheckDistance();
         center = gameObject.transform.localPosition;
-        if (Skulls.Count <= max)
+
+        if (isActive)
         {
-            Spawn();
+            if (Skulls.Count <= max)
+            {
+                Spawn();
+            }
+        }
+        else
+        {
+            return;
         }
     }
     public void Spawn()
@@ -41,5 +55,25 @@ public class SkullSpawner : MonoBehaviour
     {
         Gizmos.color = new Color(1, 0, 0, 0.5f);
         Gizmos.DrawCube(transform.localPosition + center, size);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, spawnRange);
     }
+
+
+    public void CheckDistance()
+    {
+        float distance = Vector2.Distance(player.position, transform.position);
+
+        if (distance <= spawnRange)
+        {
+            isActive = true;
+        }
+        else
+        {
+            isActive = false;
+        }
+    }
+
+   
 }

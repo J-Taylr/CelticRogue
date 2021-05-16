@@ -604,8 +604,8 @@ GameObject:
   - component: {fileID: 489342357}
   - component: {fileID: 1772856136494213311}
   - component: {fileID: 1876621272831489312}
-  - component: {fileID: 5633633413904747527}
   - component: {fileID: 7616360262977846149}
+  - component: {fileID: 5755590976289701799}
   m_Layer: 9
   m_Name: Flying enemy
   m_TagString: Untagged
@@ -644,7 +644,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 1
   currentHealth: 5
-  healthSlider: {fileID: 9013122322092436931}
   statDrop: {fileID: 8522888314842647884, guid: ea90c6acc31c5034daa4f7ef5bc67d0a,
     type: 3}
   isSkull: 0
@@ -740,23 +739,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aiPath: {fileID: 7616360262977846149}
---- !u!114 &5633633413904747527
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9013122323483346497}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b58aa3c2e8dc05e459403a1c1e4edad1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  enemyGFX: {fileID: 0}
-  range: 10
-  speed: 400
-  nextWaypointDistance: 3
 --- !u!114 &7616360262977846149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -793,3 +775,19 @@ MonoBehaviour:
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0
   constrainInsideGraph: 0
+--- !u!114 &5755590976289701799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9013122323483346497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b58aa3c2e8dc05e459403a1c1e4edad1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  range: 20
+  speed: 4000
+  nextWaypointDistance: 3
