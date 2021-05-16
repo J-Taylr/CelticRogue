@@ -10,6 +10,7 @@ public class PlayerManager : MonoBehaviour
     public Animator healthUI;
     public Animator damageUI;
     public GameObject mapUI;
+    public GameObject pauseMenuUI;
 
     [Header("Core")]
     public int UpgradePoints = 0;
@@ -23,8 +24,7 @@ public class PlayerManager : MonoBehaviour
 
     public bool isImmune = false;
     public bool isInteracting = false;
-    public bool statMenuActive = false;
-    public bool mapActive = false;
+    
     public UpgradeController upgrades;
 
     [Header("Progression")]
@@ -34,6 +34,10 @@ public class PlayerManager : MonoBehaviour
 
     public bool invincible;
 
+    [Header("Menus")]
+    public bool pauseMenuActive = false;
+    public bool statMenuActive = false;
+    public bool mapActive = false;
 
     private void Awake()
     {
@@ -125,6 +129,26 @@ public class PlayerManager : MonoBehaviour
         else
         {
             mapUI.SetActive(false);
+        }
+
+    }
+
+
+    public void TogglePauseMenu()
+    {
+        pauseMenuActive = !pauseMenuActive;
+
+        if (pauseMenuActive)
+        {
+            Cursor.visible = true;
+            pauseMenuUI.SetActive(true);
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Cursor.visible = false;
+            pauseMenuUI.SetActive(true);
+            Time.timeScale = 1;
         }
 
     }

@@ -60,7 +60,7 @@ public class InputManager : MonoBehaviour
 
              inputController.Player.Menu.performed += ctx => playerManager.ToggleStatMenu();
             
-            
+            //inputController.Player.Pause.performed += ctx => 
 
 
     }
