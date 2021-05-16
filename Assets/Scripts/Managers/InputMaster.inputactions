@@ -108,14 +108,6 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
-                },
-                {
-                    "name": "ToggleMap",
-                    "type": "Button",
-                    "id": "92bf9881-f0ae-4a57-9a82-c8b394c6621d",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -567,28 +559,6 @@
                     "processors": "",
                     "groups": "GamePad",
                     "action": "Menu",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "72fe5637-62d1-4098-a2cc-cec22d85396c",
-                    "path": "<Keyboard>/m",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "ToggleMap",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "eb5586e5-6578-44d7-9122-57527579e7c0",
-                    "path": "<Gamepad>/leftShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "GamePad",
-                    "action": "ToggleMap",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

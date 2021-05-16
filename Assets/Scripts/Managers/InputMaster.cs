@@ -121,14 +121,6 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
-                },
-                {
-                    ""name"": ""ToggleMap"",
-                    ""type"": ""Button"",
-                    ""id"": ""92bf9881-f0ae-4a57-9a82-c8b394c6621d"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -582,28 +574,6 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""action"": ""Menu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""72fe5637-62d1-4098-a2cc-cec22d85396c"",
-                    ""path"": ""<Keyboard>/m"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""ToggleMap"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""eb5586e5-6578-44d7-9122-57527579e7c0"",
-                    ""path"": ""<Gamepad>/leftShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""GamePad"",
-                    ""action"": ""ToggleMap"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -680,7 +650,6 @@ public class @InputMaster : IInputActionCollection, IDisposable
         m_Player_CamDown = m_Player.FindAction("CamDown", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         m_Player_Menu = m_Player.FindAction("Menu", throwIfNotFound: true);
-        m_Player_ToggleMap = m_Player.FindAction("ToggleMap", throwIfNotFound: true);
         // Test
         m_Test = asset.FindActionMap("Test", throwIfNotFound: true);
         m_Test_Newaction = m_Test.FindAction("New action", throwIfNotFound: true);
@@ -746,7 +715,6 @@ public class @InputMaster : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_CamDown;
     private readonly InputAction m_Player_Pause;
     private readonly InputAction m_Player_Menu;
-    private readonly InputAction m_Player_ToggleMap;
     public struct PlayerActions
     {
         private @InputMaster m_Wrapper;
@@ -764,7 +732,6 @@ public class @InputMaster : IInputActionCollection, IDisposable
         public InputAction @CamDown => m_Wrapper.m_Player_CamDown;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputAction @Menu => m_Wrapper.m_Player_Menu;
-        public InputAction @ToggleMap => m_Wrapper.m_Player_ToggleMap;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -813,9 +780,6 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Menu.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
                 @Menu.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
                 @Menu.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
-                @ToggleMap.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleMap;
-                @ToggleMap.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleMap;
-                @ToggleMap.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleMap;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -859,9 +823,6 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Menu.started += instance.OnMenu;
                 @Menu.performed += instance.OnMenu;
                 @Menu.canceled += instance.OnMenu;
-                @ToggleMap.started += instance.OnToggleMap;
-                @ToggleMap.performed += instance.OnToggleMap;
-                @ToggleMap.canceled += instance.OnToggleMap;
             }
         }
     }
@@ -932,7 +893,6 @@ public class @InputMaster : IInputActionCollection, IDisposable
         void OnCamDown(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnMenu(InputAction.CallbackContext context);
-        void OnToggleMap(InputAction.CallbackContext context);
     }
     public interface ITestActions
     {

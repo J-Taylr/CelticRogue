@@ -16,9 +16,15 @@ public class MenuManager : MonoBehaviour
     public AudioSource openInst;
     public AudioSource closeInst;
 
+    private void Start()
+    {
+        instructionMenu.SetActive(false);
+        credits.SetActive(false);
+    }
+
     public void StartGame()
     {
-        Cursor.visible = true;
+        Cursor.visible = false;
 
         startGame.Play();
         menuMusic.Stop();
@@ -28,7 +34,9 @@ public class MenuManager : MonoBehaviour
 
     public void LoadScene()
     {
-        SceneManager.LoadScene(1);
+        int scne = SceneManager.GetActiveScene().buildIndex;
+        scne++;
+        SceneManager.LoadScene(scne);
     }
 
     public void OpenInstructions()
@@ -53,5 +61,10 @@ public class MenuManager : MonoBehaviour
     {
         closeInst.Play();
         credits.SetActive(false);
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }

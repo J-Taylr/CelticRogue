@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         terrain = TerrainZone.FOREST;
-        // Cursor.visible = false;
+        Cursor.visible = false;
         print("remember to disable cursor in THIS script");
 
         player = GameObject.FindGameObjectWithTag("Player");
