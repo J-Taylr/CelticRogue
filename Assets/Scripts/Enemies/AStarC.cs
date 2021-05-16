@@ -5,7 +5,7 @@ using Pathfinding;
 public class AStarC : MonoBehaviour
 {
     public Transform target;
-    public Transform enemyGFX;
+   // public Transform enemyGFX;
 
     public float range;
     public float speed = 220f;
@@ -76,11 +76,11 @@ public class AStarC : MonoBehaviour
 
         if (force.x >= 0.01f)
         {
-            enemyGFX.localScale = new Vector3(-1f, 1f, 1f);
+            //enemyGFX.localScale = new Vector3(-1f, 1f, 1f);
         }
         else if (force.x <= -0.01f)
         {
-            enemyGFX.localScale = new Vector3(1f, 1f, 1f);
+            //enemyGFX.localScale = new Vector3(1f, 1f, 1f);
         }
     }
     private void OnDrawGizmosSelected()
