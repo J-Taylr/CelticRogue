@@ -69,6 +69,7 @@ public class HealthUpgrader : MonoBehaviour
         if (isHealth)
         {
             playerManager.maxHealth += 1;
+            playerManager.currentHealth = playerManager.maxHealth;
         }
         else
         {

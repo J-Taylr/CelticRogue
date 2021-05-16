@@ -18,6 +18,7 @@ public class BasicEnemyMover : MonoBehaviour
     public bool attacking = false;
     public Rigidbody2D RB;
 
+    public Animator animator;
     private BoxCollider2D bc;
     public Transform groundDetection;
     public Transform wallDetection;
@@ -26,6 +27,7 @@ public class BasicEnemyMover : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponentInChildren<Animator>();
         RB = GetComponent<Rigidbody2D>();
         bc = GetComponent<BoxCollider2D>();
     }
@@ -53,7 +55,7 @@ public class BasicEnemyMover : MonoBehaviour
         if (hit.collider != null && hit.collider.tag == "Player" && attacking == false)
         {
             print(hit.collider);
-            StartCoroutine("Attack");
+            StartCoroutine(Attack());
         }
     }
     
@@ -97,6 +99,7 @@ public class BasicEnemyMover : MonoBehaviour
 
     public void State1()
     {
+        animator.SetTrigger("Attack");
         RB.AddForce(new Vector2(0f, 15f), ForceMode2D.Impulse);
     }
     public void State2()

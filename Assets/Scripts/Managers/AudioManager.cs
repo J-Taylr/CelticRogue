@@ -25,6 +25,7 @@ public class AudioManager : MonoBehaviour
     public int scene = 0;
     private void Start()
     {
+        inGameMusic.release();
         GetInstances();
         ChooseMusic();
     }

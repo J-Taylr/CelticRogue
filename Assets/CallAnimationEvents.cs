@@ -53,4 +53,10 @@ public class CallAnimationEvents : MonoBehaviour
     {
         audioManager.PlayerDeath();
     }
+
+    public void KillCharacter()
+    {
+
+    }
+
 }
