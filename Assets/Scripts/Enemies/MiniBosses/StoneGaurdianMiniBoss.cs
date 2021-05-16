@@ -29,6 +29,8 @@ public class StoneGaurdianMiniBoss : MonoBehaviour
 
     public float timeRemaining = 3;
     public float MaxTime = 3;
+    public EnemyManager EM;
+    public Finalboss FB;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +39,8 @@ public class StoneGaurdianMiniBoss : MonoBehaviour
         R = this.GetComponent<Rigidbody2D>();
         PR = Player.GetComponent<Rigidbody2D>();
         A = GetComponent<Animator>();
+        EM = gameObject.GetComponent<EnemyManager>();
+        FB = GameObject.Find("Bossmanager").GetComponent<Finalboss>();
     }
 
     // Update is called once per frame
@@ -60,6 +64,10 @@ public class StoneGaurdianMiniBoss : MonoBehaviour
         {
             MoveTo();
 
+        }
+        if (EM.currentHealth <= 0)
+        {
+            FB.Boss3 = true;
         }
     }
     private void OnCollisionStay2D(Collision2D other)

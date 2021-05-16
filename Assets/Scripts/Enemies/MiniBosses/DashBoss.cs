@@ -23,6 +23,8 @@ public class DashBoss : MonoBehaviour
     public Transform Check;
     public Vector3 r;
     [SerializeField] private LayerMask lm;
+    public EnemyManager EM;
+    public Finalboss FB;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +32,8 @@ public class DashBoss : MonoBehaviour
         bc = GetComponent<BoxCollider2D>();
         groundDetection = transform.GetChild(0);
         wallDetection = transform.GetChild(0);
+        FB = GameObject.Find("Bossmanager").GetComponent<Finalboss>();
+        EM = gameObject.GetComponent<EnemyManager>();
     }
 
     // Update is called once per frame
@@ -40,6 +44,10 @@ public class DashBoss : MonoBehaviour
         pos.z = 0;
         transform.position = pos;
         Debug.DrawLine(Check.position + transform.right * bc.size.x, transform.position + transform.right * distance, Color.green);
+        if (EM.currentHealth <= 0)
+        {
+            FB.Boss1 = true;
+        }
     }
 
     public void PlayerCast()

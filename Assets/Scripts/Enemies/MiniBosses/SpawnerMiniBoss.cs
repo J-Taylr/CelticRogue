@@ -18,10 +18,12 @@ public class SpawnerMiniBoss : MonoBehaviour
     public Vector3 center;
 
     public EnemyManager EM;
+    public Finalboss FB;
     // Start is called before the first frame update
     void Start()
     {
         EM = gameObject.GetComponent<EnemyManager>();
+        FB = GameObject.Find("Bossmanager").GetComponent<Finalboss>();
     }
 
     // Update is called once per frame
@@ -43,6 +45,10 @@ public class SpawnerMiniBoss : MonoBehaviour
         if (EM.currentHealth <= 15 & Wave3 == true)
         {
             W3();
+        }
+        if(EM.currentHealth <= 0)
+        {
+            FB.Boss2 = true;
         }
     }
     public void Spawn()
