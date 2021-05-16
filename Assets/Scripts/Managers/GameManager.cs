@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
         Invoke("Restart", 0.01f);
     }
 
-    /*public void Restart()
+    public void Restart()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("Spawn");
@@ -96,10 +96,7 @@ public class GameManager : MonoBehaviour
             player.transform.position = dashSpawn.position;
         }
         
-    }*/
-
-    public void endGame()
-    {
-        //end game 
     }
+
+    
 }
