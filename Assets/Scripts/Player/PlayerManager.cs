@@ -44,7 +44,7 @@ public class PlayerManager : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         
         mapUI.SetActive(false);
-        
+        pauseMenuUI.SetActive(false);
     }
 
 
@@ -106,11 +106,13 @@ public class PlayerManager : MonoBehaviour
 
         if (statMenuActive)
         {
+            Cursor.visible = true;
             healthUI.SetTrigger("UiON");
             damageUI.SetTrigger("UiON");
         }
         else
         {
+            Cursor.visible = false;
             healthUI.SetTrigger("UiOff");
             damageUI.SetTrigger("UiOff");
 
@@ -147,7 +149,7 @@ public class PlayerManager : MonoBehaviour
         else
         {
             Cursor.visible = false;
-            pauseMenuUI.SetActive(true);
+            pauseMenuUI.SetActive(false);
             Time.timeScale = 1;
         }
 
