@@ -5,16 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Main Menu.unity
     guid: f11e13f56baed52478a156ac05c206de
   - enabled: 1
     path: Assets/Scenes/4thLevel.unity
     guid: fd345c7cf03f8ba44aa59f2943bdc1d6
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MiniBoss/DashBoss.unity
     guid: 7fe0b1ca708fa6d499e67a1ade3a6d3b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MiniBoss/SpawnerBoss.unity
     guid: 420f5debbaca93242919a0580a211f99
   m_configObjects: {}

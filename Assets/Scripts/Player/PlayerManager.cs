@@ -42,9 +42,12 @@ public class PlayerManager : MonoBehaviour
     private void Awake()
     {
         animator = GetComponentInChildren<Animator>();
-        
-        mapUI.SetActive(false);
-        pauseMenuUI.SetActive(false);
+
+        if (mapUI != null && pauseMenuUI != null)
+        {
+            mapUI.SetActive(false);
+            pauseMenuUI.SetActive(false);
+        }
     }
 
 

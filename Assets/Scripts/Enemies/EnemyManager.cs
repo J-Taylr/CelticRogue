@@ -13,14 +13,16 @@ public class EnemyManager : MonoBehaviour
     static int spawnChance = 20;
 
     [Header("Components")]
-   
+
+    public Rigidbody2D rb;
+    public Animator anim;
     public GameObject statDrop;
 
     private Skulls skulls;
     private SkullsMiniBoss BossSkulls;
     public bool isSkull;
     public bool MSkull;
-
+    public bool isDead = false;
    
     private int poiDam;
     int dothit;
@@ -28,7 +30,7 @@ public class EnemyManager : MonoBehaviour
 
     private void Awake()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
         CheckEnemyType();
     }
 
@@ -95,14 +97,23 @@ public class EnemyManager : MonoBehaviour
     }
     public void Die()
     {
-        Debug.Log("dieing");
-
-        if (!isSkull)
+        if (!isDead)
         {
-            SpawnChance();
-        }
+            Debug.Log("dieing");
 
-        Destroy(gameObject);
+            if (rb != null)
+            {
+                rb.isKinematic = true;
+            }
+            anim.SetTrigger("Death");
+            if (!isSkull)
+            {
+                SpawnChance();
+            }
+            isDead = true;
+        Invoke("DestroyObject", 2);
+        }
+        
     }
 
 
@@ -119,6 +130,11 @@ public class EnemyManager : MonoBehaviour
             return;
         }
 
+    }
+
+    public void DestroyObject()
+    {
+        Destroy(gameObject);
     }
 
 }

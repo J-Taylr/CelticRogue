@@ -46,6 +46,9 @@ public class AudioManager : MonoBehaviour
             case 2:
                 inGameMusic.start();
                 break;
+            case 3:
+                bossMusic.start();
+                break;
 
            
         }
@@ -133,5 +136,9 @@ public class AudioManager : MonoBehaviour
         skullTakeDamage = FMODUnity.RuntimeManager.CreateInstance("event:/Enemies/SkullDamage");
         enemyDamage = FMODUnity.RuntimeManager.CreateInstance("event:/Enemies/TakeDamage");
     }
+
+
+    
+
 
 }

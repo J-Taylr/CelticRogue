@@ -214,7 +214,7 @@ MonoBehaviour:
   KnockBackY: 10
   attacking: 0
   RB: {fileID: 328981643541837802}
-  animator: {fileID: 0}
+  animator: {fileID: 1129338219}
   groundDetection: {fileID: 1412355234490637335}
   wallDetection: {fileID: 1412355234490637335}
   r: {x: 0, y: 0, z: 0}
@@ -235,7 +235,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 2
   currentHealth: 0
-  healthSlider: {fileID: 0}
+  rb: {fileID: 328981643541837802}
+  anim: {fileID: 1129338219}
   statDrop: {fileID: 8522888314842647884, guid: ea90c6acc31c5034daa4f7ef5bc67d0a,
     type: 3}
   isSkull: 0

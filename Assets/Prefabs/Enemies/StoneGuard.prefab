@@ -150,6 +150,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 5
   currentHealth: 0
+  rb: {fileID: 7549989509120876192}
+  anim: {fileID: 7549989509120876197}
   statDrop: {fileID: 0}
   isSkull: 0
   MSkull: 0

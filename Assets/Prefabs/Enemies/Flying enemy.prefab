@@ -236,6 +236,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 1
   currentHealth: 5
+  rb: {fileID: 489342357}
+  anim: {fileID: 3360614815125077684}
   statDrop: {fileID: 8522888314842647884, guid: ea90c6acc31c5034daa4f7ef5bc67d0a,
     type: 3}
   isSkull: 0
